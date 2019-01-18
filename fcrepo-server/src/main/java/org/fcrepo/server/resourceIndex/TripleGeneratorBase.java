@@ -35,6 +35,8 @@ public abstract class TripleGeneratorBase {
             return MODEL.DELETED;
         } else if (state.equals("I")) {
             return MODEL.INACTIVE;
+        } else if (state.equals("S")) {
+            return MODEL.SUBMITTED;
         } else {
             throw new ResourceIndexException("Unrecognized state: " + state);
         }

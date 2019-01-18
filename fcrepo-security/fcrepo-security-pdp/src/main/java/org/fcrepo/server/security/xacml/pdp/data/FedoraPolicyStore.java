@@ -482,8 +482,9 @@ implements PolicyStore {
             return false;
         } else {
             if (objectProfile.objectState.equals("A")
-                    || objectProfile.objectState.equals("I")) {
-                // active or inactive object found - policy exists
+                  || objectProfile.objectState.equals("I")
+		          || objectProfile.objectState.equals("S")) {
+                // active, inactive or submitted object found - policy exists
                 return true;
             } else {
                 // deleted object - policy does not exist

@@ -86,6 +86,8 @@ public class FedoraModelNamespace
 
     public final RDFName INACTIVE;
 
+    public final RDFName SUBMITTED;
+    
     // CMA RDF Relationships
     public final RDFName HAS_SERVICE;
 
@@ -166,6 +168,7 @@ public class FedoraModelNamespace
         ACTIVE = new RDFName(this, "Active");
         DELETED = new RDFName(this, "Deleted");
         INACTIVE = new RDFName(this, "Inactive");
+        SUBMITTED = new RDFName(this, "Submitted");
 
         // CMA RDF Relationships
         HAS_SERVICE = new RDFName(this, "hasService");

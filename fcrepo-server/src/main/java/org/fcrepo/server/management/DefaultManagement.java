@@ -237,11 +237,11 @@ public class DefaultManagement
 
             if (state != null && !state.isEmpty()) {
                 if (!state.equals("A") && !state.equals("D")
-                    && !state.equals("I")) {
+                    && !state.equals("I") && !state.equals("S")) {
                     throw new InvalidStateException("The object state of \""
                                                     + state
                                                     + "\" is invalid. The allowed values for state are: "
-                                                    + " A (active), D (deleted), and I (inactive).");
+                                                    + " A (active), D (deleted), S (submitted) and I (inactive).");
                 }
                 w.setState(state);
             }
@@ -1565,7 +1565,7 @@ public class DefaultManagement
         getXML(in, out, includeXMLDeclaration);
         return out.toByteArray();
     }
-    
+
     private void getXML(InputStream in, OutputStream outStream, boolean includeXMLDeclaration) throws GeneralException {
         // parse with xerces and re-serialize the fixed xml to a byte array
         try {

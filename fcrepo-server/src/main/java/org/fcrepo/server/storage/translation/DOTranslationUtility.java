@@ -332,7 +332,7 @@ public abstract class DOTranslationUtility
      * fedora.port (required)
      * fedora.appServerContext (required)
      * fedora.redirectPort (optional)
-     * 
+     *
      * @param properties
      */
     public static void init(Properties properties) {
@@ -836,7 +836,7 @@ public abstract class DOTranslationUtility
      * Null or empty strings are interpteted as "Active".
      * </p>
      * @param obj Object that potentially contains object state data.
-     * @return String containing full state value (Active, Inactive, or Deleted)
+     * @return String containing full state value (Active, Inactive, Submitted or Deleted)
      * @throws ObjectIntegrityException thrown when the state cannot be parsed.
      */
     public static String getStateAttribute(DigitalObject obj) throws ObjectIntegrityException {
@@ -849,6 +849,8 @@ public abstract class DOTranslationUtility
                         return MODEL.DELETED.localName;
                     case 'I':
                         return MODEL.INACTIVE.localName;
+                    case 'S':
+                        return MODEL.SUBMITTED.localName;
                     case 'A':
                         return MODEL.ACTIVE.localName;
                     default:
@@ -877,6 +879,8 @@ public abstract class DOTranslationUtility
             return "D";
         } else if (MODEL.INACTIVE.looselyMatches(rawValue, true)) {
             return "I";
+        } else if (MODEL.SUBMITTED.looselyMatches(rawValue, true)) {
+            return "S";
         } else if (MODEL.ACTIVE.looselyMatches(rawValue, true)
                     || rawValue == null
                     || rawValue.isEmpty()) {

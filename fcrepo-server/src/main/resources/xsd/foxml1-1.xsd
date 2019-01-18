@@ -151,7 +151,8 @@
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="A"/>
 			<xsd:enumeration value="D"/>
-			<xsd:enumeration value="I"/>
+            <xsd:enumeration value="I"/>
+			<xsd:enumeration value="S"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 	<!-- See http://www.fedora.info/definitions/identifiers/ -->

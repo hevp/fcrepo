@@ -138,7 +138,7 @@ public interface DOReader {
     /**
      * Gets the state of the digital object. The state indicates the status of
      * the digital object at any point in time. Valid states are: A=Active,
-     * I=Inactive, D=Deleted
+     * I=Inactive, S=Submitted, D=Deleted
      *
      * @return the state of the digital object.
      * @throws ServerException
