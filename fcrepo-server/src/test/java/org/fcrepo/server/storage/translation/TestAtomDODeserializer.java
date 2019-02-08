@@ -1,5 +1,5 @@
 /* The contents of this file are subject to the license and copyright terms
- * detailed in the license directory at the root of the source tree (also 
+ * detailed in the license directory at the root of the source tree (also
  * available online at http://fedora-commons.org/license/).
  */
 package org.fcrepo.server.storage.translation;
@@ -106,7 +106,7 @@ public class TestAtomDODeserializer
                 new DeserializerCallable(m_zip_deserializer, new FileInputStream(files[1])),
                 new DeserializerCallable(m_zip_deserializer, new ByteArrayInputStream(get_demo1001_zip()))
             };
-       runConcurrent(callables); 
+       runConcurrent(callables);
     }
 
     private DigitalObject[] getDemoObjects() throws Exception {
@@ -209,10 +209,10 @@ public class TestAtomDODeserializer
         sb.append("</feed>");
         return sb.toString().getBytes(Charset.forName("UTF-8"));
     }
-    
+
     private byte[] get_demo1001_dc() {
         StringBuilder sb = new StringBuilder();
-        sb.append("      <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\">");                 
+        sb.append("      <oai_dc:dc xmlns:oai_dc=\"http://www.openarchives.org/OAI/2.0/oai_dc/\" xmlns:dc=\"http://purl.org/dc/elements/1.1/\">");
         sb.append("        <dc:title>Coliseum in Rome</dc:title>");
         sb.append("        <dc:creator>Thornton Staples</dc:creator>");
         sb.append("        <dc:subject>Architecture, Roman</dc:subject>");
@@ -223,7 +223,7 @@ public class TestAtomDODeserializer
         sb.append("      </oai_dc:dc>");
         return sb.toString().getBytes(Charset.forName("UTF-8"));
     }
-    
+
     private byte[] get_demo1001_rels() {
         StringBuilder sb = new StringBuilder();
         sb.append("      <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" xmlns:fedora-model=\"info:fedora/fedora-system:def/model#\">");
@@ -233,14 +233,14 @@ public class TestAtomDODeserializer
         sb.append("      </rdf:RDF>");
         return sb.toString().getBytes(Charset.forName("UTF-8"));
     }
-    
+
     private byte[] get_demo1001_zip() throws IOException {
         byte[] demo1001_manifest = get_demo1001_manifest();
-        
+
         byte[] demo1001_dc = get_demo1001_dc();
-        
+
         byte[] demo1001_relsext = get_demo1001_rels();
-        
+
         ZipEntry manifest = new ZipEntry("atommanifest.xml");
         ZipEntry dc = new ZipEntry("DC1.0.xml");
         ZipEntry relsext = new ZipEntry("RELS-EXT1.0.xml");
@@ -256,7 +256,7 @@ public class TestAtomDODeserializer
         zip.close();
         return bout.toByteArray();
     }
-        
+
     @Test
     public void testDeserializeWithAutoChecksum() throws Exception {
         Datastream.defaultChecksumType = "MD5";

@@ -7,7 +7,7 @@
         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns="http://www.w3.org/2001/XMLSchema"
         xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
-        
+
         <import namespace="http://www.fedora.info/definitions/1/0/types/" schemaLocation="fedora-types.xsd" />
 
     <!--                                   -->
@@ -189,6 +189,7 @@
             <sequence>
                 <element name="pid" type="xsd:string"/>
                 <element name="state" type="xsd:string"/>
+                <element name="shareLevel" type="xsd:string"/>
                 <element name="label" type="xsd:string"/>
                 <element name="ownerId" type="xsd:string"/>
                 <element name="logMessage" type="xsd:string"/>

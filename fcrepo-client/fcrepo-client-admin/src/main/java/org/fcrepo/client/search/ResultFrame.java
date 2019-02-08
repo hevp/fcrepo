@@ -185,6 +185,9 @@ public class ResultFrame
         if (name.equals("state")) {
             return o.getState() != null ? o.getState().getValue() : "";
         }
+        if (name.equals("shareLevel")) {
+            return o.getShareLevel() != null ? o.getShareLevel().getValue() : "";
+        }
         if (name.equals("ownerId")) {
             return o.getOwnerId() != null ? o.getOwnerId().getValue() : "";
         }
@@ -380,11 +383,14 @@ public class ResultFrame
             JMenu m1 = new JMenu("Set object state to");
             JMenuItem activeItem =
                     new JMenuItem(new ChangeObjectState(pid, "Active"));
+            JMenuItem submittedItem =
+                    new JMenuItem(new ChangeObjectState(pid, "Submitted"));
             JMenuItem inactiveItem =
                     new JMenuItem(new ChangeObjectState(pid, "Inactive"));
             JMenuItem deletedItem =
                     new JMenuItem(new ChangeObjectState(pid, "Deleted"));
             m1.add(activeItem);
+            m1.add(submittedItem);
             m1.add(inactiveItem);
             m1.add(deletedItem);
             add(m1);
@@ -417,11 +423,14 @@ public class ResultFrame
             JMenu m1 = new JMenu("Set object states to");
             JMenuItem activeItem =
                     new JMenuItem(new ChangeObjectState(pids, "Active"));
+            JMenuItem submittedItem =
+                    new JMenuItem(new ChangeObjectState(pids, "Submitted"));
             JMenuItem inactiveItem =
                     new JMenuItem(new ChangeObjectState(pids, "Inactive"));
             JMenuItem deletedItem =
                     new JMenuItem(new ChangeObjectState(pids, "Deleted"));
             m1.add(activeItem);
+            m1.add(submittedItem);
             m1.add(inactiveItem);
             m1.add(deletedItem);
             add(m1);

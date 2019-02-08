@@ -159,6 +159,7 @@ public interface Authorization {
     public void enforceModifyObject(Context context,
                                     String pid,
                                     String objectState,
+                                    String objectShareLevel,
                                     String ownerId) throws AuthzException;
 
     public void enforcePurgeDatastream(Context context,

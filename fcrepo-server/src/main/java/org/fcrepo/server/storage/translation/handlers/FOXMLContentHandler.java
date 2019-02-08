@@ -181,7 +181,7 @@ public class FOXMLContentHandler
     private ReadableByteArrayOutputStream m_elementContent; // single element
 
     private ReadableCharArrayWriter m_dsXMLBuffer; // chunks of inline XML metadata
-    
+
     /**
      * Creates a content handler that reads the given FOXML format.
      *
@@ -219,7 +219,7 @@ public class FOXMLContentHandler
         m_transContext = transContext;
         initialize();
     }
-    
+
     public boolean rootElementFound() {
         return m_rootElementFound;
     }
@@ -284,6 +284,13 @@ public class FOXMLContentHandler
                                        .readStateAttribute(grab(a, FOXML.uri, "VALUE")));
                     } catch (ParseException e) {
                         throw new SAXException("Could not read state", e);
+                    }
+               } else if (m_objPropertyName.equals(MODEL.SHARELEVEL.uri)) {
+                    try {
+                        m_obj.setShareLevel(DOTranslationUtility
+                                       .readShareLevelAttribute(grab(a, FOXML.uri, "VALUE")));
+                    } catch (ParseException e) {
+                        throw new SAXException("Could not read share level", e);
                     }
                 } else if (m_objPropertyName.equals(MODEL.LABEL.uri)) {
                     m_obj.setLabel(grab(a, FOXML.uri, "VALUE"));
@@ -469,7 +476,7 @@ public class FOXMLContentHandler
      * {@inheritDoc}
      */
     @Override
-    public void characters(char[] ch, int start, int length) 
+    public void characters(char[] ch, int start, int length)
         throws SAXException {
         // read entire inline XML metadata chunks into a buffer
         if (m_inXMLMetadata && !m_gotAudit) {
@@ -645,7 +652,7 @@ public class FOXMLContentHandler
             }
         }
     }
-    
+
     private void startDisseminators(String localName, Attributes a) {
         if (localName.equals("disseminator")) {
             m_dissID = grab(a, FOXML.uri, "ID");

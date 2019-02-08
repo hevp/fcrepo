@@ -1,5 +1,5 @@
 /* The contents of this file are subject to the license and copyright terms
- * detailed in the license directory at the root of the source tree (also 
+ * detailed in the license directory at the root of the source tree (also
  * available online at http://fedora-commons.org/license/).
  */
 package org.fcrepo.client.actions;
@@ -18,7 +18,7 @@ import org.fcrepo.client.Administrator;
 
 /**
  * Change an object or a group of object's state.
- * 
+ *
  * @author Chris Wilper
  */
 public class ChangeObjectState
@@ -54,6 +54,7 @@ public class ChangeObjectState
                     String pid = pidIter.next();
                     Administrator.APIM.modifyObject(pid,
                                                     m_newState,
+                                                    null,
                                                     null,
                                                     null,
                                                     reason);

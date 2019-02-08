@@ -205,6 +205,7 @@ public class DefaultManagement
     public Date modifyObject(Context context,
                              String pid,
                              String state,
+                             String shareLevel,
                              String label,
                              String ownerId,
                              String logMessage,
@@ -216,6 +217,7 @@ public class DefaultManagement
             m_authz.enforceModifyObject(context,
                                         pid,
                                         state,
+                                        shareLevel,
                                         ownerId);
 
             checkObjectLabel(label);
@@ -246,6 +248,17 @@ public class DefaultManagement
                 w.setState(state);
             }
 
+            if (shareLevel != null && !shareLevel.isEmpty()) {
+                if (!shareLevel.equals("O") && !shareLevel.equals("R")
+                    && !shareLevel.equals("P")) {
+                    throw new InvalidStateException("The object state of \""
+                                                    + shareLevel
+                                                    + "\" is invalid. The allowed values for share level are: "
+                                                    + " O (open), R (registered) and P (private).");
+                }
+                w.setShareLevel(shareLevel);
+            }
+
             if (label != null) {
                 w.setLabel(label);
             }
@@ -266,6 +279,7 @@ public class DefaultManagement
                         new StringBuilder("Completed modifyObject(");
                 logMsg.append("pid: ").append(pid);
                 logMsg.append(", state: ").append(state);
+                logMsg.append(", shareLevel: ").append(shareLevel);
                 logMsg.append(", label: ").append(label);
                 logMsg.append(", ownerId: ").append(ownerId);
                 logMsg.append(", logMessage: ").append(logMessage);

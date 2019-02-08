@@ -67,7 +67,7 @@
             <xsl:value-of select="replace(@pid, '%', '%25')" />
             <xsl:text>/objectXML</xsl:text>
           </xsl:variable>
-          <a href="/{$fedora}/{$objectxml-url}">View the XML Representation of this Object</a>          
+          <a href="/{$fedora}/{$objectxml-url}">View the XML Representation of this Object</a>
           <hr />
           <table width="784" border="1" cellpadding="5"
             cellspacing="5" bgcolor="silver">
@@ -133,6 +133,14 @@
               </td>
               <td align="left">
                 <xsl:value-of select="access:objState" />
+              </td>
+            </tr>
+            <tr>
+              <td align="right">
+                <strong>Object Share Level: </strong>
+              </td>
+              <td align="left">
+                <xsl:value-of select="access:objShareLevel" />
               </td>
             </tr>
           </table>

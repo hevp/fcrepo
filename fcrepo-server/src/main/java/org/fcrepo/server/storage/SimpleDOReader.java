@@ -57,13 +57,13 @@ public class SimpleDOReader
 
     private static final Logger logger =
             LoggerFactory.getLogger(SimpleDOReader.class);
-    
+
     private static final Datastream[] DATASTREAM_TYPE =
             new Datastream[0];
 
     private static final Date[] DATE_TYPE =
             new Date[0];
-    
+
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     protected final DigitalObject m_obj;
@@ -217,7 +217,7 @@ public class SimpleDOReader
         if (format == null || format.isEmpty()
             || format.equalsIgnoreCase("default")) {
             logger.debug("Export in default format: {}", m_exportFormat);
-            format = m_exportFormat;            
+            format = m_exportFormat;
         } else {
             logger.debug("Export in format: {}", format);
         }
@@ -262,10 +262,21 @@ public class SimpleDOReader
         return m_obj.getState();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String GetObjectShareLevel() {
+        if (m_obj.getShareLevel() == null) {
+            return "O"; // shouldn't happen, but if it does don't die
+        }
+        return m_obj.getShareLevel();
+    }
+
     @Override
     public List<String> getContentModels() throws ServerException {
 
-        Set<RelationshipTuple> rels = getRelationships(MODEL.HAS_MODEL,null); 
+        Set<RelationshipTuple> rels = getRelationships(MODEL.HAS_MODEL,null);
         List<String> list = new ArrayList<String>(rels.size());
         for (RelationshipTuple rel : rels) {
             list.add(rel.object);
@@ -355,7 +366,7 @@ public class SimpleDOReader
     @Override
     public Date[] getDatastreamVersions(String datastreamID) {
         ArrayList<Date> versionDates = new ArrayList<Date>();
-        
+
         for (Datastream d : m_obj.datastreams(datastreamID)) {
             versionDates.add(d.DSCreateDT);
         }

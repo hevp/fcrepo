@@ -116,6 +116,7 @@ public abstract class ObjectBuilder {
         return getTestObject(pid,
                              models,
                              "A",
+                             "O",
                              "someOwnerId",
                              label,
                              now,
@@ -125,6 +126,7 @@ public abstract class ObjectBuilder {
     public static DigitalObject getTestObject(String pid,
                                               URIReference[] models,
                                               String state,
+                                              String shareLevel,
                                               String ownerId,
                                               String label,
                                               Date createDate,
@@ -147,6 +149,7 @@ public abstract class ObjectBuilder {
         addXDatastream(obj, "RELS-EXT", rdf.toString());
 
         obj.setState(state);
+        obj.setShareLevel(state);
         obj.setOwnerId(ownerId);
         obj.setLabel(label);
         obj.setCreateDate(createDate);

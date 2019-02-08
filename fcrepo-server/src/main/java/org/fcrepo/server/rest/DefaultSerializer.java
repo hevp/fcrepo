@@ -61,7 +61,7 @@ public class DefaultSerializer {
         }
         return xml.toString();
     }
-    
+
     static void pidsToXml(String[] pidList, Appendable xml)
             throws IOException {
         xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -148,7 +148,9 @@ public class DefaultSerializer {
         enc(objProfile.itemIndexViewURL, buffer);
         buffer.append("</objItemIndexViewURL><objState>");
         enc(objProfile.objectState, buffer);
-        buffer.append("</objState></objectProfile>");
+        buffer.append("</objState><objectShareLevel>");
+        enc(objProfile.objectShareLevel, buffer);
+        buffer.append("</objectShareLevel></objectProfile>");
     }
 
     private static void datastreamFieldSerialization(Datastream dsProfile, String prefix,
@@ -225,10 +227,10 @@ public class DefaultSerializer {
         } catch (IOException ioe) {}
         return builder.getString();
     }
-    
+
     void datastreamProfilesToXML(String pid, Datastream[] dsProfiles, Date versDateTime,
             boolean validateChecksum, Writer builder) throws IOException {
-    
+
         builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
             + "<objectDatastreams xmlns=\"")
         .append(Constants.ACCESS.uri)
@@ -274,7 +276,7 @@ public class DefaultSerializer {
         }
         return buffer.getString();
     }
-    
+
     static void objectHistoryToXml(
             String[] objectHistory,
             String pid,
@@ -307,8 +309,8 @@ public class DefaultSerializer {
         } catch (IOException ioe) {}
         return buffer.getString();
     }
-    
-    
+
+
     String datastreamHistoryToXml(String pid, String dsID,
             Datastream[] history, Writer buffer) throws IOException {
         buffer.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
@@ -378,7 +380,7 @@ public class DefaultSerializer {
         }
         return buffer.getString();
     }
-    
+
     public static void objectMethodsToXml(
                 String baseUrl,
                 ObjectMethodsDef[] methodDefs,
@@ -478,8 +480,8 @@ public class DefaultSerializer {
         } catch (IOException ioe) {}
         return html.getString();
     }
-    
-    
+
+
     void searchResultToHtml(
             String query,
             String terms,
@@ -584,6 +586,8 @@ public class DefaultSerializer {
                         }
                     } else if (l.equalsIgnoreCase("state")) {
                         html.append(f.getState());
+                    } else if (l.equalsIgnoreCase("shareLevel")) {
+                        html.append(f.getShareLevel());
                     } else if (l.equalsIgnoreCase("ownerId")) {
                         if (f.getOwnerId() != null) {
                             html.append(f.getOwnerId());
@@ -680,7 +684,7 @@ public class DefaultSerializer {
         }
         return xmlBuf.getString();
     }
-    
+
     void searchResultToXml(
             FieldSearchResult result,
             Writer xmlBuf) throws IOException {
@@ -723,6 +727,7 @@ public class DefaultSerializer {
                 appendXML("pid", f.getPid(), xmlBuf);
                 appendXML("label", f.getLabel(), xmlBuf);
                 appendXML("state", f.getState(), xmlBuf);
+                appendXML("shareLevel", f.getShareLevel(), xmlBuf);
                 appendXML("ownerId", f.getOwnerId(), xmlBuf);
                 appendXML("cDate", f.getCDate(), xmlBuf);
                 appendXML("mDate", f.getMDate(), xmlBuf);
@@ -747,7 +752,7 @@ public class DefaultSerializer {
         }
         xmlBuf.append("  </resultList>\n</result>\n");
     }
-    
+
     private void baseUrl(Writer baseUrlBuf) throws IOException {
         enc(fedoraServerProtocol, baseUrlBuf);
         baseUrlBuf.append("://");
@@ -777,7 +782,7 @@ public class DefaultSerializer {
             throws IOException {
         appendXML(indent, prefix, name, value, out, false);
     }
-    
+
     private static void appendXML(String indent, String prefix, String name,
             String value, Writer out, boolean force)
             throws IOException {
@@ -831,7 +836,7 @@ public class DefaultSerializer {
         }
         return xml.getString();
     }
-    
+
     public void dataStreamsToXML(
             String pid,
             Date asOfDateTime,
@@ -882,7 +887,7 @@ public class DefaultSerializer {
         }
         return buffer.getString();
     }
-    
+
     public static String objectValidationToXml(
             Validation validation, Writer buffer)
             throws IOException {

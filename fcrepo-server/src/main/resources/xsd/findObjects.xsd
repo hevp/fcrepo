@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://www.fedora.info/definitions/1/0/types/" 
+<xsd:schema targetNamespace="http://www.fedora.info/definitions/1/0/types/"
             xmlns="http://www.fedora.info/definitions/1/0/types/"
-            xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns:apim="http://www.fedora.info/definitions/1/0/management/"
             elementFormDefault="qualified">
 	<!-- root element declaration -->
@@ -38,6 +38,7 @@
             <xsd:element name="pid" nillable="true" type="xsd:string" minOccurs="0"/>
             <xsd:element name="label" nillable="true" type="xsd:string" minOccurs="0"/>
             <xsd:element name="state" nillable="true" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="shareLevel" nillable="true" type="xsd:string" minOccurs="0"/>
             <xsd:element name="ownerId" nillable="true" type="xsd:string" minOccurs="0"/>
             <xsd:element name="cDate" nillable="true" type="xsd:string" minOccurs="0"/>
             <xsd:element name="mDate" nillable="true" type="xsd:string" minOccurs="0"/>
@@ -59,5 +60,5 @@
             <xsd:element name="rights" nillable="true" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
-    
+
 </xsd:schema>

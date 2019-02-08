@@ -33,4 +33,6 @@ public class ObjectProfile {
     public String itemIndexViewURL = null;
 
     public String objectState = null;
+
+    public String objectShareLevel = null;
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" 
-             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
-             xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-             xmlns:fedora-api="http://www.fedora.info/definitions/1/0/api/" 
-             xmlns:fedora-types="http://www.fedora.info/definitions/1/0/types/" 
-             xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
-             xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
-             targetNamespace="http://www.fedora.info/definitions/1/0/api/" 
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:fedora-api="http://www.fedora.info/definitions/1/0/api/"
+             xmlns:fedora-types="http://www.fedora.info/definitions/1/0/types/"
+             xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+             xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+             targetNamespace="http://www.fedora.info/definitions/1/0/api/"
              name="Fedora-API-A-LITE-WSDL">
 
 	<types>
@@ -18,7 +18,7 @@
 
 	<message name="describeRepositoryRequest">
 		<part name="xml" type="xsd:string">
-			<documentation>a string value of "true" or "false" indicating that the repository info should be XML encoded. 
+			<documentation>a string value of "true" or "false" indicating that the repository info should be XML encoded.
 				Fedora will assume a default of "false" if the xml part is not specified.
 			</documentation>
 		</part>
@@ -36,13 +36,13 @@
 			<documentation>the persistent identifier of the object.</documentation>
 		</part>
 		<part name="asOfDateTime" type="xsd:string">
-			<documentation>the date/time stamp specifying the desired view of the 
-			      object.  If this part is not present in the request, or if it is empty,  the current 
+			<documentation>the date/time stamp specifying the desired view of the
+			      object.  If this part is not present in the request, or if it is empty,  the current
 			      view of the object (the most recent time) is assumed.
 			</documentation>
 		</part>
 		<part name="xml" type="xsd:string">
-			<documentation>a string value of "true" or "false" indicating that the list of object methods should be XML encoded. 
+			<documentation>a string value of "true" or "false" indicating that the list of object methods should be XML encoded.
 				Fedora will assume a default of "false" if the xml part is not specified.
 			</documentation>
 		</part>
@@ -60,15 +60,15 @@
 			<documentation>the pid of the object.</documentation>
 		</part>
 		<part name="asOfDateTime" type="xsd:string">
-			<documentation>the date/time stamp specifying the desired view of the 
-			      object.  If null, the current view of the object (the most recent time) 
+			<documentation>the date/time stamp specifying the desired view of the
+			      object.  If null, the current view of the object (the most recent time)
 			      is assumed.
 			</documentation>
 		</part>
 	</message>
 	<message name="listMethodsResponse">
 		<part name="response" type="fedora-types:ArrayOfObjectMethodsDef">
-			<documentation>A set of method definitions that represent 
+			<documentation>A set of method definitions that represent
 				all possible disseminations that can be run on the object.
 			</documentation>
 		</part>
@@ -78,15 +78,15 @@
 			<documentation>the pid of the object.</documentation>
 		</part>
 		<part name="asOfDateTime" type="xsd:string">
-			<documentation>the date/time stamp specifying the desired view of the 
-			      object.  If null, the current view of the object (the most recent time) 
+			<documentation>the date/time stamp specifying the desired view of the
+			      object.  If null, the current view of the object (the most recent time)
 			      is assumed.
 			</documentation>
 		</part>
 	</message>
 	<message name="listDatastreamsResponse">
 		<part name="response" type="fedora-types:ArrayOfDatastreamDef">
-			<documentation>A set of method definitions that represent 
+			<documentation>A set of method definitions that represent
 				all possible disseminations that can be run on the object.
 			</documentation>
 		</part>
@@ -100,7 +100,7 @@
 		</part>
 		<part name="asOfDateTime" type="xsd:string">
 			<documentation>the date/time stamp specifying that the dissemination should reflect
-				what the object looked like at a certain date and time.  If this part is not present 
+				what the object looked like at a certain date and time.  If this part is not present
 				in the request, or if it is empty,  the current view of the object (the most recent time)
 				 is assumed.
 			</documentation>
@@ -123,7 +123,7 @@
 		</part>
 		<part name="asOfDateTime" type="xsd:string">
 			<documentation>the date/time stamp specifying that the dissemination should reflect
-				what the object looked like at a certain date and time.  If this part is not present 
+				what the object looked like at a certain date and time.  If this part is not present
 				in the request, or if it is empty,  the current view of the object (the most recent time)
 				 is assumed.
 			</documentation>
@@ -139,8 +139,8 @@
 	</message>
 	<message name="findObjectsRequest">
 		<part name="terms" type="xsd:string">
-			<documentation>a sequence of characters (including the ? and * wildcards) 
-           for the search.  If this sequence is found in any of the fields for an 
+			<documentation>a sequence of characters (including the ? and * wildcards)
+           for the search.  If this sequence is found in any of the fields for an
            object, the object is considered a match.  This parameter cannot
            be used in combination with the query parameter.</documentation>
 		</part>
@@ -176,8 +176,11 @@
 		<part name="label" type="xsd:string">
 			<documentation>if true, the labels of matching objects will be included in the response.</documentation>
 		</part>
-		<part name="state" type="xsd:string">
-			<documentation>if true, the states of matching objects will be included in the response.</documentation>
+        <part name="state" type="xsd:string">
+            <documentation>if true, the states of matching objects will be included in the response.</documentation>
+        </part>
+		<part name="shareLevel" type="xsd:string">
+			<documentation>if true, the share levels of matching objects will be included in the response.</documentation>
 		</part>
 		<part name="ownerId" type="xsd:string">
 			<documentation>if true, the userids of users who own the objects will be included in the response.</documentation>
@@ -270,14 +273,14 @@
 		</part>
 	</message>
 	<portType name="Fedora-API-A-LITE">
-		<documentation>  This is a simple URI-oriented service definition for the Access service 
-			of a Fedora repository.  It is intended to support a REST-like style of access to the 
-			Fedora Access web service (in contrast to a traditional SOAP web service definition).  
+		<documentation>  This is a simple URI-oriented service definition for the Access service
+			of a Fedora repository.  It is intended to support a REST-like style of access to the
+			Fedora Access web service (in contrast to a traditional SOAP web service definition).
 			This means that we define a simple URL syntax that can be used to issue service requests.
 			API-A-Lite does not provide service bindings for all of the operations defined in Fedora's full
 			Access service (API-A).  API-A-Lite only provides bindings for getDissemination, getObjectProfile,
-           findObjects, and resumeFindObjects. 
-			The result of the getDissemination request is a MIME-typed stream.  The result of the getObjectProfile 
+           findObjects, and resumeFindObjects.
+			The result of the getDissemination request is a MIME-typed stream.  The result of the getObjectProfile
 			request is either HTML or XML, whichever the client requested.  The result of the search methods
            is also either HTML or XML.  When URL syntax is shown below, green indicates required parts and red indicates optional parts.
 		</documentation>
@@ -285,7 +288,7 @@
 			<documentation>
 				<p>Gets key metadata elements about the Fedora repository
 				server including repository name, version, baseURL, pid namespace,
-				and sample request URLs.  The repository info can be returned as XML data 
+				and sample request URLs.  The repository info can be returned as XML data
 				or as an HTML presentation.</p>
 				<p>URL Syntax:</p>
 				<p>
@@ -326,11 +329,11 @@
 			<output message="fedora-api:listDatastreamsResponse"/>
 		</operation>
 		<operation name="getDissemination">
-			<documentation>Gets a MIME-typed view of the digital object, given the 
-				service definition id, the service method name and any parameters to the 
+			<documentation>Gets a MIME-typed view of the digital object, given the
+				service definition id, the service method name and any parameters to the
 				service method. The getDissemination request hides from the client the details
 				of how a service method is fulfilled by the Fedora Access service  (i.e., it does
-				not require the client to know about the service mechanism that performs the work, 
+				not require the client to know about the service mechanism that performs the work,
 				or how the request is invoked upon the service deployment).  The client need only
 				specify an abstract service definition information in the request.
 			</documentation>
@@ -339,10 +342,10 @@
 		</operation>
 		<operation name="getDatastreamDissemination">
 			<documentation>Gets a datastream in the digital object.  This is
-            a shorter, convenience method for getDissemination 
+            a shorter, convenience method for getDissemination
             http(s)://hostname:port/fedora/get/pid/fedora-system:3/getItem?itemID=dsID.
             Note that if a particular date/timestamped view of a datastream is
-            needed, getDissemination still must be used.  When making direct 
+            needed, getDissemination still must be used.  When making direct
             links to datastreams within web pages or applications, this
             syntax is recommended.
             </documentation>
@@ -351,7 +354,7 @@
 		</operation>
 		<operation name="findObjects">
 			<documentation>
-				<p>Gets the requested ObjectFields on all objects in the 
+				<p>Gets the requested ObjectFields on all objects in the
             repository matching the given criteria.  This is like a SQL query on a table that
             indexes all objects in the repository with key fields, including unqualified dublin core
             metadata.</p>
@@ -438,15 +441,15 @@ It asks for up to 50 results at a time from the server, and requests that the re
 				<documentation>  This URL replacement syntax is used to request a description
 					of the Fedora repository server.  The request will return key metadata elements
 					about the repository server including repository name, version, baseURL,
-					pid namespace, and sample request URLs.  When putting together a proper URL, 
-					the client should replace parenthesized parts of the operation location URL with actual values.  
+					pid namespace, and sample request URLs.  When putting together a proper URL,
+					the client should replace parenthesized parts of the operation location URL with actual values.
 					For example, "(boolean)" 	should be replaced with a "true" or "false" to indicate
 					whether the repository information should be returned as XML (alternative is HTML).
-					Parts of the operation location URL that are surrounded by brackets ("[ ]") are optional.  
+					Parts of the operation location URL that are surrounded by brackets ("[ ]") are optional.
 					To construct a proper URL the client must replace the following variables with real information:
-					 	- boolean : an optional parameter.  Client can specify that the output of 
-					 	  the operation be HTML or XML.   A value of "true" indicates a return type of 
-					 	  text/xml; the absence of the boolean parameter or a value of "false" indicates 
+					 	- boolean : an optional parameter.  Client can specify that the output of
+					 	  the operation be HTML or XML.   A value of "true" indicates a return type of
+					 	  text/xml; the absence of the boolean parameter or a value of "false" indicates
 					 	  format is to be text/html.
 				</documentation>
 				<http:urlReplacement/>
@@ -461,18 +464,18 @@ It asks for up to 50 results at a time from the server, and requests that the re
 			<input>
 				<documentation>  This URL replacement syntax is used to request the object profile.
 					When putting together a proper URL, the client should replace parenthesized
-					parts of the operation location URL with actual values.  For example, "(pid)" 
-					should be replaced with an actual pid of an object for which the client wants 
+					parts of the operation location URL with actual values.  For example, "(pid)"
+					should be replaced with an actual pid of an object for which the client wants
 					to get information about (e.g. uva-lib:10).	Parts of the operation location URL that
 					are surrounded by brackets ("[ ]") are optional.  To construct a proper URL the
 					client must replace the following variables with real information:
 						- pid : a required parameter. Client must provide the persistent identifier of the object.
-					 	- asOfDateTime : an optional parameter.  Client can specifiy a dateTime value 
-					 	  indicating that the client wants the object profile to reflect how the object looked 
+					 	- asOfDateTime : an optional parameter.  Client can specifiy a dateTime value
+					 	  indicating that the client wants the object profile to reflect how the object looked
 					 	  as of a particular date and time.
-					 	- boolean : an optional parameter.  Client can specify that the output of 
-					 	  the operation be HTML or XML.   A value of "true" indicates a return type of 
-					 	  text/xml; the absence of the boolean parameter or a value of "false" indicates 
+					 	- boolean : an optional parameter.  Client can specify that the output of
+					 	  the operation be HTML or XML.   A value of "true" indicates a return type of
+					 	  text/xml; the absence of the boolean parameter or a value of "false" indicates
 					 	  format is to be text/html.
 				</documentation>
 				<http:urlReplacement/>
@@ -486,20 +489,20 @@ It asks for up to 50 results at a time from the server, and requests that the re
 			<http:operation location="listMethods/(pid)[/(asOfDateTime)][?xml=(boolean)]"/>
 			<input>
 				<documentation>  This URL replacement syntax is used to request the list of all
-				    methods within a digital  object.	
+				    methods within a digital  object.
 				    When putting together a proper URL, the client should replace parenthesized
-					parts of the operation location URL with actual values.  For example, "(pid)" 
-					should be replaced with an actual pid of an object for which the client wants 
+					parts of the operation location URL with actual values.  For example, "(pid)"
+					should be replaced with an actual pid of an object for which the client wants
 					to get information about (e.g. uva-lib:10).	Parts of the operation location URL that
 					are surrounded by brackets ("[ ]") are optional.  To construct a proper URL the
 					client must replace the following variables with real information:
 						- pid : a required parameter. Client must provide the persistent identifier of the object.
-					 	- asOfDateTime : an optional parameter.  Client can specifiy a dateTime value 
-					 	  indicating that the client wants the object profile to reflect how the object looked 
+					 	- asOfDateTime : an optional parameter.  Client can specifiy a dateTime value
+					 	  indicating that the client wants the object profile to reflect how the object looked
 					 	  as of a particular date and time.
-					 	- boolean : an optional parameter.  Client can specify that the output of 
-					 	  the operation be HTML or XML.   A value of "true" indicates a return type of 
-					 	  text/xml; the absence of the boolean parameter or a value of "false" indicates 
+					 	- boolean : an optional parameter.  Client can specify that the output of
+					 	  the operation be HTML or XML.   A value of "true" indicates a return type of
+					 	  text/xml; the absence of the boolean parameter or a value of "false" indicates
 					 	  format is to be text/html.
 				</documentation>
 				<http:urlReplacement/>
@@ -515,18 +518,18 @@ It asks for up to 50 results at a time from the server, and requests that the re
 				<documentation>  This URL replacement syntax is used to request a list of all
 				     datastream in a digital object.
 					When putting together a proper URL, the client should replace parenthesized
-					parts of the operation location URL with actual values.  For example, "(pid)" 
-					should be replaced with an actual pid of an object for which the client wants 
+					parts of the operation location URL with actual values.  For example, "(pid)"
+					should be replaced with an actual pid of an object for which the client wants
 					to get information about (e.g. uva-lib:10).	Parts of the operation location URL that
 					are surrounded by brackets ("[ ]") are optional.  To construct a proper URL the
 					client must replace the following variables with real information:
 						- pid : a required parameter. Client must provide the persistent identifier of the object.
-					 	- asOfDateTime : an optional parameter.  Client can specifiy a dateTime value 
-					 	  indicating that the client wants the object profile to reflect how the object looked 
+					 	- asOfDateTime : an optional parameter.  Client can specifiy a dateTime value
+					 	  indicating that the client wants the object profile to reflect how the object looked
 					 	  as of a particular date and time.
-					 	- boolean : an optional parameter.  Client can specify that the output of 
-					 	  the operation be HTML or XML.   A value of "true" indicates a return type of 
-					 	  text/xml; the absence of the boolean parameter or a value of "false" indicates 
+					 	- boolean : an optional parameter.  Client can specify that the output of
+					 	  the operation be HTML or XML.   A value of "true" indicates a return type of
+					 	  text/xml; the absence of the boolean parameter or a value of "false" indicates
 					 	  format is to be text/html.
 				</documentation>
 				<http:urlReplacement/>
@@ -554,22 +557,22 @@ It asks for up to 50 results at a time from the server, and requests that the re
 			<input>
 				<documentation>  This URL replacement syntax is used to request a dissemination of the object.
 					When putting together a proper URL, the client should replace parenthesized
-					parts of the operation location URL with actual values.  For example, "(pid)" 
+					parts of the operation location URL with actual values.  For example, "(pid)"
 					should be replaced with an actual pid of an object that the client wants to request a
-					dissemination of (for example a pid value of "uva-lib:10").  Those parts of the operation 
-					location syntax that are surrounded by brackets ("[ ]") are optional.  
+					dissemination of (for example a pid value of "uva-lib:10").  Those parts of the operation
+					location syntax that are surrounded by brackets ("[ ]") are optional.
 					To construct a proper URL the client must replace the following variables with real information:
 						- pid : a required parameter. Client must provide the persistent identifier of the digital object.
-						- sDefPid : a required parameter. Client must provide the persistent identifier of the 
+						- sDefPid : a required parameter. Client must provide the persistent identifier of the
 						  service definition object to which the digital object subscribes.
 						- methodName - a required parameter.  Client must provide the name of the service
-						  method to be executed. 
-						- asOfDateTime : an optional parameter.  Client can specifiy a dateTime value 
-					 	  indicating that the client wants the object profile to reflect how the object looked 
+						  method to be executed.
+						- asOfDateTime : an optional parameter.  Client can specifiy a dateTime value
+					 	  indicating that the client wants the object profile to reflect how the object looked
 					 	  as of a particular date and time.
 						- parameters - an optional array of parameters to the service method.  The parameter array
 						  must begin with a question mark to delimit it from the rest of the URL.  Then, the
-						  parameters follow as a set of name/value pairs separated by ampersands. 
+						  parameters follow as a set of name/value pairs separated by ampersands.
 						  Each name and value is connected by an equal sign. This is in accordance with normal
 						  URL syntax for encoding parameters.
 				</documentation>
@@ -598,8 +601,8 @@ It asks for up to 50 results at a time from the server, and requests that the re
 		<operation name="resumeFindObjects">
 			<http:operation location="search?sessionToken=(sessionToken)[&amp;xml=(boolean)]"/>
 			<input>
-				<documentation>This operation is used to resume a findObjects operation.  
-               	The sessionToken value comes from the previous response.  The URL replacement 
+				<documentation>This operation is used to resume a findObjects operation.
+               	The sessionToken value comes from the previous response.  The URL replacement
                	uses the same syntax conventions as the findObjects operation.</documentation>
 				<http:urlReplacement/>
 			</input>
@@ -613,15 +616,15 @@ It asks for up to 50 results at a time from the server, and requests that the re
 			<input>
 				<documentation>  This URL replacement syntax is used to request the object change history request.
 					When putting together a proper URL, the client should replace parenthesized
-					parts of the operation location URL with actual values.  For example, "(pid)" 
-					should be replaced with an actual pid of an object for which the client wants 
+					parts of the operation location URL with actual values.  For example, "(pid)"
+					should be replaced with an actual pid of an object for which the client wants
 					to get information about (e.g. uva-lib:10).	Parts of the operation location URL that
 					are surrounded by brackets ("[ ]") are optional.  To construct a proper URL the
 					client must replace the following variables with real information:
 						- pid : a required parameter. Client must provide the persistent identifier of the object.
-					 	- boolean : an optional parameter.  Client can specify that the output of 
-					 	  the operation be HTML or XML.   A value of "true" indicates a return type of 
-					 	  text/xml; the absence of the xml parameter or a value of "false" indicates 
+					 	- boolean : an optional parameter.  Client can specify that the output of
+					 	  the operation be HTML or XML.   A value of "true" indicates a return type of
+					 	  text/xml; the absence of the xml parameter or a value of "false" indicates
 					 	  format is to be text/html.
 				</documentation>
 				<http:urlReplacement/>

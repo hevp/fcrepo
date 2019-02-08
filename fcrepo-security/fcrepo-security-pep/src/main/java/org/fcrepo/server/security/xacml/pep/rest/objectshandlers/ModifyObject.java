@@ -76,6 +76,7 @@ public class ModifyObject
         }
 
         String state = request.getParameter("state");
+        String shareLevel = request.getParameter("shareLevel");
         String ownerId = request.getParameter("ownerId");
 
         RequestCtx req = null;
@@ -88,9 +89,13 @@ public class ModifyObject
                 resAttr.put(Constants.OBJECT.STATE.getURI(),
                             new StringAttribute(state));
             }
+            if (shareLevel != null && !shareLevel.isEmpty()) {
+                resAttr.put(Constants.OBJECT.SHARELEVEL.getURI(),
+                            new StringAttribute(shareLevel));
+            }
             if (ownerId != null && !ownerId.isEmpty()) {
                 resAttr.put(Constants.OBJECT.OWNER.getURI(),
-                            new StringAttribute(state));
+                            new StringAttribute(ownerId));
             }
 
             if (state != null && state.equals("A")) {

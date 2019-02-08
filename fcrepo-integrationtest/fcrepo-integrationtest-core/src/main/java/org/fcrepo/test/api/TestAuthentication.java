@@ -56,7 +56,7 @@ public class TestAuthentication
 
     private static final Logger LOGGER =
         LoggerFactory.getLogger(TestAuthentication.class);
-    
+
     private final static String TEST_PID = "demo:AuthNTestObject";
 
     private final static int TIMES_PER_TEST = 50;
@@ -236,7 +236,7 @@ public class TestAuthentication
         NamespaceContext ctx = new SimpleNamespaceContext(nsMap);
         XMLUnit.setXpathNamespaceContext(ctx);
     }
-    
+
     @BeforeClass
     public static void bootstrap() throws Exception {
         CLIENT_VALID_USER_VALID_PASS = getFedoraClient();
@@ -302,7 +302,7 @@ public class TestAuthentication
                 if (apim == null) {
                     apim = client.getAPIMMTOM();
                 }
-                apim.modifyObject(TEST_PID, null, null, null, "i=" + i);
+                apim.modifyObject(TEST_PID, null, null, null, null, "i=" + i);
             } catch (Exception e) {
                 failCount++;
             }

@@ -54,12 +54,12 @@ import org.slf4j.LoggerFactory;
 public class TestManagementNotifications
         extends FedoraServerTestCase
         implements MessageListener {
-    
+
     private static final Logger LOGGER =
         LoggerFactory.getLogger(TestManagementNotifications.class);
 
     private static FedoraClient s_client;
-    
+
     private FedoraAPIMMTOM apim;
     private final ArrayBlockingQueue<TextMessage> messages = new ArrayBlockingQueue<TextMessage>(10, true);
     private final int messageTimeout = 5000; // Maximum number of milliseconds to wait for a message
@@ -119,7 +119,7 @@ public class TestManagementNotifications
         // demo:14
         ingestDocumentTransformDemoObjects(s_client);
     }
-    
+
     @AfterClass
     public static void cleanUp() throws Exception {
         purgeDemoObjects(s_client);
@@ -189,6 +189,7 @@ public class TestManagementNotifications
         String modifyResult =
                 apim.modifyObject(pid,
                                   "I",
+                                  null,
                                   "Updated Object Label",
                                   null,
                                   "Changed state to inactive and updated label");
