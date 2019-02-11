@@ -1,5 +1,5 @@
 /* The contents of this file are subject to the license and copyright terms
- * detailed in the license directory at the root of the source tree (also 
+ * detailed in the license directory at the root of the source tree (also
  * available online at http://fedora-commons.org/license/).
  */
 package org.fcrepo.server.search;
@@ -31,6 +31,8 @@ public class ObjectFields
     private String m_label;
 
     private String m_state;
+
+    private String m_shareLevel;
 
     private String m_ownerId;
 
@@ -88,6 +90,8 @@ public class ObjectFields
 
     public final static int DCMDATE = 23;
 
+    public final static int SHARELEVEL = 24;
+
     public ObjectFields() {
     }
 
@@ -100,6 +104,8 @@ public class ObjectFields
                 m_want[LABEL] = true;
             } else if (s.equalsIgnoreCase("state")) {
                 m_want[STATE] = true;
+            } else if (s.equalsIgnoreCase("shareLevel")) {
+                m_want[SHARELEVEL] = true;
             } else if (s.equalsIgnoreCase("ownerId")) {
                 m_want[OWNERID] = true;
             } else if (s.equalsIgnoreCase("cDate")) {
@@ -182,6 +188,8 @@ public class ObjectFields
             setLabel(m_currentContent.toString());
         } else if (m_want[STATE] && localName.equals("state")) {
             setState(m_currentContent.toString());
+        } else if (m_want[SHARELEVEL] && localName.equals("shareLevel")) {
+            setState(m_currentContent.toString());
         } else if (m_want[OWNERID] && localName.equals("ownerId")) {
             setOwnerId(m_currentContent.toString());
         } else if (m_want[CDATE] && localName.equals("cDate")) {
@@ -248,6 +256,14 @@ public class ObjectFields
 
     public String getState() {
         return m_state;
+    }
+
+    public void setShareLevel(String shareLevel) {
+        m_shareLevel = shareLevel;
+    }
+
+    public String getShareLevel() {
+        return m_shareLevel;
     }
 
     public void setOwnerId(String ownerId) {

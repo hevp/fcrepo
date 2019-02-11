@@ -123,6 +123,8 @@ public interface JournalConstants {
 
     QName QNAME_ATTR_STATE = QName.valueOf("state");
 
+    QName QNAME_ATTR_SHARELEVEL = QName.valueOf("shareLevel");
+
     QName QNAME_ATTR_TIMESTAMP = QName.valueOf("timestamp");
 
     QName QNAME_ATTR_TYPE = QName.valueOf("type");
@@ -246,6 +248,8 @@ public interface JournalConstants {
     String ARGUMENT_NAME_SERIALIZATION = "serialization";
 
     String ARGUMENT_NAME_STATE = "state";
+
+    String ARGUMENT_NAME_SHARELEVEL = "shareLevel";
 
     String ARGUMENT_NAME_VERSIONABLE = "versionable";
 

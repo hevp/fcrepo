@@ -67,9 +67,10 @@ public class ObjectEditorFrame
         m_pid = pid;
         // query the server for key object fields
         ObjectFields o =
-                Util.getObjectFields(pid, new String[] {"pid", "state",
+                Util.getObjectFields(pid, new String[] {"pid", "state", "shareLevel",
                         "label", "cDate", "mDate", "ownerId"});
         String state = o.getState() != null ? o.getState().getValue() : null;
+        String shareLevel = o.getShareLevel() != null ? o.getShareLevel().getValue() : null;
         String label = o.getLabel() != null ? o.getLabel().getValue() : null;
         String cDate = o.getCDate() != null ? o.getCDate().getValue() : null;
         String mDate = o.getMDate() != null ? o.getMDate().getValue() : null;
@@ -95,6 +96,7 @@ public class ObjectEditorFrame
                 new ObjectPane(this,
                                pid,
                                state,
+                               shareLevel,
                                label,
                                cDate,
                                mDate,

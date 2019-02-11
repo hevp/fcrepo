@@ -45,6 +45,8 @@ public class BasicDigitalObject
 
     private String m_state;
 
+    private String m_shareLevel;
+
     private String m_ownerId;
 
     private String m_label;
@@ -103,6 +105,14 @@ public class BasicDigitalObject
 
     public void setState(String state) {
         m_state = state;
+    }
+
+    public String getShareLevel() {
+        return m_shareLevel;
+    }
+
+    public void setShareLevel(String shareLevel) {
+        m_shareLevel = shareLevel;
     }
 
     public String getOwnerId() {
@@ -313,7 +323,7 @@ public class BasicDigitalObject
         }
 
         boolean hasRel = false;
-        
+
         boolean basicExplicit = false;
 
         // Iterate explicit relationships, finding matches and
@@ -528,7 +538,7 @@ public class BasicDigitalObject
             List<Datastream> versions = m_datastreams.get(d.DatastreamID);
 
             if (d.DSCreateDT == null || versions == null || versions.size() == 0) return true;
-            
+
             long created = d.DSCreateDT.getTime();
 
             for (Datastream v : versions) {

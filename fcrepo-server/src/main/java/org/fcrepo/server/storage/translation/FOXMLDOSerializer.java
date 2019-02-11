@@ -204,6 +204,10 @@ public class FOXMLDOSerializer
                        DOTranslationUtility.getStateAttribute(obj),
                        writer,
                        false);
+        appendProperty(MODEL.SHARELEVEL.uri,
+                       DOTranslationUtility.getShareLevelAttribute(obj),
+                       writer,
+                       false);
         appendProperty(MODEL.LABEL.uri, obj.getLabel(), writer, false);
         appendProperty(MODEL.OWNER.uri, obj.getOwnerId(), writer, false);
         appendProperty(MODEL.CREATED_DATE.uri, obj.getCreateDate(), writer);
@@ -415,7 +419,7 @@ public class FOXMLDOSerializer
                 writer.write('\n');
             }
         } catch (IOException ioe) {
-           throw new StreamIOException(ioe.getMessage()); 
+           throw new StreamIOException(ioe.getMessage());
         }
         writer.print("</");
         writer.print(FOXML.prefix);

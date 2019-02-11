@@ -170,6 +170,9 @@ public class AtomDODeserializer
         String state =
                 m_xpath.valueOf("/a:feed/a:category[@scheme='"
                         + MODEL.STATE.uri + "']/@term", feed);
+        String shareLevel =
+                m_xpath.valueOf("/a:feed/a:category[@scheme='"
+                        + MODEL.SHARELEVEL.uri + "']/@term", feed);
         String createDate =
                 m_xpath.valueOf("/a:feed/a:category[@scheme='"
                         + MODEL.CREATED_DATE.uri + "']/@term", feed);
@@ -180,6 +183,12 @@ public class AtomDODeserializer
             obj.setState(DOTranslationUtility.readStateAttribute(state));
         } catch (ParseException e) {
             throw new ObjectIntegrityException("Could not read object state", e);
+        }
+
+        try {
+            obj.setShareLevel(DOTranslationUtility.readShareLevelAttribute(shareLevel));
+        } catch (ParseException e) {
+            throw new ObjectIntegrityException("Could not read object share level", e);
         }
 
         obj.setLabel(label);

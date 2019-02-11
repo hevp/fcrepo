@@ -118,9 +118,17 @@ public class Administrator
 
     public static Color ACTIVE_COLOR = new Color(180, 210, 180);
 
+    public static Color SUBMITTED_COLOR = new Color(240, 210, 180);
+
     public static Color INACTIVE_COLOR = new Color(210, 210, 180);
 
     public static Color DELETED_COLOR = new Color(210, 180, 180);
+
+    public static Color OPEN_COLOR = new Color(240, 210, 180);
+
+    public static Color REGISTERED_COLOR = new Color(210, 150, 150);
+
+    public static Color PRIVATE_COLOR = new Color(210, 60, 60);
 
     public static Color DEFAULT_COLOR = new Color(185, 185, 185);
 

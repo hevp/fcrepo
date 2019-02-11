@@ -519,6 +519,9 @@ public class FieldSearchResultSQLImpl
             if (n.equals("state")) {
                 f.setState(r.GetObjectState());
             }
+            if (n.equals("shareLevel")) {
+                f.setState(r.GetObjectShareLevel());
+            }
             if (n.equals("ownerId")) {
                 f.setOwnerId(r.getOwnerId());
             }

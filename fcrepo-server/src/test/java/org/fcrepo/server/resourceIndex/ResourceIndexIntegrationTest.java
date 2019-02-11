@@ -72,7 +72,7 @@ public abstract class ResourceIndexIntegrationTest {
      * The <code>ResourceIndexImpl</code> instance we'll be using.
      */
     private ResourceIndex _ri;
-    
+
     /**
      * The <code>org.trippi.io.TripleIteratorFactory</code> used to parse RDF
      */
@@ -130,13 +130,13 @@ public abstract class ResourceIndexIntegrationTest {
         return TriplestoreConnector.init("org.trippi.impl.mpt.MPTConnector",
                                          config);
     }
-    
+
     // Test setup
     @Before
     public void setupTest() throws Exception {
         _factory = new TripleIteratorFactory();
     }
-    
+
     // Test tearDown
 
     @After
@@ -160,7 +160,7 @@ public abstract class ResourceIndexIntegrationTest {
             while(triples.hasNext()) {
                 temp.add(triples.next());
             }
-            
+
             triples.close();
             triples = new SimpleTripleIterator(temp, triples.getAliasMap());
             _ri.delete(triples, true);
@@ -678,6 +678,7 @@ public abstract class ResourceIndexIntegrationTest {
         DigitalObject obj = ObjectBuilder.getTestObject(pid,
                                                         models,
                                                         "A",
+                                                        "O",
                                                         "someOwnerId",
                                                         label,
                                                         now,
@@ -699,6 +700,7 @@ public abstract class ResourceIndexIntegrationTest {
         DigitalObject obj = ObjectBuilder.getTestObject(pid,
                                                         models,
                                                         "A",
+                                                        "O",
                                                         "someOwnerId",
                                                         label,
                                                         now,

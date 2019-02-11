@@ -64,6 +64,10 @@ public class FieldSearchServlet
                 && req.getParameter("state").equalsIgnoreCase("true")) {
             l.add("state");
         }
+        if (req.getParameter("shareLevel") != null
+                && req.getParameter("shareLevel").equalsIgnoreCase("true")) {
+            l.add("shareLevel");
+        }
         if (req.getParameter("ownerId") != null
                 && req.getParameter("ownerId").equalsIgnoreCase("true")) {
             l.add("ownerId");
@@ -146,7 +150,7 @@ public class FieldSearchServlet
         }
         return ret;
     }
-    
+
     private static String CHECKED = " checked=\"checked\"";
 
     public static final String ACTION_LABEL = "Field Search";
@@ -314,13 +318,14 @@ public class FieldSearchServlet
                                                 EMPTY_STRING_ARRAY);
         }
     }
-    
+
     private void printObjectFieldsToXml(
             ObjectFields objFields, PrintWriter xmlBuf) {
         xmlBuf.append("  <objectFields>\n");
         appendXML("pid", objFields.getPid(), xmlBuf);
         appendXML("label", objFields.getLabel(), xmlBuf);
         appendXML("state", objFields.getState(), xmlBuf);
+        appendXML("shareLevel", objFields.getState(), xmlBuf);
         appendXML("ownerId", objFields.getOwnerId(), xmlBuf);
         appendXML("cDate", objFields.getCDate(), xmlBuf);
         appendXML("mDate", objFields.getMDate(), xmlBuf);
@@ -342,7 +347,7 @@ public class FieldSearchServlet
         appendXML("rights", objFields.rights(), xmlBuf);
         xmlBuf.append("  </objectFields>\n");
     }
-    
+
     private void printFieldsArrayTableHeader(String[] fieldsArray, PrintWriter html) {
         html.append("<center><table width=\"90%\" border=\"1\" cellpadding=\"5\" cellspacing=\"5\" bgcolor=\"silver\">\n"
                 + "<tr>");
@@ -354,7 +359,7 @@ public class FieldSearchServlet
         }
         html.append("</tr>");
     }
-    
+
     private void printSearchFormToHtml(Set<String> fieldHash, String terms, String query, PrintWriter html) {
         html.append("<form method=\"post\" action=\"search\">"
                 + "<center><table border=0 cellpadding=6 cellspacing=0>\n"
@@ -438,7 +443,7 @@ public class FieldSearchServlet
                 + "</td></tr></table></center>"
                 + "</form><hr size=1>");
     }
-    
+
     private void printObjectFieldsToHtml(ObjectFields f, String[] fieldsArray, PrintWriter html) {
         html.append("<tr>");
         for (String l : fieldsArray) {
@@ -455,6 +460,8 @@ public class FieldSearchServlet
                 }
             } else if (l.equalsIgnoreCase("state")) {
                 html.append(f.getState());
+            } else if (l.equalsIgnoreCase("shareLevel")) {
+                html.append(f.getShareLevel());
             } else if (l.equalsIgnoreCase("ownerId")) {
                 if (f.getOwnerId() != null) {
                     html.append(f.getOwnerId());
@@ -504,8 +511,8 @@ public class FieldSearchServlet
         html.append(Integer.toString(fieldsArray.length));
         html.append("\"></td></tr>");
     }
-    
-    private void printHiddenFieldsFormToHtml(FieldSearchResult fsr, 
+
+    private void printHiddenFieldsFormToHtml(FieldSearchResult fsr,
             Set<String> fieldHash, long maxResults, PrintWriter html) {
         if (fsr != null && fsr.getToken() != null) {
             if (fsr.getCursor() != -1) {
@@ -532,6 +539,10 @@ public class FieldSearchServlet
             if (fieldHash.contains("state")) {
                 html
                         .append("<input type=\"hidden\" name=\"state\" value=\"true\">");
+            }
+            if (fieldHash.contains("shareLevel")) {
+                html
+                        .append("<input type=\"hidden\" name=\"shareLevel\" value=\"true\">");
             }
             if (fieldHash.contains("ownerId")) {
                 html

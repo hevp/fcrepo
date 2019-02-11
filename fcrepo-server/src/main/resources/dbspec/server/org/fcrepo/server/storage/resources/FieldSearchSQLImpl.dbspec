@@ -15,8 +15,11 @@
 		<column name="label" type="varchar(255)" notNull="false">
 			<comment>The label of the object</comment>
 		</column>
-		<column name="state" type="varchar(1)" notNull="true" default="A">
-			<comment>The state of the object.</comment>
+        <column name="state" type="varchar(1)" notNull="true" default="A">
+            <comment>The state of the object.</comment>
+        </column>
+		<column name="shareLevel" type="varchar(1)" notNull="true" default="O">
+			<comment>The share level of the object.</comment>
 		</column>
 		<column name="ownerId" type="varchar(64)" notNull="false">
 			<comment>The userId of the user who owns the object.</comment>
@@ -77,7 +80,7 @@
 		</column>
     </table>
 	<table name="dcDates">
-	    <comment>When a dc:date of a DC datastream can be parsed as a java Date, 
+	    <comment>When a dc:date of a DC datastream can be parsed as a java Date,
 		    it is added in this table as well as the objectFields table.
 			When greater-than, greater-than or equal, less-than, less-than or equal,
 			or equals operators are used when querying of the dc:date, the values

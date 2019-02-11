@@ -35,7 +35,7 @@
 	</sch:phase>
 	<!-- PRELIMINARY INGEST RULES PATTERN: -->
 	<!-- These rules are to be applied to objects no matter what phase of the object lifecycle they are in.-->
-	<sch:pattern name="Preliminary Object Checks" id="preliminary">		
+	<sch:pattern name="Preliminary Object Checks" id="preliminary">
 		<!-- RULE:  check that the Fedora AUDIT datastream is not versioned.-->
 		<sch:rule context="foxml:datastream[@ID='AUDIT']">
 			<sch:assert test="count(foxml:datastreamVersion) = 1">The AUDIT Datastream can only have ONE version since it is a non-versionable datastream. (foxml: datastreamVersion)</sch:assert>
@@ -44,6 +44,7 @@
 		<sch:rule context="foxml:objectProperties">
 			<sch:assert test="count(foxml:property[@NAME='info:fedora/fedora-system:def/model#label']) = 1 or count(foxml:property[@NAME='info:fedora/fedora-system:def/model#label']) = 0">DUPLICATE object property: label (foxml:property NAME='info:fedora/fedora-system:def/model#label')</sch:assert>
 			<sch:assert test="count(foxml:property[@NAME='info:fedora/fedora-system:def/model#state']) = 1 or count(foxml:property[@NAME='info:fedora/fedora-system:def/model#state']) = 0">DUPLICATE object property: state (foxml:property NAME='info:fedora/fedora-system:def/model#state')</sch:assert>
+            <sch:assert test="count(foxml:property[@NAME='info:fedora/fedora-system:def/model#shareLevel']) = 1 or count(foxml:property[@NAME='info:fedora/fedora-system:def/model#shareLevel']) = 0">DUPLICATE object property: shareLevel (foxml:property NAME='info:fedora/fedora-system:def/model#shareLevel')</sch:assert>
 			<sch:assert test="count(foxml:property[@NAME='info:fedora/fedora-system:def/model#createdDate']) = 1 or count(foxml:property[@NAME='info:fedora/fedora-system:def/model#createdDate']) = 0">DUPLICATE object property: creation date (foxml:property NAME='info:fedora/fedora-system:def/model#createdDate' )</sch:assert>
 			<sch:assert test="count(foxml:property[@NAME='info:fedora/fedora-system:def/view#lastModifiedDate']) = 1 or count(foxml:property[@NAME='info:fedora/fedora-system:def/view#lastModifiedDate']) = 0">DUPLICATE object property: modification date (foxml:property NAME='info:fedora/fedora-system:def/model#lastModifiedDate' )</sch:assert>
 			<sch:assert test="count(foxml:property[@NAME='info:fedora/fedora-system:def/model#ownerId']) = 1 or count(foxml:property[@NAME='info:fedora/fedora-system:def/model#ownerId']) = 0">DUPLICATE object property: ownerId (foxml:property NAME='info:fedora/fedora-system:def/model#ownerId')</sch:assert>
@@ -57,7 +58,7 @@
 			<sch:assert test="string-length(@ID) &lt;= 64">Datastream ID must not exceed length of 64 (foxml:datastream ID)</sch:assert>
 			<sch:report test="contains(@ID, '+')">Datastream ID must not contain a plus sign (+) (foxml:datastream ID)</sch:report>
 			<sch:report test="contains(@ID, ':')">Datastream ID must not contain a colon (:) (foxml:datastream ID)</sch:report>
-			<sch:assert test="@CONTROL_GROUP='R' or @CONTROL_GROUP= 'E' or @CONTROL_GROUP= 'M' or @CONTROL_GROUP= 'X' or @CONTROL_GROUP= 'B'">Datastream control group type must be "E" for External-Ref, "M" for Managed-Content, "R" for Redirected, or "X" for Inline-XML-Metadata.  (foxml:datastream: CONTROL_GROUP)</sch:assert>			
+			<sch:assert test="@CONTROL_GROUP='R' or @CONTROL_GROUP= 'E' or @CONTROL_GROUP= 'M' or @CONTROL_GROUP= 'X' or @CONTROL_GROUP= 'B'">Datastream control group type must be "E" for External-Ref, "M" for Managed-Content, "R" for Redirected, or "X" for Inline-XML-Metadata.  (foxml:datastream: CONTROL_GROUP)</sch:assert>
 		</sch:rule>
 		<sch:rule context="foxml:contentLocation">
 			<sch:assert test="string(@REF)">Datastream content location must have a URL.   (foxml:contentLocation: value of REF is missing)</sch:assert>
@@ -70,7 +71,7 @@
             <sch:assert test="not(@LABEL) or string-length(@LABEL) &lt;= 255">Datastream label must not exceed 255 characters (foxml:datastreamVersion LABEL)</sch:assert>
 		</sch:rule>
 		<sch:rule context="foxml:contentDigest">
-			<sch:assert test="not(@DIGEST) or (@DIGEST and @TYPE)">contentDigest TYPE must be specified if DIGEST is provided (foxml:contentDigest TYPE missing)</sch:assert>			
+			<sch:assert test="not(@DIGEST) or (@DIGEST and @TYPE)">contentDigest TYPE must be specified if DIGEST is provided (foxml:contentDigest TYPE missing)</sch:assert>
 		</sch:rule>
 	</sch:pattern>
 	<!-- COMPLETED RULES PATTERN: -->
@@ -85,6 +86,7 @@
 		<sch:rule context="foxml:objectProperties">
 			<sch:assert test="foxml:property[@NAME='info:fedora/fedora-system:def/model#createdDate']">The system did not assign a creation date to the object! (foxml:property: NAME='info:fedora/fedora-system:def/model#createdDate' is missing)</sch:assert>
 			<sch:assert test="foxml:property[@NAME='info:fedora/fedora-system:def/model#state']">The system did not assign a state to the object!  (foxml:property: NAME='info:fedora/fedora-system:def/model#state' is missing)</sch:assert>
+            <sch:assert test="foxml:property[@NAME='info:fedora/fedora-system:def/model#shareLevel']">The system did not assign a share level to the object!  (foxml:property: NAME='info:fedora/fedora-system:def/model#shareLevel' is missing)</sch:assert>
 		</sch:rule>
 		<sch:rule context="foxml:datastream">
 			<sch:assert test="string(@STATE)">The system did not assign a state to the datastream.  (foxml:datastream: value of STATE is missing)</sch:assert>

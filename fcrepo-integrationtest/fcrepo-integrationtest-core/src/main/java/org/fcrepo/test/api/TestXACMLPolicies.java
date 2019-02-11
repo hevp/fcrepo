@@ -53,7 +53,7 @@ import org.junit.runner.JUnitCore;
  */
 public class TestXACMLPolicies
         extends FedoraServerTestCase {
-    
+
     private static FedoraClient s_client;
 
     private FedoraClient admin;
@@ -75,7 +75,7 @@ public class TestXACMLPolicies
     private FedoraClient testuser4;
 
     private File fedoraUsersBackup = null;
-    
+
     @BeforeClass
     public static void bootstrap() throws Exception {
         s_client = getFedoraClient();
@@ -83,7 +83,7 @@ public class TestXACMLPolicies
         ingestSimpleDocumentDemoObjects(s_client);
         ingestSimpleImageDemoObjects(s_client);
     }
-    
+
     @AfterClass
     public static void cleanUp() throws Exception {
         purgeDemoObjects(s_client);
@@ -151,7 +151,7 @@ public class TestXACMLPolicies
     private boolean canWrite(FedoraClient client, String pid, String logMessage) throws Exception {
         FedoraAPIMMTOM apim = client.getAPIMMTOM();
         try {
-            apim.modifyObject(pid, null, null, null, logMessage);
+            apim.modifyObject(pid, null, null, null, null, logMessage);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

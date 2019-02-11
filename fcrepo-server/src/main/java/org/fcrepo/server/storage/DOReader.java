@@ -147,6 +147,17 @@ public interface DOReader {
     public String GetObjectState() throws ServerException;
 
     /**
+     * Gets the share level of the digital object. The share level indicates the access
+     * level of the digital object at any point in time. Valid levels are: O=Open Access,
+     * R=Registered, P=Private
+     *
+     * @return the share level of the digital object.
+     * @throws ServerException
+     *         If any type of error occurred fulfilling the request.
+     */
+    public String GetObjectShareLevel() throws ServerException;
+
+    /**
      * Gets a list of the content models of the object. The strings will be
      * of the format "info:fedora/PID"
      * @return the content models of the object

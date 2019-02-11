@@ -118,6 +118,7 @@ public class JournalConsumer
     public Date modifyObject(Context context,
                              String pid,
                              String state,
+                             String shareLevel,
                              String label,
                              String ownerId,
                              String logMessage,

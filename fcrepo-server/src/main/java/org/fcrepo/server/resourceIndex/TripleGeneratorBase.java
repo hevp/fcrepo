@@ -42,6 +42,21 @@ public abstract class TripleGeneratorBase {
         }
     }
 
+    protected RDFName getShareLevelResource(String shareLevel)
+            throws ResourceIndexException {
+        if (shareLevel == null) {
+            throw new ResourceIndexException("State cannot be null");
+        } else if (shareLevel.equals("O")) {
+            return MODEL.OPEN;
+        } else if (shareLevel.equals("R")) {
+            return MODEL.REGISTERED;
+        } else if (shareLevel.equals("P")) {
+            return MODEL.PRIVATE;
+        } else {
+            throw new ResourceIndexException("Unrecognized share level: " + shareLevel);
+        }
+    }
+
     // Helper methods for adding triples
 
     protected void add(SubjectNode subject,

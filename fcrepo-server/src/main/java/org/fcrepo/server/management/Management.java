@@ -35,6 +35,7 @@ public interface Management {
     public Date modifyObject(@PName("context") Context context,
                              @PName("pid") String pid,
                              @PName("state") String state,
+                             @PName("shareLevel") String shareLevel,
                              @PName("label") String label,
                              @PName("ownerID") String ownerID,
                              @PName("logMessage") String logMessage,

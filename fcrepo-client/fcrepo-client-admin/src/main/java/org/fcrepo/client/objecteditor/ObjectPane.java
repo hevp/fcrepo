@@ -1,5 +1,5 @@
 /* The contents of this file are subject to the license and copyright terms
- * detailed in the license directory at the root of the source tree (also 
+ * detailed in the license directory at the root of the source tree (also
  * available online at http://fedora-commons.org/license/).
  */
 package org.fcrepo.client.objecteditor;
@@ -29,7 +29,7 @@ import org.fcrepo.client.actions.ViewObjectXML;
  * Displays an object's attributes, allowing the editing of some. Also provides
  * buttons for performing object-wide operations, such as viewing and exporting
  * XML.
- * 
+ *
  * @author Chris Wilper
  */
 public class ObjectPane
@@ -41,11 +41,15 @@ public class ObjectPane
 
     private String m_state;
 
+    private String m_shareLevel;
+
     private String m_label;
 
     private String m_ownerId;
 
     private final JComboBox<String> m_stateComboBox;
+
+    private final JComboBox<String> m_shareLevelComboBox;
 
     private final JTextField m_labelTextField;
 
@@ -59,6 +63,7 @@ public class ObjectPane
     public ObjectPane(ObjectEditorFrame owner,
                       String pid,
                       String state,
+                      String shareLevel,
                       String label,
                       String cDate,
                       String mDate,
@@ -67,6 +72,7 @@ public class ObjectPane
         super(owner, null, null);
         m_pid = pid;
         m_state = state;
+        m_shareLevel = shareLevel;
         m_label = label;
         m_ownerId = ownerId;
         if (ownerId == null) {
@@ -83,6 +89,8 @@ public class ObjectPane
         // LEFT: Labels
         JLabel stateLabel = new JLabel("State");
         stateLabel.setPreferredSize(m_labelDims);
+        JLabel shareLevelLabel = new JLabel("Share level");
+        shareLevelLabel.setPreferredSize(m_labelDims);
         JLabel labelLabel = new JLabel("Label");
         labelLabel.setPreferredSize(m_labelDims);
         JLabel cModelLabel = new JLabel("Content Model");
@@ -94,16 +102,20 @@ public class ObjectPane
         JLabel ownerIdLabel = new JLabel("Owner");
         ownerIdLabel.setPreferredSize(m_labelDims);
         JLabel[] labels =
-                new JLabel[] {stateLabel, labelLabel, cDateLabel,
+                new JLabel[] {stateLabel, shareLevelLabel, labelLabel, cDateLabel,
                         mDateLabel, ownerIdLabel};
 
         // RIGHT: Values
-        String[] comboBoxStrings = {"Active", "Inactive", "Deleted"};
+        // Object state
+        String[] comboBoxStrings = {"Active", "Submitted", "Inactive", "Deleted"};
         m_stateComboBox = new JComboBox<String>(comboBoxStrings);
         Administrator.constrainHeight(m_stateComboBox);
         if (state.equals("A")) {
             m_stateComboBox.setSelectedIndex(0);
             m_stateComboBox.setBackground(Administrator.ACTIVE_COLOR);
+        } else if (state.equals("S")) {
+            m_stateComboBox.setSelectedIndex(1);
+            m_stateComboBox.setBackground(Administrator.SUBMITTED_COLOR);
         } else if (state.equals("I")) {
             m_stateComboBox.setSelectedIndex(1);
             m_stateComboBox.setBackground(Administrator.INACTIVE_COLOR);
@@ -111,16 +123,46 @@ public class ObjectPane
             m_stateComboBox.setSelectedIndex(2);
             m_stateComboBox.setBackground(Administrator.DELETED_COLOR);
         }
+
         m_stateComboBox.addActionListener(dataChangeListener);
         m_stateComboBox.addActionListener(new ActionListener() {
-
             public void actionPerformed(ActionEvent evt) {
                 if (m_stateComboBox.getSelectedIndex() == 0) {
                     m_stateComboBox.setBackground(Administrator.ACTIVE_COLOR);
                 } else if (m_stateComboBox.getSelectedIndex() == 1) {
+                    m_stateComboBox.setBackground(Administrator.SUBMITTED_COLOR);
+                } else if (m_stateComboBox.getSelectedIndex() == 2) {
                     m_stateComboBox.setBackground(Administrator.INACTIVE_COLOR);
                 } else {
                     m_stateComboBox.setBackground(Administrator.DELETED_COLOR);
+                }
+            }
+        });
+
+        // Object share level
+        String[] shareLevelComboBoxStrings = {"Open access", "Registered", "Private"};
+        m_shareLevelComboBox = new JComboBox<String>(shareLevelComboBoxStrings);
+        Administrator.constrainHeight(m_shareLevelComboBox);
+        if (shareLevel.equals("O")) {
+            m_shareLevelComboBox.setSelectedIndex(0);
+            m_shareLevelComboBox.setBackground(Administrator.OPEN_COLOR);
+        } else if (shareLevel.equals("R")) {
+            m_shareLevelComboBox.setSelectedIndex(1);
+            m_shareLevelComboBox.setBackground(Administrator.REGISTERED_COLOR);
+        } else {
+            m_shareLevelComboBox.setSelectedIndex(2);
+            m_shareLevelComboBox.setBackground(Administrator.PRIVATE_COLOR);
+        }
+
+        m_shareLevelComboBox.addActionListener(dataChangeListener);
+        m_shareLevelComboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                if (m_shareLevelComboBox.getSelectedIndex() == 0) {
+                    m_shareLevelComboBox.setBackground(Administrator.OPEN_COLOR);
+                } else if (m_shareLevelComboBox.getSelectedIndex() == 1) {
+                    m_shareLevelComboBox.setBackground(Administrator.REGISTERED_COLOR);
+                } else {
+                    m_shareLevelComboBox.setBackground(Administrator.PRIVATE_COLOR);
                 }
             }
         });
@@ -138,7 +180,7 @@ public class ObjectPane
         mDateValueLabel.setEditable(false);
 
         JComponent[] values =
-                new JComponent[] {m_stateComboBox, m_labelTextField,
+                new JComponent[] {m_stateComboBox, m_shareLevelComboBox, m_labelTextField,
                         cDateValueLabel, mDateValueLabel, m_ownerIdTextField};
 
         JPanel northValuePane = new JPanel();
@@ -203,7 +245,7 @@ public class ObjectPane
         if (i == 2) {
             state = "D";
         }
-        Administrator.APIM.modifyObject(m_pid, state, m_labelTextField
+        Administrator.APIM.modifyObject(m_pid, state, m_shareLevel, m_labelTextField
                 .getText(), m_ownerIdTextField.getText(), logMessage);
     }
 

@@ -181,7 +181,17 @@ class ResourceAttributeFinderModule
                     values[0] = reader.GetObjectState();
                     logger.debug("got {}={}", Constants.OBJECT.STATE.uri, values[0]);
                 } catch (ServerException e) {
-                    logger.debug("failed getting {}", Constants.OBJECT.STATE.uri,e);
+                    logger.debug("failed getting {}", Constants.OBJECT.STATE.uri, e);
+                    return null;
+                }
+            }
+            else if (Constants.OBJECT.SHARELEVEL.attributeId.equals(attributeId)) {
+                try {
+                    values = new String[1];
+                    values[0] = reader.GetObjectShareLevel();
+                    logger.debug("got {}={}", Constants.OBJECT.SHARELEVEL.uri, values[0]);
+                } catch (ServerException e) {
+                    logger.debug("failed getting {}", Constants.OBJECT.SHARELEVEL.uri, e);
                     return null;
                 }
             }

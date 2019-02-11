@@ -120,14 +120,14 @@ import org.trippi.io.TripleIteratorFactory;
  */
 public class TestRESTAPI
         extends FedoraServerTestCase {
-    
+
     private static final String TEXT_XML = "text/xml";
 
     private static final Logger LOGGER =
         LoggerFactory.getLogger(TestRESTAPI.class);
 
     private static FedoraClient s_client;
-    
+
     private FedoraAPIAMTOM apia;
 
     private FedoraAPIMMTOM apim;
@@ -181,7 +181,7 @@ public class TestRESTAPI
         df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         df.setTimeZone(TimeZone.getTimeZone("GMT"));
     }
-    
+
     private static final ValidatorHelper validator =
             new ValidatorHelper();
 
@@ -196,12 +196,12 @@ public class TestRESTAPI
 
     @SuppressWarnings("unused")
     private boolean chunked = false;
-    
+
     protected static FedoraClient initClient() throws Exception {
         s_client = getFedoraClient();
         return s_client;
     }
-    
+
     protected static void stopClient() {
         s_client.shutdown();
         s_client = null;
@@ -220,7 +220,7 @@ public class TestRESTAPI
 
         ingestImageManipulationDemoObjects(s_client);
         ingestDocumentTransformDemoObjects(s_client);
-        
+
         if (DEMO_MIN == null) DEMO_MIN =
                 FileUtils.readFileToString(new File(REST_RESOURCE_PATH
                         + "/demo_min.xml"), "UTF-8");
@@ -247,7 +247,7 @@ public class TestRESTAPI
             DEMO_REST_FOXML = DEMO_REST.getBytes("UTF-8");
         }
     }
-    
+
     @AfterClass
     public static void cleanUp() throws Exception {
         purgeDemoObjects(s_client);
@@ -267,7 +267,7 @@ public class TestRESTAPI
     public void tearDown() throws Exception {
         apim.purgeObject(DEMO_REST_PID.toString(), "TestRESTAPI.tearDown: purging " + DEMO_REST_PID, false);
     }
-    
+
     protected static byte[] readBytes(HttpResponse response) {
         byte[] body = new byte[0];
         if (response.getEntity() != null) {
@@ -283,7 +283,7 @@ public class TestRESTAPI
     protected static String readString(HttpResponse response) {
         return readString(response, Charset.forName("UTF-8"));
     }
-    
+
     protected static String readString(HttpResponse response, Charset charset) {
         String body = null;
         if (response.getEntity() != null) {
@@ -320,13 +320,13 @@ public class TestRESTAPI
         return authorizeAccess;
 
     }
-    
+
     protected void verifyDELETEStatusOnly(URI url, int expected, boolean authenticate) throws Exception {
         HttpDelete get = new HttpDelete(url);
         HttpResponse response = getOrDelete(get, authenticate, false);
         int status = response.getStatusLine().getStatusCode();
         EntityUtils.consumeQuietly(response.getEntity());
-        assertEquals(expected, status);        
+        assertEquals(expected, status);
     }
 
     protected void verifyGETStatusOnly(URI url, int expected, boolean authenticate, boolean validate) throws Exception {
@@ -334,17 +334,17 @@ public class TestRESTAPI
         HttpResponse response = getOrDelete(get, authenticate, validate);
         int status = response.getStatusLine().getStatusCode();
         EntityUtils.consumeQuietly(response.getEntity());
-        assertEquals(expected, status);        
+        assertEquals(expected, status);
     }
 
     protected void verifyGETStatusOnly(URI url, int expected, boolean validate) throws Exception {
-        verifyGETStatusOnly(url, expected, getAuthAccess(), validate);        
+        verifyGETStatusOnly(url, expected, getAuthAccess(), validate);
     }
 
     protected void verifyGETStatusOnly(URI url, int expected) throws Exception {
-        verifyGETStatusOnly(url, expected, false);        
+        verifyGETStatusOnly(url, expected, false);
     }
-    
+
     protected String verifyGETStatusString(URI url, int expected,
             boolean authenticate, boolean validate)
             throws Exception {
@@ -352,7 +352,7 @@ public class TestRESTAPI
         HttpResponse response = getOrDelete(get, authenticate, validate);
         int status = response.getStatusLine().getStatusCode();
         String result = readString(response);
-        assertEquals(expected, status);      
+        assertEquals(expected, status);
         return result;
     }
 
@@ -363,16 +363,16 @@ public class TestRESTAPI
         HttpResponse response = getOrDelete(get, authenticate, validate);
         int status = response.getStatusLine().getStatusCode();
         byte[] result = readBytes(response);
-        assertEquals(expected, status);      
+        assertEquals(expected, status);
         return result;
     }
-    
+
     protected static StringEntity getStringEntity(
         String content, String contentType) {
         if (content == null) {
             return null;
         }
-        
+
         StringEntity entity =
             new StringEntity(content, Charset.forName("UTF-8"));
         if (contentType != null) {
@@ -385,7 +385,7 @@ public class TestRESTAPI
             if (content == null) {
                 return null;
             }
-            
+
             ByteArrayEntity entity =
                 new ByteArrayEntity(content);
             if (contentType != null) {
@@ -393,7 +393,7 @@ public class TestRESTAPI
             }
             return entity;
         }
-    
+
     protected void verifyPOSTStatusOnly(URI url, int expected,
         AbstractHttpEntity entity, boolean authenticate) throws Exception {
         HttpPost post = new HttpPost(url);
@@ -410,7 +410,7 @@ public class TestRESTAPI
             }
         }
         EntityUtils.consumeQuietly(response.getEntity());
-        assertEquals(expected, status);        
+        assertEquals(expected, status);
     }
 
     protected void verifyPOSTStatusOnly(URI url, int expected,
@@ -433,7 +433,7 @@ public class TestRESTAPI
             } else {
                 EntityUtils.consumeQuietly(response.getEntity());
             }
-            assertEquals(expected, status);        
+            assertEquals(expected, status);
         }
 
     protected void verifyPUTStatusOnly(URI url, int expected,
@@ -452,7 +452,7 @@ public class TestRESTAPI
                 }
             }
             EntityUtils.consumeQuietly(response.getEntity());
-            assertEquals(expected, status);        
+            assertEquals(expected, status);
         }
 
     protected void verifyNoAuthFailOnAPIAAuth(URI url) throws Exception {
@@ -502,6 +502,7 @@ public class TestRESTAPI
         assertTrue(responseXML.contains("<objDissIndexViewURL>"));
         assertTrue(responseXML.contains("<objItemIndexViewURL>"));
         assertTrue(responseXML.contains("<objState>"));
+        assertTrue(responseXML.contains("<objShareLevel>"));
 
         url = getURI(
                 String.format("/objects/%s?asOfDateTime=%s",
@@ -811,6 +812,7 @@ public class TestRESTAPI
                               "D",
                               null,
                               null,
+                              null,
                               "Mark object as deleted");
 
             LOGGER.info(modResponse);
@@ -876,7 +878,7 @@ public class TestRESTAPI
               getURI(String
                         .format("/objects/demo:1234/datastreams/DS1/history?format=xml"));
         verifyNoAuthFailOnAPIAAuth(url);
-        
+
         String responseXML = verifyGETStatusString(url, SC_OK, true, true);
 
         String control =
@@ -1014,7 +1016,7 @@ public class TestRESTAPI
         for (int i = 0; i < 101; i++) {
             verifyGETStatusOnly(url, SC_INTERNAL_SERVER_ERROR, false);
         }
-        
+
     }
 
    @Test
@@ -1094,7 +1096,7 @@ public class TestRESTAPI
         assertEquals(SC_CREATED, response.getStatusLine().getStatusCode());
         emptyObjectPid =
                 extractPid(response.getFirstHeader(HttpHeaders.LOCATION).getValue());
-        
+
         url = getURI(String.format("/objects/%s?format=xml", emptyObjectPid));
         HttpGet get = new HttpGet(url);
         // always authenticate since type I should be hidden
@@ -1383,7 +1385,7 @@ public class TestRESTAPI
                 }
                 buf.append(entry.getKey()).append('=').append(entry.getValue());
             }
-    
+
             URI url = getURI(dsPath + buf.toString());
             entity = getStringEntity(xmlData, TEXT_XML);
             verifyPOSTStatusOnly(url, SC_CREATED, entity, true);
@@ -1402,7 +1404,7 @@ public class TestRESTAPI
 
         readString(response);
         assertEquals(SC_CREATED, response.getStatusLine().getStatusCode());
-        
+
         for (Entry<String,String>dsEntry:dsIds.entrySet()){
             String dsid = dsEntry.getKey();
             String dsPath = "/objects/" + testPid + "/datastreams/" + dsid;
@@ -1677,7 +1679,7 @@ public class TestRESTAPI
         HttpPost post = new HttpPost(url);
         // FIXME: fcrepo-808, validation disabled currently
         response = putOrPost(post, null, true);
-        String responseXML = readString(response);        
+        String responseXML = readString(response);
         assertEquals(SC_OK, response.getStatusLine().getStatusCode());
 
         String pid =
@@ -1965,7 +1967,7 @@ public class TestRESTAPI
         response = getOrDelete(head, getAuthAccess(), false);
         assertEquals(SC_NOT_MODIFIED, response.getStatusLine().getStatusCode());
         assertNull(response.getEntity());
-        // test a managed (type M) datastream 
+        // test a managed (type M) datastream
         // info:fedora/demo:REST/DS2 is a type 'M'
         url = getURI("/objects/demo:REST/datastreams/DS2/content");
         get = new HttpGet(url);
@@ -1996,7 +1998,7 @@ public class TestRESTAPI
 
         MultipartEntity entity = _doUploadPost();
         HttpPost post = new HttpPost(url);
-        
+
         HttpResponse response = putOrPost(post, entity, true);
         if (response.getStatusLine().getStatusCode() == SC_MOVED_TEMPORARILY) {
             url = response.getFirstHeader(HttpHeaders.LOCATION).getValue();
@@ -2122,7 +2124,7 @@ public class TestRESTAPI
                         + URLEncoder.encode(o, "UTF-8") + "&isLiteral=true");
         post.setURI(url);
         HttpResponse response = putOrPost(post, null, true);
-        
+
         int status = response.getStatusLine().getStatusCode();
         post.releaseConnection();
         assertEquals(SC_OK, status);
@@ -2234,11 +2236,11 @@ public class TestRESTAPI
                                String expectedType,
                                String expectedFilename) {
         String headerName = "Content-Disposition";
-        String expected = 
+        String expected =
                 expectedType + "; filename=\"" + expectedFilename + "\"";
         checkSingleHeader(headerName, response, expected);
     }
-    
+
     private void checkSingleHeader(String headerName, HttpResponse response, String expected) {
         String actual = (response.containsHeader(headerName)) ?
                 response.getFirstHeader(headerName).getValue() : null;
@@ -2399,7 +2401,7 @@ public class TestRESTAPI
                 response = getOrDelete(client, method, authenticate, validate);
             }
         }
-        
+
         if (validate) {
             validateResponse(method.getURI(), response);
         }
@@ -2424,7 +2426,7 @@ public class TestRESTAPI
 
         return response;
     }
-    
+
     private void checkRelationship(byte[] rdf,
                                    String s,
                                    String p,
@@ -2478,7 +2480,7 @@ public class TestRESTAPI
         }
         return transProps;
     }
-    private static void assertHeadersEquals(Header[] expectedHeaders, 
+    private static void assertHeadersEquals(Header[] expectedHeaders,
             Header[] actualHeaders) {
         Map<String, String> expected = mapHeaders(expectedHeaders);
         Map<String, String> actual = mapHeaders(actualHeaders);
@@ -2491,7 +2493,7 @@ public class TestRESTAPI
             assertEquals(entry.getValue(), actual.get(entry.getKey()));
         }
     }
-    
+
     private static String join(Set<String> strings) {
         TreeSet<String> sorted = new TreeSet<String>(strings);
         StringBuilder out = new StringBuilder();
@@ -2503,7 +2505,7 @@ public class TestRESTAPI
         out.deleteCharAt(len - 2);
         return out.toString();
     }
-    
+
     private static Map<String, String> mapHeaders(Header[] headers) {
         Map<String, String> result = new HashMap<String, String>(headers.length);
         for (Header header:headers) {

@@ -251,6 +251,7 @@ implements PolicyStore {
                 .modifyObject(getContext(),
                               pid,
                               "A",
+                              objectProfile.objectShareLevel,
                               objectProfile.objectLabel,
                               objectProfile.objectOwnerId,
                 "Fedora policy manager:  Adding policy by activating deleted object",null);
@@ -321,6 +322,7 @@ implements PolicyStore {
             this.apiMService.modifyObject(getContext(),
                                           pid,
                                           "D",
+                                          null,
                                           null,
                                           null,
                                           "Deleting policy " + pid,

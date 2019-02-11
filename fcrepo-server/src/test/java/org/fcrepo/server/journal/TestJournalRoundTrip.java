@@ -310,6 +310,7 @@ public class TestJournalRoundTrip {
                             leadingContext,
                             "myPid",
                             "state",
+                            "shareLevel",
                             "objectLabel",
                             "owner",
                             "logMessage",

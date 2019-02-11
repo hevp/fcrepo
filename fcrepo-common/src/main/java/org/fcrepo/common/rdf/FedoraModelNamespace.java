@@ -67,6 +67,8 @@ public class FedoraModelNamespace
 
     public final RDFName STATE;
 
+    public final RDFName SHARELEVEL;
+
     public final RDFName DOWNLOAD_FILENAME;
 
     /**
@@ -87,7 +89,14 @@ public class FedoraModelNamespace
     public final RDFName INACTIVE;
 
     public final RDFName SUBMITTED;
-    
+
+    // Share level values
+    public final RDFName OPEN;
+
+    public final RDFName REGISTERED;
+
+    public final RDFName PRIVATE;
+
     // CMA RDF Relationships
     public final RDFName HAS_SERVICE;
 
@@ -161,6 +170,7 @@ public class FedoraModelNamespace
 
         OWNER = new RDFName(this, "ownerId");
         STATE = new RDFName(this, "state");
+        SHARELEVEL = new RDFName(this, "shareLevel");
         VERSIONABLE = new RDFName(this, "versionable");
         DOWNLOAD_FILENAME = new RDFName(this, "downloadFilename");
 
@@ -169,6 +179,11 @@ public class FedoraModelNamespace
         DELETED = new RDFName(this, "Deleted");
         INACTIVE = new RDFName(this, "Inactive");
         SUBMITTED = new RDFName(this, "Submitted");
+
+        // Share level values
+        OPEN = new RDFName(this, "Open");
+        REGISTERED = new RDFName(this, "Registered");
+        PRIVATE = new RDFName(this, "Private");
 
         // CMA RDF Relationships
         HAS_SERVICE = new RDFName(this, "hasService");

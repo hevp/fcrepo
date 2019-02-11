@@ -1,5 +1,5 @@
 /* The contents of this file are subject to the license and copyright terms
- * detailed in the license directory at the root of the source tree (also 
+ * detailed in the license directory at the root of the source tree (also
  * available online at http://fedora-commons.org/license/).
  */
 
@@ -7,12 +7,12 @@ package org.fcrepo.common.xml.namespace;
 
 /**
  * The Fedora Batch Modify XML namespace.
- * 
+ *
  * <pre>
- * Namespace URI    : http://www.fedora.info/definitions/ 
+ * Namespace URI    : http://www.fedora.info/definitions/
  * Preferred Prefix : fbm
  * </pre>
- * 
+ *
  * @author Chris Wilper
  */
 public class FedoraBatchModifyNamespace
@@ -116,6 +116,9 @@ public class FedoraBatchModifyNamespace
     /** The <code>state</code> attribute. */
     public final QName STATE;
 
+    /** The <code>sharelevel</code> attribute. */
+    public final QName SHARELEVEL;
+
     /** The <code>versionable</code> attribute. */
     public final QName VERSIONABLE;
 
@@ -168,12 +171,13 @@ public class FedoraBatchModifyNamespace
         OWNER_ID = new QName(this, "ownerId");
         PID = new QName(this, "pid");
         STATE = new QName(this, "state");
+        SHARELEVEL = new QName(this, "sharelevel");
         VERSIONABLE = new QName(this, "versionable");
     }
 
     /**
      * Gets the only instance of this class.
-     * 
+     *
      * @return the instance.
      */
     public static FedoraBatchModifyNamespace getInstance() {

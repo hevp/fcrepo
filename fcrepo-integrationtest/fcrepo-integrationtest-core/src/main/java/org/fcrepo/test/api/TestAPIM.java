@@ -74,7 +74,7 @@ public class TestAPIM
     private static final String DEMO_14 = "demo:14";
 
     private static FedoraClient s_client;
-    
+
     private FedoraAPIMMTOM apim;
 
     private FedoraAPIAMTOM apia;
@@ -871,7 +871,7 @@ public class TestAPIM
         NamespaceContext ctx = new SimpleNamespaceContext(nsMap);
         XMLUnit.setXpathNamespaceContext(ctx);
     }
-    
+
     @AfterClass
     public static void cleanUp() throws Exception {
         XMLUnit.setXpathNamespaceContext(SimpleNamespaceContext.EMPTY_CONTEXT);
@@ -1045,6 +1045,7 @@ public class TestAPIM
                                   "I",
                                   null,
                                   null,
+                                  null,
                                   "changed state to Inactive");
 
         objectXML =
@@ -1065,6 +1066,7 @@ public class TestAPIM
         result =
                 apim.modifyObject("demo:5",
                                   null,
+                                  null,
                                   "changed label",
                                   null,
                                   "changed label");
@@ -1081,6 +1083,7 @@ public class TestAPIM
         result =
                 apim.modifyObject("demo:5",
                                   "D",
+                                  null,
                                   "label of object to be deleted",
                                   null,
                                   "changed label and state");
@@ -1097,6 +1100,7 @@ public class TestAPIM
         result =
                 apim.modifyObject("demo:5",
                                   "A",
+                                  null,
                                   "Data Object (Coliseum) for Local Simple Image Demo",
                                   null,
                                   "reset label and state");
