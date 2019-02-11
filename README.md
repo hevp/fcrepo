@@ -4,8 +4,17 @@ This is a modified forked repository of the [Fedora Commons Repository](https://
 
 The following modifications have been made:
 - Support 'submitted' state for objects
+- Add object share level property
+
+##### Submitted state value
+Adds the 'submitted' (S) value for the object state property, indicating the object has been submitted, but needs a review before it is finally published.
+
+##### Object share level property
+Adds the share level property to the object model. Possible values are 'Open access' (O), 'Registered' (R) and 'Private' (P).
 
 Below a formatted version of the original `README`.
+
+---
 
 ### README
 
