@@ -48,7 +48,7 @@ public class FedoraAPIMImpl
 
     private static final Logger LOG = LoggerFactory
             .getLogger(FedoraAPIMImpl.class);
-    
+
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
     @Resource
@@ -104,6 +104,7 @@ public class FedoraAPIMImpl
     @Override
     public String modifyObject(String pid,
                                String state,
+                               String shareLevel,
                                String label,
                                String ownerId,
                                String logMessage) {
@@ -115,6 +116,7 @@ public class FedoraAPIMImpl
                     .modifyObject(ReadOnlyContext.getSoapContext(ctx),
                                   pid,
                                   state,
+                                  shareLevel,
                                   label,
                                   ownerId,
                                   logMessage,

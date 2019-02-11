@@ -37,6 +37,10 @@ public class ObjectNamespace
 
     public final XacmlName NEW_STATE;
 
+    public final XacmlName SHARELEVEL;
+
+    public final XacmlName NEW_SHARELEVEL;
+
     public final XacmlName FORMAT_URI; //for serialization
 
     public final XacmlName CONTEXT; //for serialization
@@ -59,6 +63,12 @@ public class ObjectNamespace
         NEW_STATE =
                 addName(new XacmlName(this,
                                       "newState",
+                                      StringAttribute.identifier));
+        SHARELEVEL =
+                addName(new XacmlName(this, "shareLevel", StringAttribute.identifier));
+        NEW_SHARELEVEL =
+                addName(new XacmlName(this,
+                                      "newShareLevel",
                                       StringAttribute.identifier));
         CONTROL_GROUP =
                 addName(new XacmlName(this,

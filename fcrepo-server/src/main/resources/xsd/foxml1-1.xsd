@@ -134,6 +134,7 @@
 			<xsd:simpleType>
 				<xsd:restriction base="xsd:string">
 					<xsd:enumeration value="info:fedora/fedora-system:def/model#state"/>
+                    <xsd:enumeration value="info:fedora/fedora-system:def/model#shareLevel"/>
 					<xsd:enumeration value="info:fedora/fedora-system:def/model#label"/>
 					<xsd:enumeration value="info:fedora/fedora-system:def/model#createdDate"/>
 					<xsd:enumeration value="info:fedora/fedora-system:def/view#lastModifiedDate"/>

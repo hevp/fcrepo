@@ -59,7 +59,7 @@ public class TestAPIM2
         s_client = getFedoraClient();
         ingestImageCollectionDemoObjects(s_client);
     }
-    
+
     @AfterClass
     public static void cleanUp() throws Exception {
         purgeDemoObjects(s_client);
@@ -206,7 +206,7 @@ public class TestAPIM2
         purgeDemoObjects(s_client);
 
     }
-    
+
     @Test
     public void testObjectMethods() throws Exception {
         // test object
@@ -221,7 +221,7 @@ public class TestAPIM2
             String pid = apim.ingest(foxml, FOXML1_1.uri,"ingesting new foxml object");
 
             // update object label with new value
-            apim.modifyObject(pid, null, label2, null, "updating object label");
+            apim.modifyObject(pid, null, null, label2, null, "updating object label");
 
         }
 
@@ -244,7 +244,7 @@ public class TestAPIM2
         purgeDemoObjects(s_client);
 
     }
-    
+
     @Test
     public void testDatastreamMethods() throws Exception {
         // test object

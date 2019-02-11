@@ -1,5 +1,5 @@
 /* The contents of this file are subject to the license and copyright terms
- * detailed in the license directory at the root of the source tree (also 
+ * detailed in the license directory at the root of the source tree (also
  * available online at http://fedora-commons.org/license/).
  */
 
@@ -7,12 +7,12 @@ package org.fcrepo.common.xml.namespace;
 
 /**
  * The FOXML XML namespace.
- * 
+ *
  * <pre>
  * Namespace URI    : info:fedora/fedora-system:def/foxml#
  * Preferred Prefix : foxml
  * </pre>
- * 
+ *
  * @author Chris Wilper
  */
 public class FOXMLNamespace
@@ -119,6 +119,9 @@ public class FOXMLNamespace
     /** The <code>STATE</code> attribute. */
     public final QName STATE;
 
+    /** The <code>SHARELEVEL</code> attribute. */
+    public final QName SHARELEVEL;
+
     /** The <code>VALUE</code> attribute. */
     public final QName VALUE;
 
@@ -175,6 +178,7 @@ public class FOXMLNamespace
         REF = new QName(this, "REF");
         SIZE = new QName(this, "SIZE");
         STATE = new QName(this, "STATE");
+        SHARELEVEL = new QName(this, "SHARELEVEL");
         VALUE = new QName(this, "VALUE");
         VERSION = new QName(this, "VERSION");
         VERSIONABLE = new QName(this, "VERSIONABLE");
@@ -182,7 +186,7 @@ public class FOXMLNamespace
 
     /**
      * Gets the only instance of this class.
-     * 
+     *
      * @return the instance.
      */
     public static FOXMLNamespace getInstance() {

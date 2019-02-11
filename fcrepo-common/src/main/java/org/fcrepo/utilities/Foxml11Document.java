@@ -49,6 +49,7 @@ public class Foxml11Document {
 
     public enum Property {
         STATE("info:fedora/fedora-system:def/model#state"),
+        SHARELEVEL("info:fedora/fedora-system:def/model#shareLevel"),
         LABEL("info:fedora/fedora-system:def/model#label"),
         CONTENT_MODEL("info:fedora/fedora-system:def/model#contentModel"),
         CREATE_DATE("info:fedora/fedora-system:def/model#createdDate"),
@@ -67,6 +68,10 @@ public class Foxml11Document {
 
     public enum State {
         A, I, D;
+    }
+
+    public enum ShareLevel {
+        O, R, P;
     }
 
     public enum ControlGroup {

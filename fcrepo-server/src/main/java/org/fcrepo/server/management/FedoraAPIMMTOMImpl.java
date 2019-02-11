@@ -45,7 +45,7 @@ public class FedoraAPIMMTOMImpl
             .getLogger(FedoraAPIMMTOMImpl.class);
 
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
-    
+
     @Resource
     private WebServiceContext context;
 
@@ -103,6 +103,7 @@ public class FedoraAPIMMTOMImpl
     @Override
     public String modifyObject(String pid,
                                String state,
+                               String shareLevel,
                                String label,
                                String ownerId,
                                String logMessage) {
@@ -114,6 +115,7 @@ public class FedoraAPIMMTOMImpl
                     .modifyObject(ReadOnlyContext.getSoapContext(ctx),
                                   pid,
                                   state,
+                                  shareLevel,
                                   label,
                                   ownerId,
                                   logMessage,

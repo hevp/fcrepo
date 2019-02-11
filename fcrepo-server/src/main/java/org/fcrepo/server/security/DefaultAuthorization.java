@@ -179,7 +179,7 @@ public class DefaultAuthorization
      * <li>urn:fedora:names:fedora:2.1:action:api ==
      * urn:fedora:names:fedora:2.1:action:api-m</li>
      * </ul>
-     * 
+     *
      * <p>
      * resource attributes of object to which datastream would be added</p>
      * <ul>
@@ -680,6 +680,7 @@ public class DefaultAuthorization
     public final void enforceModifyObject(Context context,
                                           String pid,
                                           String objectNewState,
+                                          String objectNewShareLevel,
                                           String objectNewOwnerId)
             throws AuthzException {
         try {
@@ -691,6 +692,8 @@ public class DefaultAuthorization
             try {
                 name = Constants.OBJECT.NEW_STATE.attributeId;
                 resourceAttributes.set(name, objectNewState);
+                name = Constants.OBJECT.NEW_SHARELEVEL.attributeId;
+                resourceAttributes.set(name, objectNewShareLevel);
                 if (objectNewOwnerId != null){
                     name = Constants.OBJECT.OWNER.attributeId;
                     resourceAttributes.set(name, objectNewOwnerId.split(m_ownerIdSeparator));

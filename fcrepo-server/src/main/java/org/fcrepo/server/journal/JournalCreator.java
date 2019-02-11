@@ -123,6 +123,7 @@ public class JournalCreator
     public Date modifyObject(Context context,
                              String pid,
                              String state,
+                             String shareLevel,
                              String label,
                              String ownerId,
                              String logMessage,
@@ -132,6 +133,7 @@ public class JournalCreator
                     new CreatorJournalEntry(METHOD_MODIFY_OBJECT, context);
             cje.addArgument(ARGUMENT_NAME_PID, pid);
             cje.addArgument(ARGUMENT_NAME_STATE, state);
+            cje.addArgument(ARGUMENT_NAME_SHARELEVEL, shareLevel);
             cje.addArgument(ARGUMENT_NAME_LABEL, label);
             cje.addArgument(ARGUMENT_NAME_OWNERID, ownerId);
             cje.addArgument(ARGUMENT_NAME_LOG_MESSAGE, logMessage);

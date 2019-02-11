@@ -92,6 +92,7 @@ public class FieldSearchSQLImplIntegrationTest {
             + "pid VARCHAR(64) NOT NULL,\n"
             + "label VARCHAR(255) NOT NULL,\n"
             + "state VARCHAR(1) NOT NULL,\n"
+            + "shareLevel VARCHAR(1) NOT NULL,\n"
             + "ownerId VARCHAR(64),\n"
             + "cDate BIGINT NOT NULL,\n"
             + "mDate BIGINT NOT NULL,\n"

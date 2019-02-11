@@ -1,5 +1,5 @@
 /* The contents of this file are subject to the license and copyright terms
- * detailed in the license directory at the root of the source tree (also 
+ * detailed in the license directory at the root of the source tree (also
  * available online at http://fedora-commons.org/license/).
  */
 package org.fcrepo.server.test;
@@ -16,7 +16,7 @@ import org.fcrepo.server.storage.types.DigitalObject;
 
 /**
  * Tests the implementation of the DigitalObject interface, BasicDigitalObject.
- * 
+ *
  * @author Chris Wilper
  */
 public class DigitalObjectTest
@@ -48,6 +48,7 @@ public class DigitalObjectTest
         m_obj.setOwnerId("userId1");
         m_obj.setPid("test:1");
         m_obj.setState("A");
+        m_obj.setShareLevel("O");
         // add some datastreams
         m_ds1_0 = new Datastream();
         m_ds1_0.DatastreamID = "DS1.0";
@@ -114,6 +115,7 @@ public class DigitalObjectTest
         assertEquals(m_sdef.getPid(), "test:2");
         assertEquals(m_sdep.getPid(), "test:3");
         assertEquals(m_obj.getState(), "A");
+        assertEquals(m_obj.getShareLevel(), "O");
         assertEquals(m_sdef.getState(), "W");
         assertEquals(m_sdep.getState(), "D");
     }
@@ -128,7 +130,7 @@ public class DigitalObjectTest
 
         m_obj.getAuditRecords().add(m_audit3);
         m_obj.addDatastreamVersion(m_ds1_1, true);
-        
+
         m_obj.getAuditRecords().add(m_audit4);
         m_obj.addDatastreamVersion(m_ds2_0, true);
     }

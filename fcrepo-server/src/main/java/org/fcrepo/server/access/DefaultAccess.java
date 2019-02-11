@@ -623,6 +623,7 @@ public class DefaultAccess
         profile.objectCreateDate = reader.getCreateDate();
         profile.objectLastModDate = reader.getLastModDate();
         profile.objectState = reader.GetObjectState();
+        profile.objectShareLevel = reader.GetObjectShareLevel();
 
         profile.objectModels.addAll(reader.getContentModels());
 
@@ -1135,7 +1136,7 @@ public class DefaultAccess
                             getDatastreamHeaders(PID, ds), ds.DSSize);
                 } else {
                     mimeTypedStream = new MIMETypedStream(ds.DSMIME, ds.getContentStream(context),
-                            dsHeaders, ds.DSSize);                    
+                            dsHeaders, ds.DSSize);
                 }
             } else {
                 mimeTypedStream = MIMETypedStream.getNotModified(dsHeaders);
@@ -1171,7 +1172,7 @@ public class DefaultAccess
         }
         return mimeTypedStream;
     }
-    
+
     /**
      * Content-Length is determined elsewhere
      * Content-Type is determined elsewhere
@@ -1187,7 +1188,7 @@ public class DefaultAccess
         result[2] = new Property(HttpHeaders.LAST_MODIFIED, DateUtil.formatDate(ds.DSCreateDT));
         return result;
     }
-    
+
     /**
      * determine whether the context is a HEAD http request
      */
@@ -1197,7 +1198,7 @@ public class DefaultAccess
                     context.getEnvironmentValue(
                             Constants.HTTP_REQUEST.METHOD.attributeId);
             return "HEAD".equalsIgnoreCase(method);
-                    
+
         }
         return false;
     }

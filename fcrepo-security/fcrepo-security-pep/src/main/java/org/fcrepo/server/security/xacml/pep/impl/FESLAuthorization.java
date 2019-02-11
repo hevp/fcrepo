@@ -18,7 +18,7 @@ import org.fcrepo.server.security.PolicyEnforcementPoint;
 
 public class FESLAuthorization implements Authorization {
     private static final Logger logger = LoggerFactory.getLogger(FESLAuthorization.class);
-    
+
     private PolicyEnforcementPoint m_pep;
     public FESLAuthorization(PolicyEnforcementPoint pep) {
         m_pep = pep;
@@ -136,7 +136,7 @@ public class FESLAuthorization implements Authorization {
 
     @Override
     public void enforceModifyObject(Context context, String pid,
-            String objectState, String ownerId) throws AuthzException {
+            String objectState, String objectShareLevel, String ownerId) throws AuthzException {
         // TODO Determine whether FESL auth checks should be performed at the module level
 
     }

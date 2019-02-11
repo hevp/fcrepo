@@ -891,6 +891,59 @@ public abstract class DOTranslationUtility
         }
     }
 
+    /** Reads the share level attribute from a DigitalObject.
+     * <p>
+     * Null or empty strings are interpteted as "Open".
+     * </p>
+     * @param obj Object that potentially contains object share level data.
+     * @return String containing full share level value (Open, Registered, Private)
+     * @throws ObjectIntegrityException thrown when the share level cannot be parsed.
+     */
+    public static String getShareLevelAttribute(DigitalObject obj) throws ObjectIntegrityException {
+
+            if (obj.getShareLevel() == null || obj.getShareLevel().isEmpty()) {
+                return MODEL.OPEN.localName;
+            } else {
+                switch (obj.getShareLevel().charAt(0)) {
+                    case 'P':
+                        return MODEL.PRIVATE.localName;
+                    case 'R':
+                        return MODEL.REGISTERED.localName;
+                    case 'O':
+                        return MODEL.OPEN.localName;
+                    default:
+                        throw new ObjectIntegrityException("Could not determine "
+                                                   + "share level attribute from '"
+                                                   + obj.getShareLevel() + "'");
+                }
+            }
+    }
+
+    /** Parse and read the object share level value from raw text.
+     * <p>
+     * Reads a text representation of object share level, and returns a "share level code"
+     * abbreviation corresponding to that share level.  Null or empty values are interpreted
+     * as "Open".
+     * </p>
+     * @param rawValue Raw string to parse.  May be null
+     * @return String containing the state code (O, R, P)
+     * @throws ParseException thrown when share level value cannot be determined
+     */
+    public static String readShareLevelAttribute(String rawValue) throws ParseException {
+        if (MODEL.PRIVATE.looselyMatches(rawValue, true)) {
+            return "P";
+        } else if (MODEL.REGISTERED.looselyMatches(rawValue, true)) {
+            return "R";
+        } else if (MODEL.OPEN.looselyMatches(rawValue, true)
+                    || rawValue == null
+                    || rawValue.isEmpty()) {
+            return "O";
+        } else {
+                throw new ParseException("Could not interpret share level value of '"
+                                   + rawValue + "'", 0);
+        }
+    }
+
     public static RDFName getTypeAttribute(DigitalObject obj)
                 throws ObjectIntegrityException {
         if (obj.hasContentModel(SERVICE_DEFINITION_3_0)) {

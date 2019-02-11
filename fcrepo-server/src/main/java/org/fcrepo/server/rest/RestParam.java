@@ -9,6 +9,7 @@ public interface RestParam {
     String AS_OF_DATE_TIME = "asOfDateTime";
     String LABEL = "label";
     String STATE = "state";
+    String SHARELEVEL = "shareLevel";
     String OWNER_ID = "ownerId";
     String ENCODING = "encoding";
     String FORMAT = "format";

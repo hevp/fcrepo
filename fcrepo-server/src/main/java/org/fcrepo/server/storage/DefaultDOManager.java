@@ -96,9 +96,9 @@ implements DOManager {
 
     private static final Logger logger = LoggerFactory
             .getLogger(DefaultDOManager.class);
-    
+
     private static final Pattern URL_PROTOCOL = Pattern.compile("^\\w+:\\/.*$");
-    
+
     public static String CMODEL_QUERY =
         "SELECT cModel, sDef, sDep, mDate " +
         " FROM modelDeploymentMap, doFields " +
@@ -107,7 +107,7 @@ implements DOManager {
 
     public static String REGISTERED_PID_QUERY =
             "SELECT doPID FROM doRegistry WHERE doPID=?";
-    
+
     public static String INSERT_PID_QUERY =
             "INSERT INTO doRegistry (doPID, ownerId, label) VALUES (?, ?, ?)";
 
@@ -116,7 +116,7 @@ implements DOManager {
 
     public static String PID_VERSION_UPDATE =
             "UPDATE doRegistry SET systemVersion=? WHERE doPID=?";
-    
+
     private static String INSERT_MODEL_DEPLOYMENT =
             "INSERT INTO modelDeploymentMap (cModel, sDef, sDep) VALUES (?, ?, ?)";
 
@@ -137,9 +137,9 @@ implements DOManager {
     protected PIDGenerator m_pidGenerator;
 
     protected DOTranslator m_translator;
-    
+
     protected ILowlevelStorage m_permanentStore;
-    
+
     protected boolean m_checkableStore;
 
     protected FedoraStorageHintProvider m_hintProvider;
@@ -417,7 +417,7 @@ implements DOManager {
         m_checkableStore = (m_permanentStore instanceof ICheckable);
         // get ref to DOReaderCache module
         m_readerCache = (DOReaderCache) getServer().getBean("org.fcrepo.server.readerCache");
-        
+
         // get ref to FedoraStorageHintProvider
         try {
             m_hintProvider =
@@ -431,7 +431,7 @@ implements DOManager {
         /* Load the service deployment cache from the registry */
         initializeCModelDeploymentCache();
     }
-    
+
     @Override
     public String lookupDeploymentForCModel(String cModelPid, String sDefPid) {
 
@@ -628,7 +628,7 @@ implements DOManager {
         }
 
         writer.invalidate();
-        
+
         if (writer.isCommitted()) {
             try{
                 m_readerCache.remove(writer.GetObjectPID());
@@ -650,7 +650,7 @@ implements DOManager {
 		    if( lock == null ) {
 			    throw new IllegalMonitorStateException( String.format( "Unlock called and no LockAdmin corresponding to the pid: '%s' found in the lockMap", pid ) );
 		    }
-	
+
 		    if( !lock.hasQueuedThreads() && lock.getHoldCount() == 1) {
 		    	m_pidLocks.remove( pid );
 	        }
@@ -662,7 +662,7 @@ implements DOManager {
 		if( pid == null ) {
 		    throw new IllegalArgumentException("pid cannot be null");
 		}
-	
+
 		ReentrantLock lock = null;
 		synchronized(m_pidLocks) {
 		    lock = m_pidLocks.get( pid );
@@ -708,7 +708,7 @@ implements DOManager {
     public DOTranslator getTranslator() {
         return m_translator;
     }
-    
+
     /**
      * Gets a reader on an existing digital object.
      */
@@ -880,6 +880,10 @@ implements DOManager {
                 // set object state to "A" (Active) if not already set
                 if (obj.getState() == null || obj.getState().isEmpty()) {
                     obj.setState("A");
+                }
+                // set object state to "A" (Active) if not already set
+                if (obj.getShareLevel() == null || obj.getShareLevel().isEmpty()) {
+                    obj.setShareLevel("O");
                 }
                 // set object create date to UTC if not already set
                 if (obj.getCreateDate() == null) {
@@ -1318,7 +1322,7 @@ implements DOManager {
                             m_storageCharacterEncoding,
                             DOTranslationUtility.SERIALIZE_STORAGE_INTERNAL);
 
-                    
+
                     serialized = out.toInputStream();
                 }
 
@@ -1713,7 +1717,7 @@ implements DOManager {
         }
         return registered || exists;
     }
-    
+
     protected boolean objectExistsInRegistry(String pid)
         throws StorageDeviceException {
         logger.debug("Checking if {} already exists", pid);
@@ -1968,7 +1972,7 @@ implements DOManager {
                 ArrayList<String> pidList = new ArrayList<String>();
                 do {
                     pidList.add(results.getString("doPID"));
-                } while (results.next()); 
+                } while (results.next());
                 return pidList.toArray(EMPTY_STRING_ARRAY);
             } else {
                 return EMPTY_STRING_ARRAY;

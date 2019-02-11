@@ -35,6 +35,16 @@ public interface DOWriter
     public void setState(String state) throws ServerException;
 
     /**
+     * Sets the share level of the entire digital object.
+     *
+     * @param shareLevel
+     *        The share level.
+     * @throws ServerException
+     *         If any type of error occurred fulfilling the request.
+     */
+    public void setShareLevel(String shareLevel) throws ServerException;
+
+    /**
      * Sets the ownerId for the digital object.
      *
      * @param ownerId

@@ -42,6 +42,7 @@ public class APIMStubWrapper
     @Override
     public String modifyObject(final String pid,
             final String state,
+            final String shareLevel,
             final String label,
             final String ownerId,
             final String logMessage){
@@ -54,6 +55,7 @@ public class APIMStubWrapper
                     // call wrapped method
                     return m_instance.modifyObject(pid,
                                                    state,
+                                                   shareLevel,
                                                    label,
                                                    ownerId,
                                                    logMessage);

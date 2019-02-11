@@ -311,6 +311,11 @@ public class BatchModifyParser
                 } else {
                     m_obj.state = null;
                 }
+                if (attrs.getValue("shareLevel") != null) {
+                    m_obj.shareLevel = attrs.getValue("shareLevel");
+                } else {
+                    m_obj.shareLevel = null;
+                }
                 if (attrs.getValue("ownerId") != null) {
                     m_obj.ownerId = attrs.getValue("ownerId");
                 } else {
@@ -702,6 +707,7 @@ public class BatchModifyParser
                 if (modifyObject) {
                     APIM.modifyObject(m_obj.pid,
                                       m_obj.state,
+                                      m_obj.shareLevel,
                                       m_obj.label,
                                       m_obj.ownerId,
                                       "ModifyObject");

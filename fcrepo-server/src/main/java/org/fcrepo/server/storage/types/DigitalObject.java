@@ -70,6 +70,21 @@ public interface DigitalObject {
     public void setState(String state);
 
     /**
+     * Gets the share level.
+     *
+     * @return The share level, or null if it hasn't been set.
+     */
+    public String getShareLevel();
+
+    /**
+     * Sets the share level.
+     *
+     * @param shareLevel
+     *        The share level.
+     */
+    public void setShareLevel(String shareLevel);
+
+    /**
      * Gets the userid of the user who owns the object.
      *
      * @return The userid
