@@ -149,7 +149,7 @@ public abstract class ObjectBuilder {
         addXDatastream(obj, "RELS-EXT", rdf.toString());
 
         obj.setState(state);
-        obj.setShareLevel(state);
+        obj.setShareLevel(shareLevel);
         obj.setOwnerId(ownerId);
         obj.setLabel(label);
         obj.setCreateDate(createDate);

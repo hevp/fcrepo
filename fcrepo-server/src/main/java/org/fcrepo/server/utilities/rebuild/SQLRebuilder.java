@@ -77,7 +77,7 @@ public class SQLRebuilder
     private ConnectionPool m_connectionPool;
 
     private Context m_context;
-    
+
     private long m_now = -1;
 
     /**
@@ -169,12 +169,12 @@ public class SQLRebuilder
             throw ie;
         }
     }
-    
+
     private final void startStatus(long time)
             throws SQLException {
         executeStatusSql(CREATE_REBUILD_STATUS, false, time);
     }
-    
+
     private final void finishStatus(long time)
             throws SQLException {
         executeStatusSql(UPDATE_REBUILD_STATUS, true, time);
@@ -339,6 +339,10 @@ public class SQLRebuilder
         if (obj.getState() == null || obj.getState().isEmpty()) {
             obj.setState("A");
         }
+        // set object share level to "O" (Open) if not already set
+        if (obj.getShareLevel() == null || obj.getShareLevel().isEmpty()) {
+            obj.setShareLevel("O");
+        }
         // set object create date to UTC if not already set
         if (obj.getCreateDate() == null) {
             obj.setCreateDate(nowUTC);
@@ -351,6 +355,10 @@ public class SQLRebuilder
         // set object state to "A" (Active) if not already set
         if (obj.getState() == null || obj.getState().isEmpty()) {
             obj.setState("A");
+        }
+        // set object state to "O" (Open) if not already set
+        if (obj.getShareLevel() == null || obj.getShareLevel().isEmpty()) {
+            obj.setShareLevel("O");
         }
         // set object create date to UTC if not already set
         if (obj.getCreateDate() == null) {

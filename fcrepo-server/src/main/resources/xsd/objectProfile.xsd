@@ -70,4 +70,9 @@
             <xs:restriction base="xs:string" />
         </xs:simpleType>
     </xs:element>
+    <xs:element name="objShareLevel">
+        <xs:simpleType>
+            <xs:restriction base="xs:string" />
+        </xs:simpleType>
+    </xs:element>
 </xs:schema>

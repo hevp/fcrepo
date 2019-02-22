@@ -520,7 +520,7 @@ public class FieldSearchResultSQLImpl
                 f.setState(r.GetObjectState());
             }
             if (n.equals("shareLevel")) {
-                f.setState(r.GetObjectShareLevel());
+                f.setShareLevel(r.GetObjectShareLevel());
             }
             if (n.equals("ownerId")) {
                 f.setOwnerId(r.getOwnerId());

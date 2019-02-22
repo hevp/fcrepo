@@ -164,6 +164,9 @@ public abstract class TypeUtility {
             if (sf.getState() != null) {
                 gf.setState(factory.createObjectFieldsState(sf.getState()));
             }
+            if (sf.getShareLevel() != null) {
+                gf.setShareLevel(factory.createObjectFieldsShareLevel(sf.getShareLevel()));
+            }
             if (sf.getOwnerId() != null) {
                 gf.setOwnerId(factory.createObjectFieldsOwnerId(sf.getOwnerId()));
             }
@@ -299,7 +302,7 @@ public abstract class TypeUtility {
             } catch (IOException ioe) {
                 logger.error("Error converting types", ioe);
             }
-                    
+
             return genMIMETypedStream;
 
         } else {

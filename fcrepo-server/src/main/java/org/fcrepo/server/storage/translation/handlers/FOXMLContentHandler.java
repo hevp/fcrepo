@@ -285,7 +285,7 @@ public class FOXMLContentHandler
                     } catch (ParseException e) {
                         throw new SAXException("Could not read state", e);
                     }
-               } else if (m_objPropertyName.equals(MODEL.SHARELEVEL.uri)) {
+                } else if (m_objPropertyName.equals(MODEL.SHARELEVEL.uri)) {
                     try {
                         m_obj.setShareLevel(DOTranslationUtility
                                        .readShareLevelAttribute(grab(a, FOXML.uri, "VALUE")));

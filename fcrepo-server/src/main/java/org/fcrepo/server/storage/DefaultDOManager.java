@@ -881,7 +881,7 @@ implements DOManager {
                 if (obj.getState() == null || obj.getState().isEmpty()) {
                     obj.setState("A");
                 }
-                // set object state to "A" (Active) if not already set
+                // set object share level to "O" (Open) if not already set
                 if (obj.getShareLevel() == null || obj.getShareLevel().isEmpty()) {
                     obj.setShareLevel("O");
                 }

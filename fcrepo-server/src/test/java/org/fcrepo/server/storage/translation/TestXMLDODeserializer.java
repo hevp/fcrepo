@@ -203,6 +203,7 @@ public abstract class TestXMLDODeserializer
         input.setLabel(null);
         input.setOwnerId(null);
         input.setState(null);
+        input.setShareLevel(null);
         input.setExtProperty(EXT_PROP, null);
 
         DigitalObject obj = doDeserializeOrFail(input);
@@ -212,6 +213,7 @@ public abstract class TestXMLDODeserializer
         assertEquals("Null label should be interpreted as empty string", "", obj.getLabel());
         assertEquals("Null ownerid should be interpreted as empty string", "", obj.getOwnerId());
         assertEquals("Null state should be interpreted as active", "A", obj.getState());
+        assertEquals("Null share level should be interpreted as open", "O", obj.getShareLevel());
         assertNull("Ext property should be null", obj.getExtProperty(EXT_PROP));
     }
 

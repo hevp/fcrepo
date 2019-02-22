@@ -142,6 +142,7 @@ public class AtomDOSerializer
 
     private void addObjectProperties(DigitalObject obj, Feed feed) throws ObjectIntegrityException {
         String state = DOTranslationUtility.getStateAttribute(obj);
+        String shareLevel = DOTranslationUtility.getShareLevelAttribute(obj);
         String ownerId = obj.getOwnerId();
         String label = obj.getLabel();
         Date cdate = obj.getCreateDate();
@@ -153,6 +154,7 @@ public class AtomDOSerializer
         feed.addAuthor(ownerId == null ? "" : StreamUtility.enc(ownerId));
 
         feed.addCategory(MODEL.STATE.uri, state, null);
+        feed.addCategory(MODEL.SHARELEVEL.uri, shareLevel, null);
 
         if (cdate != null) {
             feed.addCategory(MODEL.CREATED_DATE.uri, DateUtility

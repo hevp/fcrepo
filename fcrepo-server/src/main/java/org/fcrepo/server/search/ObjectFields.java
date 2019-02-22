@@ -189,7 +189,7 @@ public class ObjectFields
         } else if (m_want[STATE] && localName.equals("state")) {
             setState(m_currentContent.toString());
         } else if (m_want[SHARELEVEL] && localName.equals("shareLevel")) {
-            setState(m_currentContent.toString());
+            setShareLevel(m_currentContent.toString());
         } else if (m_want[OWNERID] && localName.equals("ownerId")) {
             setOwnerId(m_currentContent.toString());
         } else if (m_want[CDATE] && localName.equals("cDate")) {

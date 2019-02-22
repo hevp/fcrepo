@@ -148,9 +148,9 @@ public class DefaultSerializer {
         enc(objProfile.itemIndexViewURL, buffer);
         buffer.append("</objItemIndexViewURL><objState>");
         enc(objProfile.objectState, buffer);
-        buffer.append("</objState><objectShareLevel>");
+        buffer.append("</objState><objShareLevel>");
         enc(objProfile.objectShareLevel, buffer);
-        buffer.append("</objectShareLevel></objectProfile>");
+        buffer.append("</objShareLevel></objectProfile>");
     }
 
     private static void datastreamFieldSerialization(Datastream dsProfile, String prefix,
