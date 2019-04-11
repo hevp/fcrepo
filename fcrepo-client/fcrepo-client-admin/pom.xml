@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.fcrepo</groupId>
     <artifactId>fcrepo-client</artifactId>
-    <version>3.8.2-SNAPSHOT</version>
+    <version>3.9</version>
   </parent>
 
   <artifactId>fcrepo-client-admin</artifactId>
@@ -27,12 +27,12 @@
 
     <plugins>
 
-      <!-- To be re-evaluated when ANT is no longer supported. TestMessagingClient 
+      <!-- To be re-evaluated when ANT is no longer supported. TestMessagingClient
         does not work in ANT or Maven2 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <!-- All unit tests in 'client' begin with 'Test*' (that is reserved 
+        <!-- All unit tests in 'client' begin with 'Test*' (that is reserved
           for integration-tests) -->
         <configuration>
           <includes>

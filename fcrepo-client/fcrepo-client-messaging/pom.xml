@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.fcrepo</groupId>
     <artifactId>fcrepo-client</artifactId>
-    <version>3.8.2-SNAPSHOT</version>
+    <version>3.9</version>
   </parent>
 
   <artifactId>fcrepo-client-messaging</artifactId>
@@ -22,19 +22,19 @@
         </excludes>
       </resource>
     </resources>
-    
+
     <plugins>
 
-      <!-- 
+      <!--
       To be re-evaluated when ANT is no longer supported.
-      TestMessagingClient does not work in ANT or Maven2 
+      TestMessagingClient does not work in ANT or Maven2
       -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <!-- 
-        All unit tests in 'client' begin with 'Test*' 
-        (that is reserved for integration-tests) 
+        <!--
+        All unit tests in 'client' begin with 'Test*'
+        (that is reserved for integration-tests)
         -->
         <configuration>
           <includes>
@@ -77,13 +77,13 @@
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
-          
+
           <!-- Create the client-messaging.zip -->
           <execution>
-            <id>fcrepo-messaging-zip-assembly</id> 
-            <phase>package</phase> 
+            <id>fcrepo-messaging-zip-assembly</id>
+            <phase>package</phase>
             <goals>
-              <goal>single</goal> 
+              <goal>single</goal>
             </goals>
             <configuration>
               <descriptors>
@@ -91,12 +91,12 @@
               </descriptors>
             </configuration>
           </execution>
-          
+
           <execution>
-            <id>fcrepo-messaging-jar-assembly</id> 
-            <phase>package</phase> 
+            <id>fcrepo-messaging-jar-assembly</id>
+            <phase>package</phase>
             <goals>
-              <goal>single</goal> 
+              <goal>single</goal>
             </goals>
             <configuration>
               <descriptors>
@@ -104,7 +104,7 @@
               </descriptors>
             </configuration>
           </execution>
-          
+
         </executions>
       </plugin>
 
@@ -115,7 +115,7 @@
   <dependencies>
 
     <dependency>
-      <groupId>ch.qos.logback</groupId>                                                           
+      <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
     </dependency>
 
@@ -130,7 +130,7 @@
       <artifactId>fcrepo-server</artifactId>
       <version>${project.version}</version>
     </dependency>
-    
+
     <dependency>
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-all</artifactId>
@@ -161,7 +161,7 @@
       <groupId>javax.activation</groupId>
       <artifactId>activation</artifactId>
       <version>1.1.1</version>
-    </dependency> 
+    </dependency>
 
     <dependency>
       <groupId>org.apache.abdera</groupId>
@@ -177,7 +177,7 @@
       <groupId>org.apache.abdera</groupId>
       <artifactId>abdera-parser</artifactId>
     </dependency>
-    
+
     <dependency>
       <groupId>org.apache.ws.commons.axiom</groupId>
       <artifactId>axiom-api</artifactId>

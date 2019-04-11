@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.fcrepo</groupId>
     <artifactId>fcrepo-integrationtest</artifactId>
-    <version>3.8.2-SNAPSHOT</version>
+    <version>3.9</version>
   </parent>
 
   <artifactId>fcrepo-integrationtest-configA</artifactId>
@@ -97,8 +97,8 @@
         <fedora.install.properties>${project.build.directory}/config/ConfigA.properties</fedora.install.properties>
         <fedora.install.version>${project.version}</fedora.install.version>
 
-        <!-- antrun ant task does not handle properties sanely. System properties 
-          do not override default values. Re-defining the potentially overriden maven 
+        <!-- antrun ant task does not handle properties sanely. System properties
+          do not override default values. Re-defining the potentially overriden maven
           properties is a workaround -->
         <mvn.env.opts>${env.MAVEN_OPTS}</mvn.env.opts>
         <mvn.fedora.home>${fedora.home}</mvn.fedora.home>

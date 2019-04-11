@@ -10,7 +10,7 @@
   <groupId>org.fcrepo</groupId>
   <artifactId>fcrepo</artifactId>
   <packaging>pom</packaging>
-  <version>3.8.2-SNAPSHOT</version>
+  <version>3.9</version>
   <name>Fedora Repository Project</name>
   <url>http://fedora-commons.org/</url>
 
@@ -156,7 +156,7 @@
         <artifactId>commons-dbcp</artifactId>
         <version>1.4</version>
       </dependency>
-      
+
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
@@ -677,7 +677,7 @@
         <version>1.9.5</version>
         <scope>test</scope>
         <exclusions>
-          <!-- mockito-core depends on objenesis-1.0, but powermock-module-junit4 
+          <!-- mockito-core depends on objenesis-1.0, but powermock-module-junit4
                already brings in objenesis-1.2 -->
           <exclusion>
             <groupId>org.objnesis</groupId>
@@ -811,7 +811,7 @@
   <build>
     <pluginManagement>
       <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. 
+        <!--This plugin's configuration is used to store Eclipse m2e settings only.
           It has no influence on the Maven build itself. -->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
@@ -1047,7 +1047,7 @@
           </configuration>
           <dependencies>
             <dependency>
-              <!-- allows markdown syntax for site generation. To use it place files 
+              <!-- allows markdown syntax for site generation. To use it place files
                 below src/site/markdown/[filename].md -->
               <groupId>org.apache.maven.doxia</groupId>
               <artifactId>doxia-module-markdown</artifactId>
@@ -1093,7 +1093,7 @@
           <merge>true</merge>
           <dryRun>true</dryRun>
           <excludes>
-            <!-- Excluding test-related javadocs in order to keep the site 
+            <!-- Excluding test-related javadocs in order to keep the site
               deployment smaller than 30M.
               see: https://github.com/github/maven-plugins/issues/54 -->
             <exclude>xref-test/**</exclude>
@@ -1276,7 +1276,7 @@
             <artifactId>maven-assembly-plugin</artifactId>
             <dependencies>
               <dependency>
-                <!-- NOTE: The fix for PLXUTILS-120 is crucial for the assembly descriptor 
+                <!-- NOTE: The fix for PLXUTILS-120 is crucial for the assembly descriptor
                   regex, therefore we have to insist on plexus utils >= 2.0.1 for the time being -->
                 <groupId>org.codehaus.plexus</groupId>
                 <artifactId>plexus-utils</artifactId>
