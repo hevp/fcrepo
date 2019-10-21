@@ -24,6 +24,7 @@ import org.fcrepo.common.policy.xacml2.XACML2PolicySchemaNamespace;
 import org.fcrepo.common.policy.xacml1.XACML1ResourceNamespace;
 import org.fcrepo.common.policy.xacml1.XACML1SubjectNamespace;
 import org.fcrepo.common.rdf.DublinCoreNamespace;
+import org.fcrepo.common.rdf.DataCiteNamespace;
 import org.fcrepo.common.rdf.FedoraModelNamespace;
 import org.fcrepo.common.rdf.FedoraNamespace;
 import org.fcrepo.common.rdf.FedoraRelsExtNamespace;
@@ -37,6 +38,7 @@ import org.fcrepo.common.xml.format.AtomApiM1_0Format;
 import org.fcrepo.common.xml.format.AtomZip1_1Format;
 import org.fcrepo.common.xml.format.FOXML1_0Format;
 import org.fcrepo.common.xml.format.FOXML1_1Format;
+import org.fcrepo.common.xml.format.FOXML1_2Format;
 import org.fcrepo.common.xml.format.FedoraAudit1_0Format;
 import org.fcrepo.common.xml.format.FedoraBESecurity1_0Format;
 import org.fcrepo.common.xml.format.FedoraBatchModify1_1Format;
@@ -134,6 +136,12 @@ public interface Constants {
      * <code>http://purl.org/dc/elements/1.1/</code>
      */
     public static final DublinCoreNamespace DC = new DublinCoreNamespace();
+
+    /**
+     * The DataCite RDF namespace;
+     * <code>http://datacite.org/schema/kernel-4/</code>
+     */
+    public static final DataCiteNamespace DATACITE = new DataCiteNamespace();
 
     /**
      * The Fedora RDF namespace; <code>info:fedora/</code>
@@ -265,7 +273,7 @@ public interface Constants {
 
     public static final XACML1PolicyNamespace XACML1_POLICY =
             XACML1PolicyNamespace.getInstance();
-    
+
     public static final XACML2PolicySchemaNamespace XACML2_POLICY_SCHEMA =
             XACML2PolicySchemaNamespace.getInstance();
 
@@ -643,6 +651,12 @@ public interface Constants {
     public static final FOXML1_1Format FOXML1_1 = FOXML1_1Format.getInstance();
 
     /**
+     * The FOXML 1.2 XML format;
+     * <code>info:fedora/fedora-system:FOXML-1.2</code>
+     */
+    public static final FOXML1_2Format FOXML1_2 = FOXML1_2Format.getInstance();
+
+    /**
      * Legacy METS Extention 1.0 format string Available only for backwards
      * compatibility with old repository versions
      */
@@ -714,7 +728,7 @@ public interface Constants {
      */
     public static final XACMLPolicy1_0Format XACML_POLICY1_0 =
             XACMLPolicy1_0Format.getInstance();
-    
+
     /** an empty array of strings */
     public static final String [] EMPTY_STRING_ARRAY = new String[0];
 

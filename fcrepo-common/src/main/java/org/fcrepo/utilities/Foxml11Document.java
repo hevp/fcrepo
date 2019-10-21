@@ -39,17 +39,16 @@ public class Foxml11Document {
 
     public static final String FOXML_NS="info:fedora/fedora-system:def/foxml#";
 
-    private Document doc;
+    protected Document doc;
 
-    private Element rootElement;
+    protected Element rootElement;
 
-    private Element objectProperties;
+    protected Element objectProperties;
 
-    private final XPath xpath;
+    protected final XPath xpath;
 
     public enum Property {
         STATE("info:fedora/fedora-system:def/model#state"),
-        SHARELEVEL("info:fedora/fedora-system:def/model#shareLevel"),
         LABEL("info:fedora/fedora-system:def/model#label"),
         CONTENT_MODEL("info:fedora/fedora-system:def/model#contentModel"),
         CREATE_DATE("info:fedora/fedora-system:def/model#createdDate"),
@@ -68,10 +67,6 @@ public class Foxml11Document {
 
     public enum State {
         A, I, D;
-    }
-
-    public enum ShareLevel {
-        O, R, P;
     }
 
     public enum ControlGroup {
@@ -201,14 +196,14 @@ public class Foxml11Document {
         }
     }
 
-    private Element addContentLocation(String dsvId) {
+    protected Element addContentLocation(String dsvId) {
         Node node = getDatastreamVersion(dsvId);
         Element location = doc.createElementNS(FOXML_NS, "foxml:contentLocation");
         node.appendChild(location);
         return location;
     }
 
-    private Node getDatastreamVersion(String dsvId) {
+    protected Node getDatastreamVersion(String dsvId) {
         String expr = String.format("//foxml:datastreamVersion[@ID='%s']", dsvId);
 
         try {

@@ -1,5 +1,5 @@
 /* The contents of this file are subject to the license and copyright terms
- * detailed in the license directory at the root of the source tree (also 
+ * detailed in the license directory at the root of the source tree (also
  * available online at http://fedora-commons.org/license/).
  */
 package org.fcrepo.server.utilities;
@@ -25,20 +25,18 @@ import org.fcrepo.server.errors.StreamIOException;
 import org.fcrepo.utilities.ReadableCharArrayWriter;
 import org.fcrepo.utilities.XmlTransformUtility;
 
-
-
 import javax.xml.XMLConstants;
 
 /**
  * Dublin Core Fields.
- * 
+ *
  * @author Chris Wilper
  * @version $Id$
  */
 public class DCFields
         extends DefaultHandler
         implements Constants {
-    
+
     private static final char[] TITLE = "title".toCharArray();
     private static final char[] CREATOR = "creator".toCharArray();
     private static final char[] SUBJECT = "subject".toCharArray();
@@ -54,7 +52,7 @@ public class DCFields
     private static final char[] RELATION = "relation".toCharArray();
     private static final char[] COVERAGE = "coverage".toCharArray();
     private static final char[] RIGHTS = "rights".toCharArray();
-    
+
     private static final char[] XML_OPEN = xmlOpen();
     private static final char[] XML_CLOSE = "</oai_dc:dc>\n".toCharArray();
     private static final char[] DC_OPEN_ELEMENT_PREFIX =
@@ -97,7 +95,7 @@ public class DCFields
     private ArrayList<DCField> m_rights = null;
 
     private StringBuffer m_currentContent;
-    
+
     private String m_lang;
 
     public DCFields() {}
@@ -273,7 +271,7 @@ public class DCFields
     public String getAsXML() {
         return getAsXML((String)null);
     }
-    
+
     public void getAsXML(Writer out) throws IOException {
         getAsXML(null, out);
     }
@@ -292,7 +290,7 @@ public class DCFields
         }
         return out.getString();
     }
-    
+
     public void getAsXML(String targetPid, Writer out) throws IOException {
         boolean addPid = (targetPid != null);
         if (addPid) {
@@ -331,7 +329,7 @@ public class DCFields
             appendXML(value, name, out);
         }
     }
-    
+
     private void appendXML(DCField value, char[] name, Writer out)
         throws IOException {
         out.write(DC_OPEN_ELEMENT_PREFIX);
@@ -346,7 +344,7 @@ public class DCFields
         out.write(name);
         out.write(BRACKET_NEWLINE);
     }
-    
+
     private static final char[] xmlOpen() {
         return ("<" + OAI_DC.prefix + ":dc" + " xmlns:" + OAI_DC.prefix
                 + "=\"" + OAI_DC.uri + "\"" + "\nxmlns:" + DC.prefix + "=\""
