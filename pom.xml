@@ -97,7 +97,7 @@
     <module>fcrepo-common</module>
     <module>fcrepo-server</module>
     <module>fcrepo-client</module>
-    <module>fcrepo-integrationtest</module>
+    <!-- <module>fcrepo-integrationtest</module> -->
     <module>fcrepo-installer</module>
     <module>fcrepo-security</module>
     <module>fcrepo-webapp</module>
@@ -978,6 +978,7 @@
           <version>3.0</version>
           <configuration>
             <debug>true</debug>
+            <compilerArgument>-XDignore.symbol.file</compilerArgument>
           </configuration>
         </plugin>
         <plugin>
@@ -1228,16 +1229,20 @@
     <plugins>
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
+	<version>2.13</version>
       </plugin>
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
+	<version>2.9</version>
       </plugin>
       <plugin>
         <artifactId>maven-jxr-plugin</artifactId>
+	<version>3.0.0</version>
       </plugin>
       <plugin>
         <artifactId>maven-surefire-report-plugin</artifactId>
-        <configuration>
+        <version>2.22.2</version>
+	<configuration>
           <outputName>surefire-report</outputName>
           <aggregate>true</aggregate>
           <reportsDirectories>
