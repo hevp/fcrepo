@@ -171,7 +171,7 @@ public class FedoraBatchModifyNamespace
         OWNER_ID = new QName(this, "ownerId");
         PID = new QName(this, "pid");
         STATE = new QName(this, "state");
-        SHARELEVEL = new QName(this, "sharelevel");
+        SHARELEVEL = new QName(this, "shareLevel");
         VERSIONABLE = new QName(this, "versionable");
     }
 

@@ -51,6 +51,7 @@ public class DerbyDDLConverterIntegrationTest {
             + "systemVersion INT NOT NULL DEFAULT 0,\n  "
             + "ownerId VARCHAR(64),\n  "
             + "objectState VARCHAR(1) NOT NULL DEFAULT 'A',\n  "
+            + "objectShareLevel VARCHAR(1) NOT NULL DEFAULT 'O',\n  "
             + "label VARCHAR(255) DEFAULT '',\n  "
             + "PRIMARY KEY (doPID))";
 
@@ -64,6 +65,7 @@ public class DerbyDDLConverterIntegrationTest {
             "CREATE TABLE doFields (\n  " + "pid VARCHAR(64) NOT NULL,\n  "
             + "label VARCHAR(255),\n  "
             + "state VARCHAR(1) NOT NULL DEFAULT 'A',\n  "
+            + "shareLevel VARCHAR(1) NOT NULL DEFAULT 'O',\n  "
             + "ownerId VARCHAR(64),\n  " + "cDate BIGINT NOT NULL,\n  "
             + "mDate BIGINT NOT NULL,\n  " + "dcmDate BIGINT,\n  "
             + "dcTitle CLOB,\n  " + "dcCreator CLOB,\n  "
@@ -78,7 +80,7 @@ public class DerbyDDLConverterIntegrationTest {
     private final String DC_DATES_TABLE_SPEC =
             "CREATE TABLE dcDates (\n  " + "pid VARCHAR(64) NOT NULL,\n  "
             + "dcDate BIGINT NOT NULL)";
-    
+
     private final String REBUILD_STATUS_TABLE_SPEC =
             "CREATE TABLE fcrepoRebuildStatus (\n  "
             + "rebuildDate BIGINT UNIQUE NOT NULL,\n  "

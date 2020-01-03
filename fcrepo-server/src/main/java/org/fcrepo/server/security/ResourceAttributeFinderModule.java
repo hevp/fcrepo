@@ -52,6 +52,7 @@ class ResourceAttributeFinderModule
         super();
         try {
             registerAttribute(Constants.OBJECT.STATE);
+            registerAttribute(Constants.OBJECT.SHARELEVEL);
             registerAttribute(Constants.OBJECT.OBJECT_TYPE);
             registerAttribute(Constants.OBJECT.OWNER);
             registerAttribute(Constants.OBJECT.CREATED_DATETIME);

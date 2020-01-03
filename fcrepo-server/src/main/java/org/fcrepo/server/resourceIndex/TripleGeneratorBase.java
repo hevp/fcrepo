@@ -45,7 +45,7 @@ public abstract class TripleGeneratorBase {
     protected RDFName getShareLevelResource(String shareLevel)
             throws ResourceIndexException {
         if (shareLevel == null) {
-            throw new ResourceIndexException("State cannot be null");
+            throw new ResourceIndexException("Share level cannot be null");
         } else if (shareLevel.equals("O")) {
             return MODEL.OPEN;
         } else if (shareLevel.equals("R")) {
