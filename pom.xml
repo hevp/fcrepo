@@ -704,7 +704,7 @@
     <repository>
       <id>central</id>
       <name>Central Maven Repository</name>
-      <url>http://repo1.maven.org/maven2</url>
+      <url>https://repo1.maven.org/maven2</url>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
@@ -713,7 +713,7 @@
     <repository>
       <id>duraspace-releases</id>
       <name>DuraSpace Releases Maven Repository</name>
-      <url>http://m2.duraspace.org/content/repositories/releases</url>
+      <url>https://m2.duraspace.org/content/repositories/releases</url>
       <releases>
         <enabled>true</enabled>
       </releases>
@@ -725,7 +725,7 @@
     <repository>
       <id>duraspace-thirdparty</id>
       <name>Duraspace Thirdparty Maven Repository</name>
-      <url>http://m2.duraspace.org/content/repositories/thirdparty</url>
+      <url>https://m2.duraspace.org/content/repositories/thirdparty</url>
       <releases>
         <enabled>true</enabled>
       </releases>
@@ -737,7 +737,7 @@
     <repository>
       <id>duraspace-snapshots</id>
       <name>DuraSpace Snapshots Maven Repository</name>
-      <url>http://m2.duraspace.org/content/repositories/snapshots</url>
+      <url>https://m2.duraspace.org/content/repositories/snapshots</url>
       <releases>
         <enabled>false</enabled>
       </releases>
@@ -749,7 +749,7 @@
     <repository>
       <id>maven2-repository.dev.java.net</id>
       <name>Java.net Repository for Maven</name>
-      <url>http://download.java.net/maven/2/</url>
+      <url>https://download.java.net/maven/2/</url>
       <releases>
         <enabled>true</enabled>
       </releases>
@@ -779,7 +779,7 @@
     <repository>
       <id>apache-incubating</id>
       <name>Apache Incubating Repository</name>
-      <url>http://people.apache.org/repo/m2-incubating-repository/</url>
+      <url>https://people.apache.org/repo/m2-incubating-repository/</url>
       <releases>
         <enabled>true</enabled>
       </releases>
