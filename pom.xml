@@ -96,11 +96,11 @@
     <module>fcrepo-shared-resources</module>
     <module>fcrepo-common</module>
     <module>fcrepo-server</module>
-    <module>fcrepo-client</module>
+    <!-- <module>fcrepo-client</module> -->
     <!-- <module>fcrepo-integrationtest</module> -->
-    <module>fcrepo-installer</module>
+    <!-- <module>fcrepo-installer</module> -->
     <module>fcrepo-security</module>
-    <module>fcrepo-webapp</module>
+    <!-- <module>fcrepo-webapp</module> -->
   </modules>
 
   <properties>
@@ -802,9 +802,9 @@
   </repositories>
 
   <scm>
-    <connection>scm:git:git://github.com/fcrepo3/fcrepo.git</connection>
-    <developerConnection>scm:git:git@github.com:fcrepo3/fcrepo.git</developerConnection>
-    <url>https://github.com/fcrepo3/fcrepo</url>
+    <connection>scm:git:git://github.com/sara-nl/fcrepo.git</connection>
+    <developerConnection>scm:git:git@github.com:sara-nl/fcrepo.git</developerConnection>
+    <url>https://github.com/sara-nl/fcrepo</url>
     <tag>HEAD</tag>
   </scm>
 
