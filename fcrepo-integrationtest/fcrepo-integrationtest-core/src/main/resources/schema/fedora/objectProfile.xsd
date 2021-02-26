@@ -15,6 +15,7 @@
 				<xs:element ref="objItemIndexViewURL" />
                 <xs:element ref="objState" />
 				<xs:element ref="objShareLevel" />
+        <xs:element ref="objLocked" />
 			</xs:sequence>
 			<xs:attribute name="pid" use="required">
 				<xs:simpleType>
@@ -73,6 +74,14 @@
     <xs:element name="objShareLevel">
         <xs:simpleType>
             <xs:restriction base="xs:string" />
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="objLocked">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="true"/>
+                <xs:enumeration value="false"/>
+            </xs:restriction>
         </xs:simpleType>
     </xs:element>
 </xs:schema>

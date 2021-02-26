@@ -143,6 +143,14 @@
                 <xsl:value-of select="access:objShareLevel" />
               </td>
             </tr>
+            <tr>
+              <td align="right">
+                <strong>Object Locked State: </strong>
+              </td>
+              <td align="left">
+                <xsl:value-of select="access:objLocked" />
+              </td>
+            </tr>
           </table>
         </center>
       </body>

@@ -75,4 +75,9 @@
             <xs:restriction base="xs:string" />
         </xs:simpleType>
     </xs:element>
+    <xs:element name="objLocked">
+        <xs:simpleType>
+            <xs:restriction base="xs:boolean" />
+        </xs:simpleType>
+    </xs:element>
 </xs:schema>

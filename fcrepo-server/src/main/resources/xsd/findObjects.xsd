@@ -39,6 +39,7 @@
             <xsd:element name="label" nillable="true" type="xsd:string" minOccurs="0"/>
             <xsd:element name="state" nillable="true" type="xsd:string" minOccurs="0"/>
             <xsd:element name="shareLevel" nillable="true" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="locked" nillable="true" type="xsd:boolean" minOccurs="0"/>
             <xsd:element name="ownerId" nillable="true" type="xsd:string" minOccurs="0"/>
             <xsd:element name="cDate" nillable="true" type="xsd:string" minOccurs="0"/>
             <xsd:element name="mDate" nillable="true" type="xsd:string" minOccurs="0"/>
