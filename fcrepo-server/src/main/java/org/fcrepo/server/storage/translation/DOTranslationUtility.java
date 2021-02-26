@@ -944,6 +944,34 @@ public abstract class DOTranslationUtility
         }
     }
 
+    /** Reads the locked attribute from a DigitalObject.
+     * @param obj Object that potentially contains object locked data.
+     * @return Boolean containing locked value
+     * @throws ObjectIntegrityException thrown when the locked state cannot be parsed.
+     */
+    public static boolean getLockedAttribute(DigitalObject obj) throws ObjectIntegrityException {
+
+            if (obj.getLocked() == null || obj.getLocked().isEmpty()) {
+                return false;
+            } else {
+                return obj.getLocked();
+            }
+    }
+
+    /** Parse and read the object locked value from raw text.
+     * @param rawValue Raw string to parse.  May be null
+     * @return Boolean containing the locked value
+     * @throws ParseException thrown when locked value cannot be determined
+     */
+    public static String readLockedAttribute(String rawValue) throws ParseException {
+        if (Boolean.parseBoolean(rawValue)) {
+            return Boolean.parseBoolean(rawValue);
+        } else {
+                throw new ParseException("Could not interpret locked value of '"
+                                   + rawValue + "'", 0);
+        }
+    }
+
     public static RDFName getTypeAttribute(DigitalObject obj)
                 throws ObjectIntegrityException {
         if (obj.hasContentModel(SERVICE_DEFINITION_3_0)) {

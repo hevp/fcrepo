@@ -35,4 +35,6 @@ public class ObjectProfile {
     public String objectState = null;
 
     public String objectShareLevel = null;
+
+    public String objectLocked = null;
 }

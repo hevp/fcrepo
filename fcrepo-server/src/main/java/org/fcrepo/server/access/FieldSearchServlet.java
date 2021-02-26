@@ -68,6 +68,10 @@ public class FieldSearchServlet
                 && req.getParameter("shareLevel").equalsIgnoreCase("true")) {
             l.add("shareLevel");
         }
+        if (req.getParameter("locked") != null
+                && req.getParameter("locked").equalsIgnoreCase("true")) {
+            l.add("locked");
+        }
         if (req.getParameter("ownerId") != null
                 && req.getParameter("ownerId").equalsIgnoreCase("true")) {
             l.add("ownerId");
@@ -326,6 +330,7 @@ public class FieldSearchServlet
         appendXML("label", objFields.getLabel(), xmlBuf);
         appendXML("state", objFields.getState(), xmlBuf);
         appendXML("shareLevel", objFields.getState(), xmlBuf);
+        appendXML("locked", objFields.getLocked(), xmlBuf);
         appendXML("ownerId", objFields.getOwnerId(), xmlBuf);
         appendXML("cDate", objFields.getCDate(), xmlBuf);
         appendXML("mDate", objFields.getMDate(), xmlBuf);
@@ -374,6 +379,10 @@ public class FieldSearchServlet
         html.append(fieldHash.contains("state") ? CHECKED
                                 : "");
         html.append("> <a href=\"#\" onClick=\"javascript:alert('State\\n\\nThe state of the object.\\nThis will be:\\n  A - Active')\">state</a><br>"
+                + "<input type=\"checkbox\" name=\"locked\" value=\"true\"");
+        html.append(fieldHash.contains("locked") ? CHECKED
+                                : "");
+        html.append("> <a href=\"#\" onClick=\"javascript:alert('Locked\\n\\nThe locked state of the object.\\nThis will be:\\n  false - Unlocked')\">locked</a><br>"
                 + "<input type=\"checkbox\" name=\"ownerId\" value=\"true\"");
         html.append(fieldHash.contains("ownerId") ? CHECKED : "");
         html.append("> <a href=\"#\" onClick=\"javascript:alert('Owner Id\\n\\nThe userId of the user who owns the object.')\">ownerId</a><br>"
@@ -462,6 +471,8 @@ public class FieldSearchServlet
                 html.append(f.getState());
             } else if (l.equalsIgnoreCase("shareLevel")) {
                 html.append(f.getShareLevel());
+            } else if (l.equalsIgnoreCase("locked")) {
+                html.append(f.getLocked());
             } else if (l.equalsIgnoreCase("ownerId")) {
                 if (f.getOwnerId() != null) {
                     html.append(f.getOwnerId());
@@ -541,6 +552,10 @@ public class FieldSearchServlet
                         .append("<input type=\"hidden\" name=\"state\" value=\"true\">");
             }
             if (fieldHash.contains("shareLevel")) {
+                html
+                        .append("<input type=\"hidden\" name=\"shareLevel\" value=\"true\">");
+            }
+            if (fieldHash.contains("locked")) {
                 html
                         .append("<input type=\"hidden\" name=\"shareLevel\" value=\"true\">");
             }

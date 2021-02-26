@@ -149,6 +149,7 @@ public class TypeUtility {
         result.setLabel(source.getLabel() != null ? source.getLabel().getValue() : null);
         result.setState(source.getState() != null ? source.getState().getValue() : null);
         result.setShareLevel(source.getShareLevel() != null ? source.getShareLevel().getValue() : null);
+        result.setLocked(source.getLocked() != null ? source.getLocked().getValue() : null);
         result.setOwnerId(source.getOwnerId() != null ? source.getOwnerId().getValue() : null);
         result.setCDate(source.getCDate() != null ? DateUtility.convertStringToDate(source.getCDate().getValue()) : null);
         result.setMDate(source.getMDate() != null ? DateUtility.convertStringToDate(source.getMDate().getValue()) : null);

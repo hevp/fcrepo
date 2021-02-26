@@ -119,6 +119,9 @@ public class FedoraBatchModifyNamespace
     /** The <code>sharelevel</code> attribute. */
     public final QName SHARELEVEL;
 
+    /** The <code>locked</code> attribute. */
+    public final QName LOCKED;
+
     /** The <code>versionable</code> attribute. */
     public final QName VERSIONABLE;
 
@@ -172,6 +175,7 @@ public class FedoraBatchModifyNamespace
         PID = new QName(this, "pid");
         STATE = new QName(this, "state");
         SHARELEVEL = new QName(this, "shareLevel");
+        LOCKED = new QName(this, "locked");
         VERSIONABLE = new QName(this, "versionable");
     }
 

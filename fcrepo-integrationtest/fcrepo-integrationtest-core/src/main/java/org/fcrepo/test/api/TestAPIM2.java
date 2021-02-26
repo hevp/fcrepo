@@ -221,7 +221,7 @@ public class TestAPIM2
             String pid = apim.ingest(foxml, FOXML1_1.uri,"ingesting new foxml object");
 
             // update object label with new value
-            apim.modifyObject(pid, null, null, label2, null, "updating object label");
+            apim.modifyObject(pid, null, null, null, label2, null, "updating object label");
 
         }
 

@@ -45,6 +45,16 @@ public interface DOWriter
     public void setShareLevel(String shareLevel) throws ServerException;
 
     /**
+     * Sets the locked state of the entire digital object.
+     *
+     * @param locked
+     *        The locked state.
+     * @throws ServerException
+     *         If any type of error occurred fulfilling the request.
+     */
+    public void setLocked(boolean locked) throws ServerException;
+
+    /**
      * Sets the ownerId for the digital object.
      *
      * @param ownerId

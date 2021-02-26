@@ -206,6 +206,7 @@ public class DefaultManagement
                              String pid,
                              String state,
                              String shareLevel,
+                             boolean locked,
                              String label,
                              String ownerId,
                              String logMessage,
@@ -218,6 +219,7 @@ public class DefaultManagement
                                         pid,
                                         state,
                                         shareLevel,
+                                        locked,
                                         ownerId);
 
             checkObjectLabel(label);
@@ -259,6 +261,16 @@ public class DefaultManagement
                 w.setShareLevel(shareLevel);
             }
 
+            if (locked != null && !locked.isEmpty()) {
+                if (!locked.equals(true) && !locked.equals(false)) {
+                    throw new InvalidStateException("The object locked state of \""
+                                                    + locked
+                                                    + "\" is invalid. The allowed values for locked state are: "
+                                                    + "true or false. ");
+                }
+                w.setLocked(locked);
+            }
+
             if (label != null) {
                 w.setLabel(label);
             }
@@ -280,6 +292,7 @@ public class DefaultManagement
                 logMsg.append("pid: ").append(pid);
                 logMsg.append(", state: ").append(state);
                 logMsg.append(", shareLevel: ").append(shareLevel);
+                logMsg.append(", locked: ").append(locked);
                 logMsg.append(", label: ").append(label);
                 logMsg.append(", ownerId: ").append(ownerId);
                 logMsg.append(", logMessage: ").append(logMessage);

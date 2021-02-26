@@ -8,6 +8,7 @@ import org.jboss.security.xacml.sunxacml.attr.AnyURIAttribute;
 import org.jboss.security.xacml.sunxacml.attr.DateTimeAttribute;
 import org.jboss.security.xacml.sunxacml.attr.IntegerAttribute;
 import org.jboss.security.xacml.sunxacml.attr.StringAttribute;
+import org.jboss.security.xacml.sunxacml.attr.BooleanAttribute;
 
 /**
  * The Fedora Object XACML namespace.
@@ -41,6 +42,10 @@ public class ObjectNamespace
 
     public final XacmlName NEW_SHARELEVEL;
 
+    public final XacmlName LOCKED;
+
+    public final XacmlName NEW_LOCKED;
+
     public final XacmlName FORMAT_URI; //for serialization
 
     public final XacmlName CONTEXT; //for serialization
@@ -70,6 +75,12 @@ public class ObjectNamespace
                 addName(new XacmlName(this,
                                       "newShareLevel",
                                       StringAttribute.identifier));
+        LOCKED =
+                addName(new XacmlName(this, "locked", BooleanAttribute.identifier));
+        NEW_LOCKED =
+                addName(new XacmlName(this,
+                                      "newLocked",
+                                      BooleanAttribute.identifier));
         CONTROL_GROUP =
                 addName(new XacmlName(this,
                                       "controlGroup",

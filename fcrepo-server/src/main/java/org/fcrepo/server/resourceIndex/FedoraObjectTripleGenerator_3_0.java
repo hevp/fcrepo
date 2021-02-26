@@ -89,6 +89,7 @@ public class FedoraObjectTripleGenerator_3_0
      * <li> object <i>model:label</i></li>
      * <li> object <i>model:owner</i></li>
      * <li> object <i>model:state</i></li>
+     * <li> object <i>model:locked</i></li>
      * <li> object <i>view:lastModifiedDate</i></li>
      * </ul>
      */
@@ -101,6 +102,7 @@ public class FedoraObjectTripleGenerator_3_0
         add(objURI, MODEL.OWNER, r.getOwnerId(), set);
         add(objURI, MODEL.STATE, getStateResource(r.GetObjectState()), set);
         add(objURI, MODEL.SHARELEVEL, getShareLevelResource(r.GetObjectShareLevel()), set);
+        add(objURI, MODEL.LOCKED, r.GetObjectLocked(), set);
         add(objURI, VIEW.LAST_MODIFIED_DATE, r.getLastModDate(), set);
     }
 

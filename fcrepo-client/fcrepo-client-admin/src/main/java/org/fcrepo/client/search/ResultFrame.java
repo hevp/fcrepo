@@ -188,6 +188,9 @@ public class ResultFrame
         if (name.equals("shareLevel")) {
             return o.getShareLevel() != null ? o.getShareLevel().getValue() : "";
         }
+        if (name.equals("locked")) {
+            return o.getLocked() != null ? o.getLocked().getValue() : "";
+        }
         if (name.equals("ownerId")) {
             return o.getOwnerId() != null ? o.getOwnerId().getValue() : "";
         }

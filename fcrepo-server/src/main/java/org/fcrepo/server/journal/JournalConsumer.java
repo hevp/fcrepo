@@ -119,6 +119,7 @@ public class JournalConsumer
                              String pid,
                              String state,
                              String shareLevel,
+                             boolean locked,
                              String label,
                              String ownerId,
                              String logMessage,

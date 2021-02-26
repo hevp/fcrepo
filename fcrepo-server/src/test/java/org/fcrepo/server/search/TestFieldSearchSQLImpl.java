@@ -76,15 +76,15 @@ public class TestFieldSearchSQLImpl {
     }
 
     private static final ObjectData OBJECT_WITH_NO_DC = new ObjectData(
-            "somePid", "myLabel", "A", "O", "theOwner", new Date(12345),
+            "somePid", "myLabel", "A", "O", false, "theOwner", new Date(12345),
             new Date(67890), new Date(0), null);
 
     private static final ObjectData OBJECT_WITH_DC = new ObjectData(
-            "somePid", "myLabel", "A", "O", "theOwner", new Date(12345),
+            "somePid", "myLabel", "A", "O", false, "theOwner", new Date(12345),
             new Date(67890), new Date(10000), DC_PAYLOAD_NO_DATES);
 
     private static final ObjectData OBJECT_WITH_DC_AND_DATES = new ObjectData(
-            "somePid", "myLabel", "A", "O", "theOwner", new Date(
+            "somePid", "myLabel", "A", "O", false, "theOwner", new Date(
                     12345), new Date(67890), new Date(10000),
             DC_PAYLOAD_WITH_DATES);
 
@@ -176,6 +176,7 @@ public class TestFieldSearchSQLImpl {
 
         theObject.setState(objectData.getState());
         theObject.setShareLevel(objectData.getShareLevel());
+        theObject.setLocked(objectData.getLocked());
         theObject.setOwnerId(objectData.getOwnerId());
         theObject.setCreateDate(objectData.getCreateDate());
         theObject.setLastModDate(objectData.getLastModDate());
@@ -201,6 +202,8 @@ public class TestFieldSearchSQLImpl {
 
         private final String shareLevel;
 
+        private final boolean locked;
+
         private final String ownerId;
 
         private final Date createDate;
@@ -212,12 +215,13 @@ public class TestFieldSearchSQLImpl {
         private final String dcPayload;
 
         public ObjectData(String pid, String label,
-                String state, String shareLevel, String ownerId, Date createDate,
+                String state, String shareLevel, boolean locked, String ownerId, Date createDate,
                 Date lastModDate, Date dcModifiedDate, String dcPayload) {
             this.pid = pid;
             this.label = label;
             this.state = state;
             this.shareLevel = shareLevel;
+            this.locked = locked;
             this.ownerId = ownerId;
             this.createDate = createDate;
             this.lastModDate = lastModDate;
@@ -231,6 +235,7 @@ public class TestFieldSearchSQLImpl {
             result.add(lowerCase(label));
             result.add(lowerCase(state));
             result.add(lowerCase(shareLevel));
+            result.add(locked);
             result.add(lowerCase(ownerId));
             result.add(dateStamp(createDate));
             result.add(dateStamp(lastModDate));
@@ -273,6 +278,10 @@ public class TestFieldSearchSQLImpl {
 
         public String getShareLevel() {
             return shareLevel;
+        }
+
+        public String getLocked() {
+            return locked;
         }
 
         public String getOwnerId() {

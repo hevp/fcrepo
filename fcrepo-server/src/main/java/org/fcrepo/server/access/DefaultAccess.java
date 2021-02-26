@@ -624,6 +624,7 @@ public class DefaultAccess
         profile.objectLastModDate = reader.getLastModDate();
         profile.objectState = reader.GetObjectState();
         profile.objectShareLevel = reader.GetObjectShareLevel();
+        profile.objectLocked = reader.GetObjectLocked();
 
         profile.objectModels.addAll(reader.getContentModels());
 

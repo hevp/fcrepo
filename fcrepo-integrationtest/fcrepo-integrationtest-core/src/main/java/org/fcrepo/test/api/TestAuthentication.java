@@ -302,7 +302,7 @@ public class TestAuthentication
                 if (apim == null) {
                     apim = client.getAPIMMTOM();
                 }
-                apim.modifyObject(TEST_PID, null, null, null, null, "i=" + i);
+                apim.modifyObject(TEST_PID, null, null, null, null, null, "i=" + i);
             } catch (Exception e) {
                 failCount++;
             }

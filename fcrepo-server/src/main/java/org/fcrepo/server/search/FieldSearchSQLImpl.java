@@ -58,23 +58,24 @@ public class FieldSearchSQLImpl
     private final int m_maxSecondsPerSession;
 
     public static String[] DB_COLUMN_NAMES =
-            new String[] {"pid", "label", "state", "shareLevel", "ownerId", "cDate", "mDate",
-                    "dcmDate", "dcTitle", "dcCreator", "dcSubject",
+            new String[] {"pid", "label", "state", "shareLevel", "locked", "ownerId",
+                    "cDate", "mDate", "dcmDate", "dcTitle", "dcCreator", "dcSubject",
                     "dcDescription", "dcPublisher", "dcContributor", "dcDate",
                     "dcType", "dcFormat", "dcIdentifier", "dcSource",
                     "dcLanguage", "dcRelation", "dcCoverage", "dcRights"};
 
     private static boolean[] s_dbColumnNumeric =
-            new boolean[] {false, false, false, false, false, true, true, true, false,
-                    false, false, false, false, false, false, false, false,
+            new boolean[] {false, false, false, false, false, false,
+                    true, true, true, false, false, false,
+                    false, false, false, false, false, false,
                     false, false, false, false, false, false};
 
     public static String[] DB_COLUMN_NAMES_NODC =
-            new String[] {"pid", "label", "state", "shareLevel", "ownerId", "cDate", "mDate",
-                    "dcmDate"};
+            new String[] {"pid", "label", "state", "shareLevel", "locked", "ownerId",
+                    "cDate", "mDate", "dcmDate"};
 
     private static boolean[] s_dbColumnNumericNoDC =
-            new boolean[] {false, false, false, false, false, true, true, true};
+            new boolean[] {false, false, false, false, false, false, true, true, true};
 
     // a hash of token-keyed FieldSearchResultSQLImpls
     private final Map<String, FieldSearchResultSQLImpl> m_currentResults =
@@ -181,22 +182,23 @@ public class FieldSearchSQLImpl
 
             dbRowValues[2] = reader.GetObjectState().toLowerCase();
             dbRowValues[3] = reader.GetObjectShareLevel().toLowerCase();
+            dbRowValues[4] = reader.GetObjectLocked();
 
             v = reader.getOwnerId();
             if (v != null) {
                 v = v.toLowerCase();
             }
-            dbRowValues[4] = v;
+            dbRowValues[5] = v;
             Date date = reader.getCreateDate();
             if (date == null) { // should never happen, but if it does, don't die
                 date = new Date();
             }
-            dbRowValues[5] = "" + date.getTime();
+            dbRowValues[6] = "" + date.getTime();
             date = reader.getLastModDate();
             if (date == null) { // should never happen, but if it does, don't die
                 date = new Date();
             }
-            dbRowValues[6] = "" + date.getTime();
+            dbRowValues[7] = "" + date.getTime();
 
             // do dc stuff if needed
             Datastream dcmd = null;
@@ -208,21 +210,21 @@ public class FieldSearchSQLImpl
                         + " has a DC datastream, but it's not inline XML.");
             }
             if (dcmd == null) {
-                dbRowValues[7] = "0";
+                dbRowValues[8] = "0";
             } else {
-                dbRowValues[7] = "" + dcmd.DSCreateDT.getTime();
+                dbRowValues[8] = "" + dcmd.DSCreateDT.getTime();
             }
             if (dcmd != null && m_indexDCFields) {
                 InputStream in = dcmd.getContentStream();
                 DCFields dc = new DCFields(in);
 
-                dbRowValues[8] = getDbValue(dc.titles());
-                dbRowValues[9] = getDbValue(dc.creators());
-                dbRowValues[10] = getDbValue(dc.subjects());
-                dbRowValues[11] = getDbValue(dc.descriptions());
-                dbRowValues[12] = getDbValue(dc.publishers());
-                dbRowValues[13] = getDbValue(dc.contributors());
-                dbRowValues[14] = getDbValue(dc.dates());
+                dbRowValues[9] = getDbValue(dc.titles());
+                dbRowValues[10] = getDbValue(dc.creators());
+                dbRowValues[11] = getDbValue(dc.subjects());
+                dbRowValues[12] = getDbValue(dc.descriptions());
+                dbRowValues[13] = getDbValue(dc.publishers());
+                dbRowValues[14] = getDbValue(dc.contributors());
+                dbRowValues[15] = getDbValue(dc.dates());
 
                 // delete any dc.dates that survive from earlier versions
                 st = conn.prepareStatement("DELETE FROM dcDates WHERE pid=?");
@@ -253,14 +255,14 @@ public class FieldSearchSQLImpl
                         st.executeUpdate();
                     }
                 }
-                dbRowValues[15] = getDbValue(dc.types());
-                dbRowValues[16] = getDbValue(dc.formats());
-                dbRowValues[17] = getDbValue(dc.identifiers());
-                dbRowValues[18] = getDbValue(dc.sources());
-                dbRowValues[19] = getDbValue(dc.languages());
-                dbRowValues[20] = getDbValue(dc.relations());
-                dbRowValues[21] = getDbValue(dc.coverages());
-                dbRowValues[22] = getDbValue(dc.rights());
+                dbRowValues[16] = getDbValue(dc.types());
+                dbRowValues[17] = getDbValue(dc.formats());
+                dbRowValues[18] = getDbValue(dc.identifiers());
+                dbRowValues[19] = getDbValue(dc.sources());
+                dbRowValues[20] = getDbValue(dc.languages());
+                dbRowValues[21] = getDbValue(dc.relations());
+                dbRowValues[22] = getDbValue(dc.coverages());
+                dbRowValues[23] = getDbValue(dc.rights());
                 logger.debug("Formulating SQL and inserting/updating WITH DC...");
                 SQLUtility.replaceInto(conn,
                                        "doFields",

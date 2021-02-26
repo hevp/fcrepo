@@ -64,8 +64,8 @@ public class FedoraObjectsResource extends BaseRestResource {
     private final String FOXML1_1 = "info:fedora/fedora-system:FOXML-1.1";
     private final String ATOMZIP1_1 = "info:fedora/fedora-system:ATOMZip-1.1";
 
-    static final String[] SEARCHABLE_FIELDS = { "pid", "label", "state", "shareLevel", "ownerId",
-        "cDate", "mDate", "dcmDate", "title", "creator", "subject", "description",
+    static final String[] SEARCHABLE_FIELDS = { "pid", "label", "state", "shareLevel", "locked",
+        "ownerId", "cDate", "mDate", "dcmDate", "title", "creator", "subject", "description",
         "publisher", "contributor", "date", "type", "format", "identifier",
         "source", "language", "relation", "coverage", "rights" };
 
@@ -437,19 +437,22 @@ public class FedoraObjectsResource extends BaseRestResource {
                               @QueryParam(RestParam.SHARELEVEL)
                               @DefaultValue("O")
                               String shareLevel,
+                              @QueryParam(RestParam.LOCKED)
+                              @DefaultValue("false")
+                              boolean locked,
                               @QueryParam(RestParam.IGNORE_MIME)
                               @DefaultValue("false")
                               boolean ignoreMime,
                               @QueryParam(RestParam.FLASH)
                               @DefaultValue("false")
                               boolean flash) {
-        return createObject(headers, "new", label, logMessage, format, encoding, namespace, ownerID, state, shareLevel, ignoreMime, flash);
+        return createObject(headers, "new", label, logMessage, format, encoding, namespace, ownerID, state, shareLevel, locked, ignoreMime, flash);
     }
     /**
      * Create/Update a new digital object. If no xml given in the body, will
      * create an empty object.
      * <br>
-     * POST /objects/{pid} ? label logMessage format encoding namespace ownerId state
+     * POST /objects/{pid} ? label logMessage format encoding namespace ownerId state shareLevel locked
      */
     @POST
     @Path(VALID_PID_PART)
@@ -479,6 +482,9 @@ public class FedoraObjectsResource extends BaseRestResource {
             @QueryParam(RestParam.SHARELEVEL)
             @DefaultValue("O")
             String shareLevel,
+            @QueryParam(RestParam.LOCKED)
+            @DefaultValue("false")
+            boolean locked,
             @QueryParam(RestParam.IGNORE_MIME)
             @DefaultValue("false")
             boolean ignoreMime,
@@ -523,7 +529,7 @@ public class FedoraObjectsResource extends BaseRestResource {
                             new OutputStreamWriter(bytes, Charset.forName(encoding)));
                 char stateChar = state.trim().toUpperCase().charAt(0);
                 char shareLevelChar = shareLevel.trim().toUpperCase().charAt(0);
-                getFOXMLTemplate(pid, label, ownerID, stateChar, shareLevelChar, encoding, xml);
+                getFOXMLTemplate(pid, label, ownerID, stateChar, shareLevelChar, locked, encoding, xml);
                 xml.close();
                 is = bytes.toInputStream();
             } else {
@@ -546,7 +552,7 @@ public class FedoraObjectsResource extends BaseRestResource {
 
     /**
      * Update (modify) digital object.
-     * <p>PUT /objects/{pid} ? label logMessage ownerId state shareLevel lastModifiedDate</p>
+     * <p>PUT /objects/{pid} ? label logMessage ownerId state shareLevel locked lastModifiedDate</p>
      *
      * @param pid              the persistent identifier
      * @param label
@@ -554,12 +560,13 @@ public class FedoraObjectsResource extends BaseRestResource {
      * @param ownerID
      * @param state
      * @param shareLevel
+     * @param locked
      * @param lastModifiedDate Optional XSD dateTime to guard against concurrent
      *                         modification. If provided (i.e. not null), the request will fail with an
      *                         HTTP 409 Conflict if lastModifiedDate is earlier than the object's
      *                         lastModifiedDate.
      * @return The timestamp for this modification (as an XSD dateTime string)
-     * @see org.fcrepo.server.management.Management#modifyObject(org.fcrepo.server.Context, String, String, String, String, String, String, Date)
+     * @see org.fcrepo.server.management.Management#modifyObject(org.fcrepo.server.Context, String, String, String, boolean, String, String, String, Date)
      */
     @PUT
     @Path(VALID_PID_PART)
@@ -577,6 +584,8 @@ public class FedoraObjectsResource extends BaseRestResource {
             String state,
             @QueryParam(RestParam.SHARELEVEL)
             String shareLevel,
+            @QueryParam(RestParam.LOCKED)
+            boolean locked,
             @QueryParam(RestParam.LAST_MODIFIED_DATE)
             DateTimeParam lastModifiedDate,
             @QueryParam(RestParam.FLASH)
@@ -589,7 +598,7 @@ public class FedoraObjectsResource extends BaseRestResource {
                 requestModDate = lastModifiedDate.getValue();
             }
             Date lastModDate =
-                    m_management.modifyObject(context, pid, state, shareLevel, label, ownerID, logMessage, requestModDate);
+                    m_management.modifyObject(context, pid, state, shareLevel, locked, label, ownerID, logMessage, requestModDate);
             return Response.ok().entity(DateUtility.convertDateToXSDString(lastModDate)).build();
         } catch (Exception ex) {
             return handleException(ex, flash);
@@ -602,6 +611,7 @@ public class FedoraObjectsResource extends BaseRestResource {
             String ownerId,
             char state,
             char shareLevel,
+            boolean locked,
             String encoding,
             Writer xml) throws IOException {
 
@@ -627,6 +637,9 @@ public class FedoraObjectsResource extends BaseRestResource {
         xml.append("\"/>\n"
                 + "    <foxml:property NAME=\"info:fedora/fedora-system:def/model#shareLevel\" VALUE=\"");
         xml.append(shareLevel);
+        xml.append("\"/>\n"
+                + "    <foxml:property NAME=\"info:fedora/fedora-system:def/model#locked\" VALUE=\"");
+        xml.append(Boolean.toString(locked));
         xml.append("\"/>\n"
                 + "    <foxml:property NAME=\"info:fedora/fedora-system:def/model#label\" VALUE=\"");
         StreamUtility.enc(label, xml);

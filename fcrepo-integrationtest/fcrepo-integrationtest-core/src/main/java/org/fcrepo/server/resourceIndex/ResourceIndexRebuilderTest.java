@@ -216,6 +216,7 @@ public class ResourceIndexRebuilderTest {
         Foxml11Document doc = new Foxml11Document(pid.toString());
         doc.addObjectProperty(Property.STATE, "A");
         doc.addObjectProperty(Property.SHARELEVEL, "O");
+        doc.addObjectProperty(Property.LOCKED, false);
 
         if (contentLocation != null && contentLocation.length() > 0) {
             String ds = "DS";

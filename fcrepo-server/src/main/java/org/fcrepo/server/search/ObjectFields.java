@@ -92,6 +92,8 @@ public class ObjectFields
 
     public final static int SHARELEVEL = 24;
 
+    public final static int LOCKED = 25;
+
     public ObjectFields() {
     }
 
@@ -106,6 +108,8 @@ public class ObjectFields
                 m_want[STATE] = true;
             } else if (s.equalsIgnoreCase("shareLevel")) {
                 m_want[SHARELEVEL] = true;
+            } else if (s.equalsIgnoreCase("locked")) {
+                m_want[LOCKED] = true;
             } else if (s.equalsIgnoreCase("ownerId")) {
                 m_want[OWNERID] = true;
             } else if (s.equalsIgnoreCase("cDate")) {
@@ -190,6 +194,8 @@ public class ObjectFields
             setState(m_currentContent.toString());
         } else if (m_want[SHARELEVEL] && localName.equals("shareLevel")) {
             setShareLevel(m_currentContent.toString());
+        } else if (m_want[LOCKED] && localName.equals("locked")) {
+            setLocked(Boolean.parseBoolean(m_currentContent.toString()));
         } else if (m_want[OWNERID] && localName.equals("ownerId")) {
             setOwnerId(m_currentContent.toString());
         } else if (m_want[CDATE] && localName.equals("cDate")) {
@@ -264,6 +270,14 @@ public class ObjectFields
 
     public String getShareLevel() {
         return m_shareLevel;
+    }
+
+    public void setLocked(boolean locked) {
+        m_locked = locked;
+    }
+
+    public String getLocked() {
+        return m_locked;
     }
 
     public void setOwnerId(String ownerId) {

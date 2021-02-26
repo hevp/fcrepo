@@ -122,6 +122,9 @@ public class FOXMLNamespace
     /** The <code>SHARELEVEL</code> attribute. */
     public final QName SHARELEVEL;
 
+    /** The <code>LOCKED</code> attribute. */
+    public final QName LOCKED;
+
     /** The <code>VALUE</code> attribute. */
     public final QName VALUE;
 
@@ -179,6 +182,7 @@ public class FOXMLNamespace
         SIZE = new QName(this, "SIZE");
         STATE = new QName(this, "STATE");
         SHARELEVEL = new QName(this, "SHARELEVEL");
+        LOCKED = new QName(this, "LOCKED");
         VALUE = new QName(this, "VALUE");
         VERSION = new QName(this, "VERSION");
         VERSIONABLE = new QName(this, "VERSIONABLE");

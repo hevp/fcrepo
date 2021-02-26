@@ -1046,6 +1046,7 @@ public class TestAPIM
                                   null,
                                   null,
                                   null,
+                                  null,
                                   "changed state to Inactive");
 
         objectXML =
@@ -1065,6 +1066,7 @@ public class TestAPIM
         // test changing object demo:5 by modifying label to "changed label"; leave state unchanged from last value
         result =
                 apim.modifyObject("demo:5",
+                                  null,
                                   null,
                                   null,
                                   "changed label",

@@ -53,6 +53,7 @@ class ResourceAttributeFinderModule
         try {
             registerAttribute(Constants.OBJECT.STATE);
             registerAttribute(Constants.OBJECT.SHARELEVEL);
+            registerAttribute(Constants.OBJECT.LOCKED);
             registerAttribute(Constants.OBJECT.OBJECT_TYPE);
             registerAttribute(Constants.OBJECT.OWNER);
             registerAttribute(Constants.OBJECT.CREATED_DATETIME);
@@ -193,6 +194,15 @@ class ResourceAttributeFinderModule
                     logger.debug("got {}={}", Constants.OBJECT.SHARELEVEL.uri, values[0]);
                 } catch (ServerException e) {
                     logger.debug("failed getting {}", Constants.OBJECT.SHARELEVEL.uri, e);
+                    return null;
+                }
+            }
+            else if (Constants.OBJECT.LOCKED.attributeId.equals(attributeId)) {
+                try {
+                    boolean value = reader.GetObjectLocked();
+                    logger.debug("got {}={}", Constants.OBJECT.LOCKED.uri, value);
+                } catch (ServerException e) {
+                    logger.debug("failed getting {}", Constants.OBJECT.LOCKED.uri, e);
                     return null;
                 }
             }

@@ -85,6 +85,21 @@ public interface DigitalObject {
     public void setShareLevel(String shareLevel);
 
     /**
+     * Gets the locked state.
+     *
+     * @return The locked state, or null if it hasn't been set.
+     */
+    public String getLocked();
+
+    /**
+     * Sets the locked state.
+     *
+     * @param locked
+     *        The locked state.
+     */
+    public void setLocked(boolean locked);
+
+    /**
      * Gets the userid of the user who owns the object.
      *
      * @return The userid

@@ -316,6 +316,7 @@ public class ManagementMethodInvocation
                              String pid,
                              String state,
                              String shareLevel,
+                             String locked,
                              String label,
                              String ownerID,
                              String logMessage,

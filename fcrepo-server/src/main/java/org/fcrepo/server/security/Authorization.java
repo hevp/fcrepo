@@ -160,6 +160,7 @@ public interface Authorization {
                                     String pid,
                                     String objectState,
                                     String objectShareLevel,
+                                    boolean objectLocked,
                                     String ownerId) throws AuthzException;
 
     public void enforcePurgeDatastream(Context context,

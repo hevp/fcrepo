@@ -127,6 +127,7 @@ public abstract class ObjectBuilder {
                                               URIReference[] models,
                                               String state,
                                               String shareLevel,
+                                              boolean locked,
                                               String ownerId,
                                               String label,
                                               Date createDate,
@@ -150,6 +151,7 @@ public abstract class ObjectBuilder {
 
         obj.setState(state);
         obj.setShareLevel(shareLevel);
+        obj.setLocked(locked);
         obj.setOwnerId(ownerId);
         obj.setLabel(label);
         obj.setCreateDate(createDate);

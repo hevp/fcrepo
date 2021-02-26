@@ -292,6 +292,8 @@ public class FOXMLContentHandler
                     } catch (ParseException e) {
                         throw new SAXException("Could not read share level", e);
                     }
+                } else if (m_objPropertyName.equals(MODEL.LOCKED.uri)) {
+                    m_obj.setLocked(Boolean.parseBoolean(grab(a, FOXML.uri, "VALUE")));
                 } else if (m_objPropertyName.equals(MODEL.LABEL.uri)) {
                     m_obj.setLabel(grab(a, FOXML.uri, "VALUE"));
                 } else if (m_objPropertyName.equals(MODEL.OWNER.uri)) {

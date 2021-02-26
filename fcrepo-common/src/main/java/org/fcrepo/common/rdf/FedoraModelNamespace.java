@@ -69,6 +69,8 @@ public class FedoraModelNamespace
 
     public final RDFName SHARELEVEL;
 
+    public final RDFName LOCKED;
+
     public final RDFName DOWNLOAD_FILENAME;
 
     /**

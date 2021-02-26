@@ -190,6 +190,7 @@ public class TestManagementNotifications
                 apim.modifyObject(pid,
                                   "I",
                                   null,
+                                  null,
                                   "Updated Object Label",
                                   null,
                                   "Changed state to inactive and updated label");

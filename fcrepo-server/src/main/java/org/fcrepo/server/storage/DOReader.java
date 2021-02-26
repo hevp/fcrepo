@@ -158,6 +158,17 @@ public interface DOReader {
     public String GetObjectShareLevel() throws ServerException;
 
     /**
+     * Gets the locked state of the digital object. The locked state indicates whether
+     * the digital object can be modified at any point in time.
+     * NOTE: this is not enforced by Fedora itself
+     *
+     * @return the locked state of the digital object.
+     * @throws ServerException
+     *         If any type of error occurred fulfilling the request.
+     */
+    public String GetObjectLocked() throws ServerException;
+
+    /**
      * Gets a list of the content models of the object. The strings will be
      * of the format "info:fedora/PID"
      * @return the content models of the object

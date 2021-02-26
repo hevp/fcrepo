@@ -93,6 +93,7 @@ public class FieldSearchSQLImplIntegrationTest {
             + "label VARCHAR(255) NOT NULL,\n"
             + "state VARCHAR(1) NOT NULL,\n"
             + "shareLevel VARCHAR(1) NOT NULL,\n"
+            + "locked BOOLEAN NOT NULL,\n"
             + "ownerId VARCHAR(64),\n"
             + "cDate BIGINT NOT NULL,\n"
             + "mDate BIGINT NOT NULL,\n"

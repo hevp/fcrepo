@@ -49,6 +49,7 @@ public class DigitalObjectTest
         m_obj.setPid("test:1");
         m_obj.setState("A");
         m_obj.setShareLevel("O");
+        m_obj.setLocked(false);
         // add some datastreams
         m_ds1_0 = new Datastream();
         m_ds1_0.DatastreamID = "DS1.0";
@@ -116,6 +117,7 @@ public class DigitalObjectTest
         assertEquals(m_sdep.getPid(), "test:3");
         assertEquals(m_obj.getState(), "A");
         assertEquals(m_obj.getShareLevel(), "O");
+        assertEquals(m_obj.getLocked(), false);
         assertEquals(m_sdef.getState(), "W");
         assertEquals(m_sdep.getState(), "D");
     }

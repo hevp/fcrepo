@@ -10,6 +10,7 @@ public interface RestParam {
     String LABEL = "label";
     String STATE = "state";
     String SHARELEVEL = "shareLevel";
+    String LOCKED = "locked";
     String OWNER_ID = "ownerId";
     String ENCODING = "encoding";
     String FORMAT = "format";

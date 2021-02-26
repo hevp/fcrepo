@@ -43,6 +43,8 @@ public class ObjectPane
 
     private String m_shareLevel;
 
+    private String m_locked;
+
     private String m_label;
 
     private String m_ownerId;
@@ -50,6 +52,8 @@ public class ObjectPane
     private final JComboBox<String> m_stateComboBox;
 
     private final JComboBox<String> m_shareLevelComboBox;
+
+    private final JCheckBox m_lockedCheckBox;
 
     private final JTextField m_labelTextField;
 
@@ -64,6 +68,7 @@ public class ObjectPane
                       String pid,
                       String state,
                       String shareLevel,
+                      String locked,
                       String label,
                       String cDate,
                       String mDate,
@@ -73,6 +78,7 @@ public class ObjectPane
         m_pid = pid;
         m_state = state;
         m_shareLevel = shareLevel;
+        m_locked = locked;
         m_label = label;
         m_ownerId = ownerId;
         if (ownerId == null) {
@@ -91,6 +97,8 @@ public class ObjectPane
         stateLabel.setPreferredSize(m_labelDims);
         JLabel shareLevelLabel = new JLabel("Share level");
         shareLevelLabel.setPreferredSize(m_labelDims);
+        JLabel lockedLabel = new JLabel("Locked");
+        lockedLabel.setPreferredSize(m_labelDims);
         JLabel labelLabel = new JLabel("Label");
         labelLabel.setPreferredSize(m_labelDims);
         JLabel cModelLabel = new JLabel("Content Model");
@@ -102,7 +110,7 @@ public class ObjectPane
         JLabel ownerIdLabel = new JLabel("Owner");
         ownerIdLabel.setPreferredSize(m_labelDims);
         JLabel[] labels =
-                new JLabel[] {stateLabel, shareLevelLabel, labelLabel, cDateLabel,
+                new JLabel[] {stateLabel, shareLevelLabel, lockedLabel, labelLabel, cDateLabel,
                         mDateLabel, ownerIdLabel};
 
         // RIGHT: Values
@@ -166,6 +174,13 @@ public class ObjectPane
                 }
             }
         });
+
+
+        // Object locked
+        m_lockedCheckBox = new JCheckBox("Locked");
+        Administrator.constrainHeight(m_lockedCheckBox);
+
+        // original
         m_labelTextField = new JTextField(label);
         m_labelTextField.getDocument().addDocumentListener(dataChangeListener);
         m_ownerIdTextField = new JTextField(ownerId);
@@ -180,8 +195,8 @@ public class ObjectPane
         mDateValueLabel.setEditable(false);
 
         JComponent[] values =
-                new JComponent[] {m_stateComboBox, m_shareLevelComboBox, m_labelTextField,
-                        cDateValueLabel, mDateValueLabel, m_ownerIdTextField};
+                new JComponent[] {m_stateComboBox, m_shareLevelComboBox, m_lockedCheckBox,
+                    m_labelTextField, cDateValueLabel, mDateValueLabel, m_ownerIdTextField};
 
         JPanel northValuePane = new JPanel();
         GridBagLayout gridBag = new GridBagLayout();
@@ -245,7 +260,7 @@ public class ObjectPane
         if (i == 2) {
             state = "D";
         }
-        Administrator.APIM.modifyObject(m_pid, state, m_shareLevel, m_labelTextField
+        Administrator.APIM.modifyObject(m_pid, state, m_shareLevel, m_locked, m_labelTextField
                 .getText(), m_ownerIdTextField.getText(), logMessage);
     }
 

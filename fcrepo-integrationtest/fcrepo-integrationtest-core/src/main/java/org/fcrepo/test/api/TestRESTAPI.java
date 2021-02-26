@@ -503,6 +503,7 @@ public class TestRESTAPI
         assertTrue(responseXML.contains("<objItemIndexViewURL>"));
         assertTrue(responseXML.contains("<objState>"));
         assertTrue(responseXML.contains("<objShareLevel>"));
+        assertTrue(responseXML.contains("<objLocked>"));
 
         url = getURI(
                 String.format("/objects/%s?asOfDateTime=%s",
@@ -810,6 +811,7 @@ public class TestRESTAPI
             String modResponse =
                     apim.modifyObject(DEMO_REST_PID.toString(),
                               "D",
+                              null,
                               null,
                               null,
                               null,

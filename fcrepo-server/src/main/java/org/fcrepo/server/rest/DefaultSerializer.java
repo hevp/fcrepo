@@ -150,7 +150,9 @@ public class DefaultSerializer {
         enc(objProfile.objectState, buffer);
         buffer.append("</objState><objShareLevel>");
         enc(objProfile.objectShareLevel, buffer);
-        buffer.append("</objShareLevel></objectProfile>");
+        buffer.append("</objShareLevel><objLocked>");
+        enc(Boolean.toString(objProfile.objectLocked), buffer);
+        buffer.append("</objLocked></objectProfile>");
     }
 
     private static void datastreamFieldSerialization(Datastream dsProfile, String prefix,
@@ -588,6 +590,8 @@ public class DefaultSerializer {
                         html.append(f.getState());
                     } else if (l.equalsIgnoreCase("shareLevel")) {
                         html.append(f.getShareLevel());
+                    } else if (l.equalsIgnoreCase("locked")) {
+                        html.append(Boolean.toString(f.getLocked()));
                     } else if (l.equalsIgnoreCase("ownerId")) {
                         if (f.getOwnerId() != null) {
                             html.append(f.getOwnerId());
@@ -728,6 +732,7 @@ public class DefaultSerializer {
                 appendXML("label", f.getLabel(), xmlBuf);
                 appendXML("state", f.getState(), xmlBuf);
                 appendXML("shareLevel", f.getShareLevel(), xmlBuf);
+                appendXML("locked", Boolean.toString(f.getLocked()), xmlBuf);
                 appendXML("ownerId", f.getOwnerId(), xmlBuf);
                 appendXML("cDate", f.getCDate(), xmlBuf);
                 appendXML("mDate", f.getMDate(), xmlBuf);

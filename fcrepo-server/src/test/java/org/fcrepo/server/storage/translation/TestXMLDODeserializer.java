@@ -194,6 +194,8 @@ public abstract class TestXMLDODeserializer
      * <dd>Null value should be interpreted as "Active"</dd>
      * <dt>Share level</dt>
      * <dd>Null value should be interpreted as "Open"</dd>
+     * <dt>Locked</dt>
+     * <dd>Null value should be interpreted as false</dd>
      * </dl>
      */
     @Test
@@ -205,7 +207,8 @@ public abstract class TestXMLDODeserializer
         input.setLabel(null);
         input.setOwnerId(null);
         input.setState(null);
-        //input.setShareLevel(null);
+        input.setShareLevel(null);
+        input.setLocked(null);
         input.setExtProperty(EXT_PROP, null);
 
         DigitalObject obj = doDeserializeOrFail(input);
@@ -215,7 +218,8 @@ public abstract class TestXMLDODeserializer
         assertEquals("Null label should be interpreted as empty string", "", obj.getLabel());
         assertEquals("Null ownerid should be interpreted as empty string", "", obj.getOwnerId());
         assertEquals("Null state should be interpreted as active", "A", obj.getState());
-        //assertEquals("Null share level should be interpreted as open", "O", obj.getShareLevel());
+        assertEquals("Null share level should be interpreted as open", "O", obj.getShareLevel());
+        assertEquals("Null locked state should be interpreted as false", false, obj.getLocked());
         assertNull("Ext property should be null", obj.getExtProperty(EXT_PROP));
     }
 
@@ -229,6 +233,10 @@ public abstract class TestXMLDODeserializer
      * <dd>Empty string value should be interpreted the empty string ("")</dd>
      * <dt>State</dt>
      * <dd>Empty string values should be interpreted as "Active"</dd>
+     * <dt>Share level</dt>
+     * <dd>Empty string values should be interpreted as "Open"</dd>
+     * <dt>Locked</dt>
+     * <dd>Empty string values should be interpreted as false</dd>
      * </dl>
      */
     @Test
@@ -239,7 +247,8 @@ public abstract class TestXMLDODeserializer
         input.setLabel("");
         input.setOwnerId("");
         input.setState("");
-        //input.setShareLevel("");
+        input.setShareLevel("");
+        input.setLocked("");
         input.setExtProperty(EXT_PROP_SUPPORTED, "true");
         input.setExtProperty(EXT_PROP, "");
         DigitalObject obj = doDeserializeOrFail(input);
@@ -247,7 +256,8 @@ public abstract class TestXMLDODeserializer
         assertEquals("Empty label should remain empty", "", obj.getLabel());
         assertEquals("Empty Ownerid should remain empty", "", obj.getOwnerId());
         assertEquals("Empty State should be interpreted as active", "A", obj.getState());
-        //assertEquals("Empty Share level should be interpreted as open", "O", obj.getShareLevel());
+        assertEquals("Empty Share level should be interpreted as open", "O", obj.getShareLevel());
+        assertEquals("Empty Locked state should be interpreted as false", false, obj.getLocked());
 
         /* Some formats (METS) don't support ext. properties */
         if ("true".equals(obj.getExtProperty(EXT_PROP_SUPPORTED))) {

@@ -208,6 +208,7 @@ public class FOXMLDOSerializer
                        DOTranslationUtility.getShareLevelAttribute(obj),
                        writer,
                        false);
+        appendProperty(MODEL.LOCKED.uri, obj.getLocked(), writer, false);
         appendProperty(MODEL.LABEL.uri, obj.getLabel(), writer, false);
         appendProperty(MODEL.OWNER.uri, obj.getOwnerId(), writer, false);
         appendProperty(MODEL.CREATED_DATE.uri, obj.getCreateDate(), writer);

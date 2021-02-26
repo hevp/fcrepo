@@ -151,7 +151,7 @@ public class TestXACMLPolicies
     private boolean canWrite(FedoraClient client, String pid, String logMessage) throws Exception {
         FedoraAPIMMTOM apim = client.getAPIMMTOM();
         try {
-            apim.modifyObject(pid, null, null, null, null, logMessage);
+            apim.modifyObject(pid, null, null, null, null, null, logMessage);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

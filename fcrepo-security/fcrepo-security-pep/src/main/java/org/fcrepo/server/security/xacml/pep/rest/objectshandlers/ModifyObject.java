@@ -77,6 +77,7 @@ public class ModifyObject
 
         String state = request.getParameter("state");
         String shareLevel = request.getParameter("shareLevel");
+        String locked = request.getParameter("locked");
         String ownerId = request.getParameter("ownerId");
 
         RequestCtx req = null;
@@ -92,6 +93,10 @@ public class ModifyObject
             if (shareLevel != null && !shareLevel.isEmpty()) {
                 resAttr.put(Constants.OBJECT.SHARELEVEL.getURI(),
                             new StringAttribute(shareLevel));
+            }
+            if (locked != null && !locked.isEmpty()) {
+                resAttr.put(Constants.OBJECT.LOCKED.getURI(),
+                            new BooleanAttribute(locked));
             }
             if (ownerId != null && !ownerId.isEmpty()) {
                 resAttr.put(Constants.OBJECT.OWNER.getURI(),

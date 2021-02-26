@@ -316,6 +316,11 @@ public class BatchModifyParser
                 } else {
                     m_obj.shareLevel = null;
                 }
+                if (attrs.getValue("locked") != null) {
+                    m_obj.locked = attrs.getValue("locked");
+                } else {
+                    m_obj.locked = null;
+                }
                 if (attrs.getValue("ownerId") != null) {
                     m_obj.ownerId = attrs.getValue("ownerId");
                 } else {
@@ -708,6 +713,7 @@ public class BatchModifyParser
                     APIM.modifyObject(m_obj.pid,
                                       m_obj.state,
                                       m_obj.shareLevel,
+                                      m_obj.locked,
                                       m_obj.label,
                                       m_obj.ownerId,
                                       "ModifyObject");

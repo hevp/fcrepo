@@ -43,6 +43,7 @@ public class APIMStubWrapper
     public String modifyObject(final String pid,
             final String state,
             final String shareLevel,
+            final String locked,
             final String label,
             final String ownerId,
             final String logMessage){
@@ -56,6 +57,7 @@ public class APIMStubWrapper
                     return m_instance.modifyObject(pid,
                                                    state,
                                                    shareLevel,
+                                                   locked,
                                                    label,
                                                    ownerId,
                                                    logMessage);

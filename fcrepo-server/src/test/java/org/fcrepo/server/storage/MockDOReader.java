@@ -109,6 +109,10 @@ public class MockDOReader
         return theObject.getShareLevel();
     }
 
+    public boolean GetObjectLocked() throws ServerException {
+        return theObject.getLocked();
+    }
+
     public List<String> getContentModels() throws ServerException {
        List<String> list = new ArrayList<String>();
        for (RelationshipTuple rel : getRelationships(MODEL.HAS_MODEL, null)) {

@@ -104,6 +104,7 @@ public class FedoraAPIMMTOMImpl
     public String modifyObject(String pid,
                                String state,
                                String shareLevel,
+                               boolean locked,
                                String label,
                                String ownerId,
                                String logMessage) {
@@ -116,6 +117,7 @@ public class FedoraAPIMMTOMImpl
                                   pid,
                                   state,
                                   shareLevel,
+                                  locked,
                                   label,
                                   ownerId,
                                   logMessage,

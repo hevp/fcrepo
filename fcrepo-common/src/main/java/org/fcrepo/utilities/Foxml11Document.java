@@ -50,6 +50,7 @@ public class Foxml11Document {
     public enum Property {
         STATE("info:fedora/fedora-system:def/model#state"),
         SHARELEVEL("info:fedora/fedora-system:def/model#shareLevel"),
+        LOCKED("info:fedora/fedora-system:def/model#locked"),
         LABEL("info:fedora/fedora-system:def/model#label"),
         CONTENT_MODEL("info:fedora/fedora-system:def/model#contentModel"),
         CREATE_DATE("info:fedora/fedora-system:def/model#createdDate"),

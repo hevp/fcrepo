@@ -124,6 +124,7 @@ public class JournalCreator
                              String pid,
                              String state,
                              String shareLevel,
+                             boolean locked,
                              String label,
                              String ownerId,
                              String logMessage,
@@ -134,6 +135,7 @@ public class JournalCreator
             cje.addArgument(ARGUMENT_NAME_PID, pid);
             cje.addArgument(ARGUMENT_NAME_STATE, state);
             cje.addArgument(ARGUMENT_NAME_SHARELEVEL, shareLevel);
+            cje.addArgument(ARGUMENT_NAME_LOCKED, locked);
             cje.addArgument(ARGUMENT_NAME_LABEL, label);
             cje.addArgument(ARGUMENT_NAME_OWNERID, ownerId);
             cje.addArgument(ARGUMENT_NAME_LOG_MESSAGE, logMessage);
