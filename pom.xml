@@ -10,7 +10,7 @@
   <groupId>org.fcrepo</groupId>
   <artifactId>fcrepo</artifactId>
   <packaging>pom</packaging>
-  <version>3.9</version>
+  <version>3.10</version>
   <name>Fedora Repository Project</name>
   <url>http://fedora-commons.org/</url>
 
