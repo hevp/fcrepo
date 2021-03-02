@@ -199,8 +199,8 @@ class ResourceAttributeFinderModule
             }
             else if (Constants.OBJECT.LOCKED.attributeId.equals(attributeId)) {
                 try {
-                    boolean value = reader.GetObjectLocked();
-                    logger.debug("got {}={}", Constants.OBJECT.LOCKED.uri, value);
+                    String valueL = new Boolean(reader.GetObjectLocked()).toString();
+                    logger.debug("got {}={}", Constants.OBJECT.LOCKED.uri, valueL);
                 } catch (ServerException e) {
                     logger.debug("failed getting {}", Constants.OBJECT.LOCKED.uri, e);
                     return null;

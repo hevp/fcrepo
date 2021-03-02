@@ -81,7 +81,7 @@ public class METSFedoraExtDOSerializer
     public METSFedoraExtDOSerializer(XMLFormat format) {
         this(format, null);
     }
- 
+
     /**
      * Creates a serializer that writes the given METS Fedora Extension format.
      *
@@ -616,7 +616,7 @@ public class METSFedoraExtDOSerializer
             writer.print(":fileSec>\n");
         }
     }
-    
+
     protected void serializeDatastreamContent(Datastream dsc, PrintWriter writer)
             throws StreamIOException {
         writer.print("<");
@@ -624,8 +624,8 @@ public class METSFedoraExtDOSerializer
         writer.print(":FContent> \n");
         Reader encoded = new InputStreamReader(Base64.encodeToStream(dsc.getContentStream()));
         char [] buffer = new char[80];
-        int len = 0;           
-        
+        int len = 0;
+
         try{
             while ((len = encoded.read(buffer)) > -1){
                 writer.write(DOSerializer.DS_INDENT);
@@ -633,7 +633,7 @@ public class METSFedoraExtDOSerializer
                 writer.write('\n');
             }
         } catch (IOException ioe) {
-           throw new StreamIOException(ioe.getMessage()); 
+           throw new StreamIOException(ioe.getMessage());
         }
         writer.print("</");
         writer.print(METS.prefix);

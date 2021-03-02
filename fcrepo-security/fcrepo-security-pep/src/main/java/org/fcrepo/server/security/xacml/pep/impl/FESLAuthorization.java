@@ -136,7 +136,7 @@ public class FESLAuthorization implements Authorization {
 
     @Override
     public void enforceModifyObject(Context context, String pid,
-            String objectState, String objectShareLevel, String objectLocked, String ownerId) throws AuthzException {
+            String objectState, String objectShareLevel, boolean objectLocked, String ownerId) throws AuthzException {
         // TODO Determine whether FESL auth checks should be performed at the module level
 
     }

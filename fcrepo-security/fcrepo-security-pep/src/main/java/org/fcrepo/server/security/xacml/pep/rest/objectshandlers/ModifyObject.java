@@ -38,6 +38,7 @@ import org.slf4j.LoggerFactory;
 
 import org.jboss.security.xacml.sunxacml.attr.AttributeValue;
 import org.jboss.security.xacml.sunxacml.attr.StringAttribute;
+import org.jboss.security.xacml.sunxacml.attr.BooleanAttribute;
 
 
 /**
@@ -96,7 +97,7 @@ public class ModifyObject
             }
             if (locked != null && !locked.isEmpty()) {
                 resAttr.put(Constants.OBJECT.LOCKED.getURI(),
-                            new BooleanAttribute(locked));
+                            new StringAttribute(locked));
             }
             if (ownerId != null && !ownerId.isEmpty()) {
                 resAttr.put(Constants.OBJECT.OWNER.getURI(),

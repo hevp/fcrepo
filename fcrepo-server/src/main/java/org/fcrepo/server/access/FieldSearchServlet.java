@@ -329,7 +329,7 @@ public class FieldSearchServlet
         appendXML("pid", objFields.getPid(), xmlBuf);
         appendXML("label", objFields.getLabel(), xmlBuf);
         appendXML("state", objFields.getState(), xmlBuf);
-        appendXML("shareLevel", objFields.getState(), xmlBuf);
+        appendXML("shareLevel", objFields.getShareLevel(), xmlBuf);
         appendXML("locked", objFields.getLocked(), xmlBuf);
         appendXML("ownerId", objFields.getOwnerId(), xmlBuf);
         appendXML("cDate", objFields.getCDate(), xmlBuf);
