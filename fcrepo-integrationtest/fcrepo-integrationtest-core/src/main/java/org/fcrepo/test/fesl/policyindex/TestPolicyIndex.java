@@ -337,7 +337,7 @@ public class TestPolicyIndex extends FedoraServerTestCase implements Constants {
         assertTrue(checkPolicyEnforcement("B"));
 
         // set object state to NULL - FCREPO-820
-        apim.modifyObject(pidA, null, null, "updated label", null, "updating label");
+        apim.modifyObject(pidA, null, null, null, "updated label", null, "updating label");
 
         // check policy A in force
         assertTrue(checkPolicyEnforcement("A"));
@@ -345,7 +345,7 @@ public class TestPolicyIndex extends FedoraServerTestCase implements Constants {
         assertTrue(checkPolicyEnforcement("B"));
 
         // set object state to inactive
-        apim.modifyObject(pidA, "I", null, null, null, "set inactive");
+        apim.modifyObject(pidA, "I", null, null, null, null, "set inactive");
 
         // check policy A not in force
         assertFalse(checkPolicyEnforcement("A"));
@@ -353,7 +353,7 @@ public class TestPolicyIndex extends FedoraServerTestCase implements Constants {
         assertTrue(checkPolicyEnforcement("B"));
 
         // set object state to NULL - FCREPO-820
-        apim.modifyObject(pidA, null, null, "updated label", null, "updating label");
+        apim.modifyObject(pidA, null, null, null, "updated label", null, "updating label");
 
         // check policy not in force
         assertFalse(checkPolicyEnforcement("A"));
@@ -361,7 +361,7 @@ public class TestPolicyIndex extends FedoraServerTestCase implements Constants {
         assertTrue(checkPolicyEnforcement("B"));
 
         // set objects state to deleted
-        apim.modifyObject(pidA, "D", null, null, null, "set deleted");
+        apim.modifyObject(pidA, "D", null, null, null, null, "set deleted");
 
         // check policy not in force
         assertFalse(checkPolicyEnforcement("A"));
@@ -369,7 +369,7 @@ public class TestPolicyIndex extends FedoraServerTestCase implements Constants {
         assertTrue(checkPolicyEnforcement("B"));
 
         // set object state to active
-        apim.modifyObject(pidA, "A", null, null, null, "set active");
+        apim.modifyObject(pidA, "A", null, null, null, null, "set active");
 
         // check policy A in force
         assertTrue(checkPolicyEnforcement("A"));
@@ -377,7 +377,7 @@ public class TestPolicyIndex extends FedoraServerTestCase implements Constants {
         assertTrue(checkPolicyEnforcement("B"));
 
         // set object state to deleted
-        apim.modifyObject(pidA, "D", null, null, null, "set deleted");
+        apim.modifyObject(pidA, "D", null, null, null, null, "set deleted");
 
         // check policyA not in force
         assertFalse(checkPolicyEnforcement("A"));
@@ -385,7 +385,7 @@ public class TestPolicyIndex extends FedoraServerTestCase implements Constants {
         assertTrue(checkPolicyEnforcement("B"));
 
         // set object state to active
-        apim.modifyObject(pidA, "A", null, null, null, "set active");
+        apim.modifyObject(pidA, "A", null, null, null, null, "set active");
 
         // check policy A in force
         assertTrue(checkPolicyEnforcement("A"));
@@ -410,7 +410,7 @@ public class TestPolicyIndex extends FedoraServerTestCase implements Constants {
         assertTrue(checkPolicyEnforcement("B"));
 
         // set object state to NULL - FCREPO-820
-        apim.modifyObject(pidA, null, null, "updated label", null, "updated label");
+        apim.modifyObject(pidA, null, null, null, "updated label", null, "updated label");
 
         // check policy A not in force
         assertFalse(checkPolicyEnforcement("A"));
@@ -418,7 +418,7 @@ public class TestPolicyIndex extends FedoraServerTestCase implements Constants {
         assertTrue(checkPolicyEnforcement("B"));
 
         // set object state to active
-        apim.modifyObject(pidA, "A", null, null, null, "set active");
+        apim.modifyObject(pidA, "A", null, null, null, null, "set active");
 
         // check policy A in force
         assertTrue("authorization \"A\" DENIED, expected PERMITTED",checkPolicyEnforcement("A"));
@@ -437,7 +437,7 @@ public class TestPolicyIndex extends FedoraServerTestCase implements Constants {
         assertTrue("authorization \"B\" DENIED, expected PERMITTED",checkPolicyEnforcement("B"));
 
         // set object state active
-        apim.modifyObject(pidA, "A", null, null, null, "set active");
+        apim.modifyObject(pidA, "A", null, null, null, null, "set active");
 
         // check policy A not in force (datastream still inactive)
         assertFalse("authorization \"A\" PERMITTED, expected DENIED",checkPolicyEnforcement("A"));
@@ -485,7 +485,7 @@ public class TestPolicyIndex extends FedoraServerTestCase implements Constants {
         assertTrue("authorization \"B\" DENIED, expected PERMITTED",checkPolicyEnforcement("B"));
 
         // set object state deleted
-        apim.modifyObject(pidA, "D", null, null, null, "set inactive");
+        apim.modifyObject(pidA, "D", null, null, null, null, "set inactive");
 
         // check policy A not in force
         assertFalse(checkPolicyEnforcement("A"));
@@ -501,7 +501,7 @@ public class TestPolicyIndex extends FedoraServerTestCase implements Constants {
         assertTrue("authorization \"B\" DENIED, expected PERMITTED",checkPolicyEnforcement("B"));
 
         // set object state active
-        apim.modifyObject(pidA, "A", null, null, null, "set inactive");
+        apim.modifyObject(pidA, "A", null, null, null, null, "set inactive");
 
         // check policy A in force
         assertTrue("authorization \"A\" DENIED, expected PERMITTED",checkPolicyEnforcement("A"));

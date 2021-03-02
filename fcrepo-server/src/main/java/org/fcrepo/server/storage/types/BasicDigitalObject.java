@@ -117,7 +117,7 @@ public class BasicDigitalObject
         m_shareLevel = shareLevel;
     }
 
-    public String getLocked() {
+    public boolean getLocked() {
         return m_locked;
     }
 

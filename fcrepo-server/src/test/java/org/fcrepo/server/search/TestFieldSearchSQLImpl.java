@@ -235,7 +235,7 @@ public class TestFieldSearchSQLImpl {
             result.add(lowerCase(label));
             result.add(lowerCase(state));
             result.add(lowerCase(shareLevel));
-            result.add(locked);
+            result.add(Boolean.toString(locked));
             result.add(lowerCase(ownerId));
             result.add(dateStamp(createDate));
             result.add(dateStamp(lastModDate));
@@ -280,7 +280,7 @@ public class TestFieldSearchSQLImpl {
             return shareLevel;
         }
 
-        public String getLocked() {
+        public boolean getLocked() {
             return locked;
         }
 

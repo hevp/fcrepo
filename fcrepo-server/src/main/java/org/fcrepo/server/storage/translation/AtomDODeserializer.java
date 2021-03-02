@@ -174,8 +174,8 @@ public class AtomDODeserializer
                 m_xpath.valueOf("/a:feed/a:category[@scheme='"
                         + MODEL.SHARELEVEL.uri + "']/@term", feed);
         boolean locked =
-                m_xpath.valueOf("/a:feed/a:category[@scheme='"
-                        + MODEL.LOCKED.uri + "']/@term", feed);
+                Boolean.parseBoolean(m_xpath.valueOf("/a:feed/a:category[@scheme='"
+                        + MODEL.LOCKED.uri + "']/@term", feed));
         String createDate =
                 m_xpath.valueOf("/a:feed/a:category[@scheme='"
                         + MODEL.CREATED_DATE.uri + "']/@term", feed);

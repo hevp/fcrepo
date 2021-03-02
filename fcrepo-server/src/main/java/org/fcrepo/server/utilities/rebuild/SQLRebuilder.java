@@ -343,10 +343,6 @@ public class SQLRebuilder
         if (obj.getShareLevel() == null || obj.getShareLevel().isEmpty()) {
             obj.setShareLevel("O");
         }
-        // set object locked state to false if not already set
-        if (obj.getLocked() == null || obj.getLocked().isEmpty()) {
-            obj.setLocked(false);
-        }
         // set object create date to UTC if not already set
         if (obj.getCreateDate() == null) {
             obj.setCreateDate(nowUTC);

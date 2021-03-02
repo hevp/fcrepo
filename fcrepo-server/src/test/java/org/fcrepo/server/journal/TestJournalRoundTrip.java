@@ -311,7 +311,7 @@ public class TestJournalRoundTrip {
                             "myPid",
                             "state",
                             "shareLevel",
-                            "locked",
+                            false,
                             "objectLabel",
                             "owner",
                             "logMessage",

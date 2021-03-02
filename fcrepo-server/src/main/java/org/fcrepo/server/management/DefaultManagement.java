@@ -261,15 +261,7 @@ public class DefaultManagement
                 w.setShareLevel(shareLevel);
             }
 
-            if (locked != null && !locked.isEmpty()) {
-                if (!locked.equals(true) && !locked.equals(false)) {
-                    throw new InvalidStateException("The object locked state of \""
-                                                    + locked
-                                                    + "\" is invalid. The allowed values for locked state are: "
-                                                    + "true or false. ");
-                }
-                w.setLocked(locked);
-            }
+            w.setLocked(locked);
 
             if (label != null) {
                 w.setLabel(label);

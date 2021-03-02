@@ -89,7 +89,7 @@ public interface DigitalObject {
      *
      * @return The locked state, or null if it hasn't been set.
      */
-    public String getLocked();
+    public boolean getLocked();
 
     /**
      * Sets the locked state.

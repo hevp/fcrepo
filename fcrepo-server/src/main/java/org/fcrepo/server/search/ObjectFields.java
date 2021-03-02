@@ -34,6 +34,8 @@ public class ObjectFields
 
     private String m_shareLevel;
 
+    private boolean m_locked;
+
     private String m_ownerId;
 
     private Date m_cDate;
@@ -272,11 +274,11 @@ public class ObjectFields
         return m_shareLevel;
     }
 
-    public void setLocked(boolean locked) {
-        m_locked = locked;
+    public void setLocked(Boolean locked) {
+        m_locked = Boolean.TRUE.equals(locked);;
     }
 
-    public String getLocked() {
+    public boolean getLocked() {
         return m_locked;
     }
 

@@ -277,10 +277,7 @@ public class SimpleDOReader
      * {@inheritDoc}
      */
     @Override
-    public String GetObjectLocked() {
-        if (m_obj.getLocked() == null) {
-            return false; // shouldn't happen, but if it does don't die
-        }
+    public boolean GetObjectLocked() {
         return m_obj.getLocked();
     }
 

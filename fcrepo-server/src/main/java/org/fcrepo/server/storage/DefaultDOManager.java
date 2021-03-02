@@ -886,9 +886,7 @@ implements DOManager {
                     obj.setShareLevel("O");
                 }
                 // set object locked state to false if not already set
-                if (obj.getLocked() == null || obj.getLocked().isEmpty()) {
-                    obj.setLocked(false);
-                }
+                obj.setLocked(false);
                 // set object create date to UTC if not already set
                 if (obj.getCreateDate() == null) {
                     obj.setCreateDate(nowUTC);

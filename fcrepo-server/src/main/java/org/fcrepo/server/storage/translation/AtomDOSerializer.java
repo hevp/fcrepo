@@ -156,7 +156,7 @@ public class AtomDOSerializer
 
         feed.addCategory(MODEL.STATE.uri, state, null);
         feed.addCategory(MODEL.SHARELEVEL.uri, shareLevel, null);
-        feed.addCategory(MODEL.LOCKED.uri, locked, null);
+        feed.addCategory(MODEL.LOCKED.uri, Boolean.toString(locked), null);
 
         if (cdate != null) {
             feed.addCategory(MODEL.CREATED_DATE.uri, DateUtility

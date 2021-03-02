@@ -182,7 +182,7 @@ public class FieldSearchSQLImpl
 
             dbRowValues[2] = reader.GetObjectState().toLowerCase();
             dbRowValues[3] = reader.GetObjectShareLevel().toLowerCase();
-            dbRowValues[4] = reader.GetObjectLocked();
+            dbRowValues[4] = Boolean.toString(reader.GetObjectLocked());
 
             v = reader.getOwnerId();
             if (v != null) {

@@ -208,7 +208,7 @@ public abstract class TestXMLDODeserializer
         input.setOwnerId(null);
         input.setState(null);
         input.setShareLevel(null);
-        input.setLocked(null);
+        input.setLocked(false);
         input.setExtProperty(EXT_PROP, null);
 
         DigitalObject obj = doDeserializeOrFail(input);
@@ -248,7 +248,7 @@ public abstract class TestXMLDODeserializer
         input.setOwnerId("");
         input.setState("");
         input.setShareLevel("");
-        input.setLocked("");
+        input.setLocked(false);
         input.setExtProperty(EXT_PROP_SUPPORTED, "true");
         input.setExtProperty(EXT_PROP, "");
         DigitalObject obj = doDeserializeOrFail(input);

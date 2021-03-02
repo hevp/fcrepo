@@ -681,7 +681,7 @@ public class DefaultAuthorization
                                           String pid,
                                           String objectNewState,
                                           String objectNewShareLevel,
-                                          boolean objectLocked,
+                                          boolean objectNewLocked,
                                           String objectNewOwnerId)
             throws AuthzException {
         try {
@@ -696,7 +696,7 @@ public class DefaultAuthorization
                 name = Constants.OBJECT.NEW_SHARELEVEL.attributeId;
                 resourceAttributes.set(name, objectNewShareLevel);
                 name = Constants.OBJECT.NEW_LOCKED.attributeId;
-                resourceAttributes.set(name, objectNewLocked);
+                resourceAttributes.set(name, new Boolean(objectNewLocked).toString());
                 if (objectNewOwnerId != null){
                     name = Constants.OBJECT.OWNER.attributeId;
                     resourceAttributes.set(name, objectNewOwnerId.split(m_ownerIdSeparator));

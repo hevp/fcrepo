@@ -472,7 +472,7 @@ public class FieldSearchServlet
             } else if (l.equalsIgnoreCase("shareLevel")) {
                 html.append(f.getShareLevel());
             } else if (l.equalsIgnoreCase("locked")) {
-                html.append(f.getLocked());
+                html.append(Boolean.toString(f.getLocked()));
             } else if (l.equalsIgnoreCase("ownerId")) {
                 if (f.getOwnerId() != null) {
                     html.append(f.getOwnerId());
@@ -656,6 +656,10 @@ public class FieldSearchServlet
             out.append(name);
             out.append(">\n");
         }
+    }
+
+    private void appendXML(String name, boolean value, PrintWriter out) {
+        appendXML(name, Boolean.toString(value), out);
     }
 
     private void appendXML(String name, List<DCField> values, PrintWriter out) {

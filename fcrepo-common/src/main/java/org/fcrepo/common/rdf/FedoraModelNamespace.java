@@ -173,6 +173,7 @@ public class FedoraModelNamespace
         OWNER = new RDFName(this, "ownerId");
         STATE = new RDFName(this, "state");
         SHARELEVEL = new RDFName(this, "shareLevel");
+        LOCKED = new RDFName(this, "locked");
         VERSIONABLE = new RDFName(this, "versionable");
         DOWNLOAD_FILENAME = new RDFName(this, "downloadFilename");
 
