@@ -770,13 +770,13 @@
       <version>${project.version}</version>
     </dependency>
 
-    <!-- <dependency>
+    <dependency>
       <groupId>org.fcrepo</groupId>
       <artifactId>fcrepo-common</artifactId>
       <classifier>tests</classifier>
       <version>${project.version}</version>
       <scope>test</scope>
-    </dependency> -->
+    </dependency>
 
     <dependency>
       <groupId>net.java.dev.stax-utils</groupId>
