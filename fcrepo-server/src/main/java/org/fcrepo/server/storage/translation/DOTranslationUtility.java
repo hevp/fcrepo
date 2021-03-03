@@ -900,23 +900,22 @@ public abstract class DOTranslationUtility
      * @throws ObjectIntegrityException thrown when the share level cannot be parsed.
      */
     public static String getShareLevelAttribute(DigitalObject obj) throws ObjectIntegrityException {
-
-            if (obj.getShareLevel() == null || obj.getShareLevel().isEmpty()) {
-                return MODEL.OPEN.localName;
-            } else {
-                switch (obj.getShareLevel().charAt(0)) {
-                    case 'P':
-                        return MODEL.PRIVATE.localName;
-                    case 'R':
-                        return MODEL.REGISTERED.localName;
-                    case 'O':
-                        return MODEL.OPEN.localName;
-                    default:
-                        throw new ObjectIntegrityException("Could not determine "
-                                                   + "share level attribute from '"
-                                                   + obj.getShareLevel() + "'");
-                }
+        if (obj.getShareLevel() == null || obj.getShareLevel().isEmpty()) {
+            return MODEL.OPEN.localName;
+        } else {
+            switch (obj.getShareLevel().charAt(0)) {
+                case 'P':
+                    return MODEL.PRIVATE.localName;
+                case 'R':
+                    return MODEL.REGISTERED.localName;
+                case 'O':
+                    return MODEL.OPEN.localName;
+                default:
+                    throw new ObjectIntegrityException("Could not determine "
+                                               + "share level attribute from '"
+                                               + obj.getShareLevel() + "'");
             }
+        }
     }
 
     /** Parse and read the object share level value from raw text.
@@ -926,7 +925,7 @@ public abstract class DOTranslationUtility
      * as "Open".
      * </p>
      * @param rawValue Raw string to parse.  May be null
-     * @return String containing the state code (O, R, P)
+     * @return String containing the share level code (O, R, P)
      * @throws ParseException thrown when share level value cannot be determined
      */
     public static String readShareLevelAttribute(String rawValue) throws ParseException {
@@ -940,6 +939,58 @@ public abstract class DOTranslationUtility
             return "O";
         } else {
                 throw new ParseException("Could not interpret share level value of '"
+                                   + rawValue + "'", 0);
+        }
+    }
+
+    /** Reads the locked attribute from a DigitalObject.
+     * <p>
+     * Null or empty strings are interpteted as "Unlocked".
+     * </p>
+     * @param obj Object that potentially contains object locked data.
+     * @return String containing full locked value (Unlocked, Locked, Full)
+     * @throws ObjectIntegrityException thrown when the locked cannot be parsed.
+     */
+    public static String getLockedAttribute(DigitalObject obj) throws ObjectIntegrityException {
+        if (obj.getLocked() == null || obj.getLocked().isEmpty()) {
+            return MODEL.UNLOCKED.localName;
+        } else {
+            switch (obj.getLocked().charAt(0)) {
+                case 'U':
+                    return MODEL.UNLOCKED.localName;
+                case 'L':
+                    return MODEL.LOCAL.localName;
+                case 'F':
+                    return MODEL.FULL.localName;
+                default:
+                    throw new ObjectIntegrityException("Could not determine "
+                                               + "locked attribute from '"
+                                               + obj.getLocked() + "'");
+            }
+        }
+    }
+
+    /** Parse and read the object locked value from raw text.
+     * <p>
+     * Reads a text representation of object locked, and returns a "locked code"
+     * abbreviation corresponding to that locked.  Null or empty values are interpreted
+     * as "Unlocked".
+     * </p>
+     * @param rawValue Raw string to parse.  May be null
+     * @return String containing the locked code (U, L, F)
+     * @throws ParseException thrown when locked value cannot be determined
+     */
+    public static String readLockedAttribute(String rawValue) throws ParseException {
+        if (MODEL.FULL.looselyMatches(rawValue, true)) {
+            return "F";
+        } else if (MODEL.LOCAL.looselyMatches(rawValue, true)) {
+            return "L";
+        } else if (MODEL.UNLOCKED.looselyMatches(rawValue, true)
+                    || rawValue == null
+                    || rawValue.isEmpty()) {
+            return "U";
+        } else {
+                throw new ParseException("Could not interpret locked state value of '"
                                    + rawValue + "'", 0);
         }
     }

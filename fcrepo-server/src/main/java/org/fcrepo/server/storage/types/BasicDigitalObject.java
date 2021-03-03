@@ -47,7 +47,7 @@ public class BasicDigitalObject
 
     private String m_shareLevel;
 
-    private boolean m_locked;
+    private String m_locked;
 
     private String m_ownerId;
 
@@ -117,11 +117,11 @@ public class BasicDigitalObject
         m_shareLevel = shareLevel;
     }
 
-    public boolean getLocked() {
+    public String getLocked() {
         return m_locked;
     }
 
-    public void setLocked(boolean locked) {
+    public void setLocked(String locked) {
         m_locked = locked;
     }
 

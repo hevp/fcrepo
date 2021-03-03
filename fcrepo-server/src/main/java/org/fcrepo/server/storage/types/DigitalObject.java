@@ -89,7 +89,7 @@ public interface DigitalObject {
      *
      * @return The locked state, or null if it hasn't been set.
      */
-    public boolean getLocked();
+    public String getLocked();
 
     /**
      * Sets the locked state.
@@ -97,7 +97,7 @@ public interface DigitalObject {
      * @param locked
      *        The locked state.
      */
-    public void setLocked(boolean locked);
+    public void setLocked(String locked);
 
     /**
      * Gets the userid of the user who owns the object.

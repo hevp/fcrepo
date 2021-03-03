@@ -57,6 +57,21 @@ public abstract class TripleGeneratorBase {
         }
     }
 
+    protected RDFName getLockedResource(String locked)
+            throws ResourceIndexException {
+        if (locked == null) {
+            throw new ResourceIndexException("Locked state cannot be null");
+        } else if (locked.equals("U")) {
+            return MODEL.UNLOCKED;
+        } else if (locked.equals("L")) {
+            return MODEL.LOCAL;
+        } else if (locked.equals("F")) {
+            return MODEL.FULL;
+        } else {
+            throw new ResourceIndexException("Unrecognized locked state: " + locked);
+        }
+    }
+
     // Helper methods for adding triples
 
     protected void add(SubjectNode subject,

@@ -52,7 +52,7 @@ public class DerbyDDLConverterIntegrationTest {
             + "ownerId VARCHAR(64),\n  "
             + "objectState VARCHAR(1) NOT NULL DEFAULT 'A',\n  "
             + "objectShareLevel VARCHAR(1) NOT NULL DEFAULT 'O',\n  "
-            + "objectLocked BOOLEAN NOT NULL DEFAULT FALSE,\n  "
+            + "objectLocked VARCHAR(1) NOT NULL DEFAULT 'U',\n  "
             + "label VARCHAR(255) DEFAULT '',\n  "
             + "PRIMARY KEY (doPID))";
 
@@ -67,7 +67,7 @@ public class DerbyDDLConverterIntegrationTest {
             + "label VARCHAR(255),\n  "
             + "state VARCHAR(1) NOT NULL DEFAULT 'A',\n  "
             + "shareLevel VARCHAR(1) NOT NULL DEFAULT 'O',\n  "
-            + "locked BOOLEAN NOT NULL DEFAULT FALSE,\n  "
+            + "locked VARCHAR(1) NOT NULL DEFAULT 'U',\n  "
             + "ownerId VARCHAR(64),\n  " + "cDate BIGINT NOT NULL,\n  "
             + "mDate BIGINT NOT NULL,\n  " + "dcmDate BIGINT,\n  "
             + "dcTitle CLOB,\n  " + "dcCreator CLOB,\n  "

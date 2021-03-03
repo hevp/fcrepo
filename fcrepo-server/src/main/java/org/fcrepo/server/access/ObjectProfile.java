@@ -36,5 +36,5 @@ public class ObjectProfile {
 
     public String objectShareLevel = null;
 
-    public boolean objectLocked;
+    public String objectLocked = null;
 }

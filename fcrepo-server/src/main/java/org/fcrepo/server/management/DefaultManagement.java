@@ -206,7 +206,7 @@ public class DefaultManagement
                              String pid,
                              String state,
                              String shareLevel,
-                             boolean locked,
+                             String locked,
                              String label,
                              String ownerId,
                              String logMessage,
@@ -253,7 +253,7 @@ public class DefaultManagement
             if (shareLevel != null && !shareLevel.isEmpty()) {
                 if (!shareLevel.equals("O") && !shareLevel.equals("R")
                     && !shareLevel.equals("P")) {
-                    throw new InvalidStateException("The object state of \""
+                    throw new InvalidStateException("The object share level of \""
                                                     + shareLevel
                                                     + "\" is invalid. The allowed values for share level are: "
                                                     + " O (open), R (registered) and P (private).");
@@ -261,7 +261,16 @@ public class DefaultManagement
                 w.setShareLevel(shareLevel);
             }
 
-            w.setLocked(locked);
+            if (locked != null && !locked.isEmpty()) {
+                if (!locked.equals("U") && !locked.equals("L")
+                    && !locked.equals("F")) {
+                    throw new InvalidStateException("The object locked state of \""
+                                                    + locked
+                                                    + "\" is invalid. The allowed values for locked state are: "
+                                                    + " U (unlocked), L (locked) and F (full).");
+                }
+                w.setLocked(locked);
+            }
 
             if (label != null) {
                 w.setLabel(label);

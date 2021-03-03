@@ -124,7 +124,7 @@ public class JournalCreator
                              String pid,
                              String state,
                              String shareLevel,
-                             boolean locked,
+                             String locked,
                              String label,
                              String ownerId,
                              String logMessage,

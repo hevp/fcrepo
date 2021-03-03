@@ -19,7 +19,7 @@ public class MultiValueMap<T> {
 
     private static final String [] EMPTY_STRING_ARRAY = new String[0];
 
-    private boolean locked = false;
+    private boolean m_locked = false;
 
     private final Map<T,String[]> attributes = new HashMap<T,String[]>();
 
@@ -68,7 +68,7 @@ public class MultiValueMap<T> {
     }
 
     public void lock() {
-        locked = true;
+        m_locked = true;
     }
 
     public Iterator<T> names() {
@@ -136,7 +136,7 @@ public class MultiValueMap<T> {
         @SuppressWarnings("unchecked")
         MultiValueMap<T> that = (MultiValueMap<T>) obj;
 
-        return locked == that.locked && equalMaps(attributes, that.attributes);
+        return m_locked == that.m_locked && equalMaps(attributes, that.attributes);
     }
 
     private boolean equalMaps(Map<T,String[]> thisMap, Map<T,String[]> thatMap) {
@@ -161,7 +161,7 @@ public class MultiValueMap<T> {
 
     @Override
     public int hashCode() {
-        return attributes.hashCode() + (locked ? 1 : 0);
+        return attributes.hashCode() + (m_locked ? 1 : 0);
     }
 
     public static <S> MultiValueMap<S> empty(Class<S> klazz) {
@@ -179,7 +179,7 @@ public class MultiValueMap<T> {
             logger.debug(msg, here, value);
             throw new IllegalArgumentException(msg);
         }
-        if (locked) {
+        if (m_locked) {
             String msg = "{}: set() has object locked";
             logger.debug(msg, here);
             throw new IllegalStateException(msg);

@@ -99,6 +99,13 @@ public class FedoraModelNamespace
 
     public final RDFName PRIVATE;
 
+    // Locked state values
+    public final RDFName UNLOCKED;
+
+    public final RDFName LOCAL;
+
+    public final RDFName FULL;
+
     // CMA RDF Relationships
     public final RDFName HAS_SERVICE;
 
@@ -187,6 +194,11 @@ public class FedoraModelNamespace
         OPEN = new RDFName(this, "Open");
         REGISTERED = new RDFName(this, "Registered");
         PRIVATE = new RDFName(this, "Private");
+
+        // Locked values
+        UNLOCKED = new RDFName(this, "Unlocked");
+        LOCAL = new RDFName(this, "Local");
+        FULL = new RDFName(this, "Full");
 
         // CMA RDF Relationships
         HAS_SERVICE = new RDFName(this, "hasService");

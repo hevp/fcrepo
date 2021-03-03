@@ -151,7 +151,7 @@ public class DefaultSerializer {
         buffer.append("</objState><objShareLevel>");
         enc(objProfile.objectShareLevel, buffer);
         buffer.append("</objShareLevel><objLocked>");
-        enc(Boolean.toString(objProfile.objectLocked), buffer);
+        enc(objProfile.objectLocked, buffer);
         buffer.append("</objLocked></objectProfile>");
     }
 
@@ -591,7 +591,7 @@ public class DefaultSerializer {
                     } else if (l.equalsIgnoreCase("shareLevel")) {
                         html.append(f.getShareLevel());
                     } else if (l.equalsIgnoreCase("locked")) {
-                        html.append(Boolean.toString(f.getLocked()));
+                        html.append(f.getLocked());
                     } else if (l.equalsIgnoreCase("ownerId")) {
                         if (f.getOwnerId() != null) {
                             html.append(f.getOwnerId());
@@ -732,7 +732,7 @@ public class DefaultSerializer {
                 appendXML("label", f.getLabel(), xmlBuf);
                 appendXML("state", f.getState(), xmlBuf);
                 appendXML("shareLevel", f.getShareLevel(), xmlBuf);
-                appendXML("locked", Boolean.toString(f.getLocked()), xmlBuf);
+                appendXML("locked", f.getLocked(), xmlBuf);
                 appendXML("ownerId", f.getOwnerId(), xmlBuf);
                 appendXML("cDate", f.getCDate(), xmlBuf);
                 appendXML("mDate", f.getMDate(), xmlBuf);

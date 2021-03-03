@@ -167,7 +167,9 @@ public abstract class TypeUtility {
             if (sf.getShareLevel() != null) {
                 gf.setShareLevel(factory.createObjectFieldsShareLevel(sf.getShareLevel()));
             }
-            //gf.setLocked(factory.createObjectFieldsLocked(sf.getLocked()).);
+            if (sf.getLocked() != null) {
+                gf.setLocked(factory.createObjectFieldsLocked(sf.getLocked()));
+            }
             if (sf.getOwnerId() != null) {
                 gf.setOwnerId(factory.createObjectFieldsOwnerId(sf.getOwnerId()));
             }

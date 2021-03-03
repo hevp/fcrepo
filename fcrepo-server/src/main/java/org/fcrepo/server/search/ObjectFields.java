@@ -34,7 +34,7 @@ public class ObjectFields
 
     private String m_shareLevel;
 
-    private boolean m_locked;
+    private String m_locked;
 
     private String m_ownerId;
 
@@ -197,7 +197,7 @@ public class ObjectFields
         } else if (m_want[SHARELEVEL] && localName.equals("shareLevel")) {
             setShareLevel(m_currentContent.toString());
         } else if (m_want[LOCKED] && localName.equals("locked")) {
-            setLocked(Boolean.parseBoolean(m_currentContent.toString()));
+            setLocked(m_currentContent.toString());
         } else if (m_want[OWNERID] && localName.equals("ownerId")) {
             setOwnerId(m_currentContent.toString());
         } else if (m_want[CDATE] && localName.equals("cDate")) {
@@ -274,11 +274,11 @@ public class ObjectFields
         return m_shareLevel;
     }
 
-    public void setLocked(Boolean locked) {
-        m_locked = Boolean.TRUE.equals(locked);;
+    public void setLocked(String locked) {
+        m_locked = locked;;
     }
 
-    public boolean getLocked() {
+    public String getLocked() {
         return m_locked;
     }
 

@@ -166,7 +166,7 @@ public interface DOReader {
      * @throws ServerException
      *         If any type of error occurred fulfilling the request.
      */
-    public boolean GetObjectLocked() throws ServerException;
+    public String GetObjectLocked() throws ServerException;
 
     /**
      * Gets a list of the content models of the object. The strings will be

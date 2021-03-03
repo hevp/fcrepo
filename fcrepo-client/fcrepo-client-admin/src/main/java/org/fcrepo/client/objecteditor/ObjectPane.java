@@ -53,7 +53,7 @@ public class ObjectPane
 
     private final JComboBox<String> m_shareLevelComboBox;
 
-    private final JCheckBox m_lockedCheckBox;
+    private final JComboBox<String> m_lockedComboBox;
 
     private final JTextField m_labelTextField;
 
@@ -175,10 +175,33 @@ public class ObjectPane
             }
         });
 
-
         // Object locked
-        m_lockedCheckBox = new JCheckBox("Locked");
-        Administrator.constrainHeight(m_lockedCheckBox);
+        String[] lockedComboBoxStrings = {"Unlocked", "Locked", "Full lock"};
+        m_lockedComboBox = new JComboBox<String>(lockedComboBoxStrings);
+        Administrator.constrainHeight(m_lockedComboBox);
+        if (locked.equals("U")) {
+            m_lockedComboBox.setSelectedIndex(0);
+            m_lockedComboBox.setBackground(Administrator.UNLOCKED_COLOR);
+        } else if (locked.equals("L")) {
+            m_lockedComboBox.setSelectedIndex(1);
+            m_lockedComboBox.setBackground(Administrator.LOCAL_COLOR);
+        } else {
+            m_lockedComboBox.setSelectedIndex(2);
+            m_lockedComboBox.setBackground(Administrator.FULL_COLOR);
+        }
+
+        m_lockedComboBox.addActionListener(dataChangeListener);
+        m_lockedComboBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                if (m_lockedComboBox.getSelectedIndex() == 0) {
+                    m_lockedComboBox.setBackground(Administrator.UNLOCKED_COLOR);
+                } else if (m_lockedComboBox.getSelectedIndex() == 1) {
+                    m_lockedComboBox.setBackground(Administrator.LOCAL_COLOR);
+                } else {
+                    m_lockedComboBox.setBackground(Administrator.FULL_COLOR);
+                }
+            }
+        });
 
         // original
         m_labelTextField = new JTextField(label);
@@ -195,7 +218,7 @@ public class ObjectPane
         mDateValueLabel.setEditable(false);
 
         JComponent[] values =
-                new JComponent[] {m_stateComboBox, m_shareLevelComboBox, m_lockedCheckBox,
+                new JComponent[] {m_stateComboBox, m_shareLevelComboBox, m_lockedComboBox,
                     m_labelTextField, cDateValueLabel, mDateValueLabel, m_ownerIdTextField};
 
         JPanel northValuePane = new JPanel();

@@ -52,7 +52,7 @@ public interface DOWriter
      * @throws ServerException
      *         If any type of error occurred fulfilling the request.
      */
-    public void setLocked(boolean locked) throws ServerException;
+    public void setLocked(String locked) throws ServerException;
 
     /**
      * Sets the ownerId for the digital object.

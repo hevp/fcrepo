@@ -324,7 +324,7 @@ implements PolicyStore {
                                           pid,
                                           "D",
                                           null,
-                                          false,
+                                          null,
                                           null,
                                           null,
                                           "Deleting policy " + pid,

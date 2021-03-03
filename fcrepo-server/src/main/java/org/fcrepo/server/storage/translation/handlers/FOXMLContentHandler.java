@@ -293,7 +293,12 @@ public class FOXMLContentHandler
                         throw new SAXException("Could not read share level", e);
                     }
                 } else if (m_objPropertyName.equals(MODEL.LOCKED.uri)) {
-                    m_obj.setLocked(Boolean.parseBoolean(grab(a, FOXML.uri, "VALUE")));
+                    try {
+                        m_obj.setLocked(DOTranslationUtility
+                                       .readLockedAttribute(grab(a, FOXML.uri, "VALUE")));
+                    } catch (ParseException e) {
+                        throw new SAXException("Could not read locked", e);
+                    }
                 } else if (m_objPropertyName.equals(MODEL.LABEL.uri)) {
                     m_obj.setLabel(grab(a, FOXML.uri, "VALUE"));
                 } else if (m_objPropertyName.equals(MODEL.OWNER.uri)) {

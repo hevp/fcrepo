@@ -36,7 +36,7 @@ public interface Management {
                              @PName("pid") String pid,
                              @PName("state") String state,
                              @PName("shareLevel") String shareLevel,
-                             @PName("locked") boolean locked,
+                             @PName("locked") String locked,
                              @PName("label") String label,
                              @PName("ownerID") String ownerID,
                              @PName("logMessage") String logMessage,

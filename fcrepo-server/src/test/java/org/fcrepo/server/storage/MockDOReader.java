@@ -109,7 +109,7 @@ public class MockDOReader
         return theObject.getShareLevel();
     }
 
-    public boolean GetObjectLocked() throws ServerException {
+    public String GetObjectLocked() throws ServerException {
         return theObject.getLocked();
     }
 

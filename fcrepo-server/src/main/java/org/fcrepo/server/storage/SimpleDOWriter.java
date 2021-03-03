@@ -111,7 +111,7 @@ public class SimpleDOWriter
         m_obj.setShareLevel(shareLevel);
     }
 
-    public void setLocked(boolean locked) throws ObjectIntegrityException {
+    public void setLocked(String locked) throws ObjectIntegrityException {
         assertNotInvalidated();
         assertNotPendingRemoval();
         m_obj.setLocked(locked);

@@ -102,7 +102,7 @@ public class FedoraObjectTripleGenerator_3_0
         add(objURI, MODEL.OWNER, r.getOwnerId(), set);
         add(objURI, MODEL.STATE, getStateResource(r.GetObjectState()), set);
         add(objURI, MODEL.SHARELEVEL, getShareLevelResource(r.GetObjectShareLevel()), set);
-        add(objURI, MODEL.LOCKED, r.GetObjectLocked(), set);
+        add(objURI, MODEL.LOCKED, getLockedResource(r.GetObjectLocked()), set);
         add(objURI, VIEW.LAST_MODIFIED_DATE, r.getLastModDate(), set);
     }
 

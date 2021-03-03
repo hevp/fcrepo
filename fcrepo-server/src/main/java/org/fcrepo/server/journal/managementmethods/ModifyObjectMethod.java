@@ -27,7 +27,7 @@ public class ModifyObjectMethod
                 .getStringArgument(ARGUMENT_NAME_PID), parent
                 .getStringArgument(ARGUMENT_NAME_STATE), parent
                 .getStringArgument(ARGUMENT_NAME_SHARELEVEL), parent
-                .getBooleanArgument(ARGUMENT_NAME_LOCKED), parent
+                .getStringArgument(ARGUMENT_NAME_LOCKED), parent
                 .getStringArgument(ARGUMENT_NAME_LABEL), parent
                 .getStringArgument(ARGUMENT_NAME_OWNERID), parent
                 .getStringArgument(ARGUMENT_NAME_LOG_MESSAGE), parent

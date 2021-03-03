@@ -76,11 +76,11 @@ public class ObjectNamespace
                                       "newShareLevel",
                                       StringAttribute.identifier));
         LOCKED =
-                addName(new XacmlName(this, "locked", BooleanAttribute.identifier));
+                addName(new XacmlName(this, "locked", StringAttribute.identifier));
         NEW_LOCKED =
                 addName(new XacmlName(this,
                                       "newLocked",
-                                      BooleanAttribute.identifier));
+                                      StringAttribute.identifier));
         CONTROL_GROUP =
                 addName(new XacmlName(this,
                                       "controlGroup",

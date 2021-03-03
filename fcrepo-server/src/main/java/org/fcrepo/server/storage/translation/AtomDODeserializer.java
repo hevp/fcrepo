@@ -173,9 +173,9 @@ public class AtomDODeserializer
         String shareLevel =
                 m_xpath.valueOf("/a:feed/a:category[@scheme='"
                         + MODEL.SHARELEVEL.uri + "']/@term", feed);
-        boolean locked =
-                Boolean.parseBoolean(m_xpath.valueOf("/a:feed/a:category[@scheme='"
-                        + MODEL.LOCKED.uri + "']/@term", feed));
+        String locked =
+                m_xpath.valueOf("/a:feed/a:category[@scheme='"
+                        + MODEL.LOCKED.uri + "']/@term", feed);
         String createDate =
                 m_xpath.valueOf("/a:feed/a:category[@scheme='"
                         + MODEL.CREATED_DATE.uri + "']/@term", feed);
@@ -194,7 +194,12 @@ public class AtomDODeserializer
             throw new ObjectIntegrityException("Could not read object share level", e);
         }
 
-        obj.setLocked(locked);
+        try {
+            obj.setLocked(DOTranslationUtility.readLockedAttribute(locked));
+        } catch (ParseException e) {
+            throw new ObjectIntegrityException("Could not read object locked", e);
+        }
+
         obj.setLabel(label);
         obj.setOwnerId(getOwnerId(feed));
         obj.setCreateDate(DateUtility.convertStringToDate(createDate));

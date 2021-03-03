@@ -438,8 +438,8 @@ public class FedoraObjectsResource extends BaseRestResource {
                               @DefaultValue("O")
                               String shareLevel,
                               @QueryParam(RestParam.LOCKED)
-                              @DefaultValue("false")
-                              boolean locked,
+                              @DefaultValue("U")
+                              String locked,
                               @QueryParam(RestParam.IGNORE_MIME)
                               @DefaultValue("false")
                               boolean ignoreMime,
@@ -484,7 +484,7 @@ public class FedoraObjectsResource extends BaseRestResource {
             String shareLevel,
             @QueryParam(RestParam.LOCKED)
             @DefaultValue("false")
-            boolean locked,
+            String locked,
             @QueryParam(RestParam.IGNORE_MIME)
             @DefaultValue("false")
             boolean ignoreMime,
@@ -529,7 +529,8 @@ public class FedoraObjectsResource extends BaseRestResource {
                             new OutputStreamWriter(bytes, Charset.forName(encoding)));
                 char stateChar = state.trim().toUpperCase().charAt(0);
                 char shareLevelChar = shareLevel.trim().toUpperCase().charAt(0);
-                getFOXMLTemplate(pid, label, ownerID, stateChar, shareLevelChar, locked, encoding, xml);
+                char lockedChar = locked.trim().toUpperCase().charAt(0);
+                getFOXMLTemplate(pid, label, ownerID, stateChar, shareLevelChar, lockedChar, encoding, xml);
                 xml.close();
                 is = bytes.toInputStream();
             } else {
@@ -566,7 +567,7 @@ public class FedoraObjectsResource extends BaseRestResource {
      *                         HTTP 409 Conflict if lastModifiedDate is earlier than the object's
      *                         lastModifiedDate.
      * @return The timestamp for this modification (as an XSD dateTime string)
-     * @see org.fcrepo.server.management.Management#modifyObject(org.fcrepo.server.Context, String, String, String, boolean, String, String, String, Date)
+     * @see org.fcrepo.server.management.Management#modifyObject(org.fcrepo.server.Context, String, String, String, String, String, String, String, Date)
      */
     @PUT
     @Path(VALID_PID_PART)
@@ -585,7 +586,7 @@ public class FedoraObjectsResource extends BaseRestResource {
             @QueryParam(RestParam.SHARELEVEL)
             String shareLevel,
             @QueryParam(RestParam.LOCKED)
-            boolean locked,
+            String locked,
             @QueryParam(RestParam.LAST_MODIFIED_DATE)
             DateTimeParam lastModifiedDate,
             @QueryParam(RestParam.FLASH)
@@ -611,7 +612,7 @@ public class FedoraObjectsResource extends BaseRestResource {
             String ownerId,
             char state,
             char shareLevel,
-            boolean locked,
+            char locked,
             String encoding,
             Writer xml) throws IOException {
 
@@ -639,7 +640,7 @@ public class FedoraObjectsResource extends BaseRestResource {
         xml.append(shareLevel);
         xml.append("\"/>\n"
                 + "    <foxml:property NAME=\"info:fedora/fedora-system:def/model#locked\" VALUE=\"");
-        xml.append(Boolean.toString(locked));
+        xml.append(locked);
         xml.append("\"/>\n"
                 + "    <foxml:property NAME=\"info:fedora/fedora-system:def/model#label\" VALUE=\"");
         StreamUtility.enc(label, xml);

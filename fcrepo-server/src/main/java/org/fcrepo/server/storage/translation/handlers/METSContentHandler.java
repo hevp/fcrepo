@@ -234,7 +234,7 @@ public class METSContentHandler
                 + m_transContext);
 
         m_obj.setShareLevel("O");
-        m_obj.setLocked(false);
+        m_obj.setLocked("U");
         m_obj.setOwnerId("");
         m_obj.setLabel("");
         initialize();

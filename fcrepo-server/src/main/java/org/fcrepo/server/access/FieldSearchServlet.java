@@ -382,7 +382,7 @@ public class FieldSearchServlet
                 + "<input type=\"checkbox\" name=\"locked\" value=\"true\"");
         html.append(fieldHash.contains("locked") ? CHECKED
                                 : "");
-        html.append("> <a href=\"#\" onClick=\"javascript:alert('Locked\\n\\nThe locked state of the object.\\nThis will be:\\n  false - Unlocked')\">locked</a><br>"
+        html.append("> <a href=\"#\" onClick=\"javascript:alert('Locked\\n\\nThe locked state of the object.\\nThis will be:\\n  U - Unlocked')\">locked</a><br>"
                 + "<input type=\"checkbox\" name=\"ownerId\" value=\"true\"");
         html.append(fieldHash.contains("ownerId") ? CHECKED : "");
         html.append("> <a href=\"#\" onClick=\"javascript:alert('Owner Id\\n\\nThe userId of the user who owns the object.')\">ownerId</a><br>"
@@ -472,7 +472,7 @@ public class FieldSearchServlet
             } else if (l.equalsIgnoreCase("shareLevel")) {
                 html.append(f.getShareLevel());
             } else if (l.equalsIgnoreCase("locked")) {
-                html.append(Boolean.toString(f.getLocked()));
+                html.append(f.getLocked());
             } else if (l.equalsIgnoreCase("ownerId")) {
                 if (f.getOwnerId() != null) {
                     html.append(f.getOwnerId());
@@ -557,7 +557,7 @@ public class FieldSearchServlet
             }
             if (fieldHash.contains("locked")) {
                 html
-                        .append("<input type=\"hidden\" name=\"shareLevel\" value=\"true\">");
+                        .append("<input type=\"hidden\" name=\"locked\" value=\"true\">");
             }
             if (fieldHash.contains("ownerId")) {
                 html

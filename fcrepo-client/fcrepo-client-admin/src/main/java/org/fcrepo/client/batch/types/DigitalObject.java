@@ -23,7 +23,7 @@ public class DigitalObject {
 
     public String shareLevel;
 
-    public boolean locked;
+    public String locked;
 
     public String ownerId;
 

@@ -75,7 +75,8 @@ public class FieldSearchSQLImpl
                     "cDate", "mDate", "dcmDate"};
 
     private static boolean[] s_dbColumnNumericNoDC =
-            new boolean[] {false, false, false, false, false, false, true, true, true};
+            new boolean[] {false, false, false, false, false, false,
+                        true, true, true};
 
     // a hash of token-keyed FieldSearchResultSQLImpls
     private final Map<String, FieldSearchResultSQLImpl> m_currentResults =
@@ -182,7 +183,7 @@ public class FieldSearchSQLImpl
 
             dbRowValues[2] = reader.GetObjectState().toLowerCase();
             dbRowValues[3] = reader.GetObjectShareLevel().toLowerCase();
-            dbRowValues[4] = Boolean.toString(reader.GetObjectLocked());
+            dbRowValues[4] = reader.GetObjectLocked().toLowerCase();
 
             v = reader.getOwnerId();
             if (v != null) {

@@ -130,6 +130,12 @@ public class Administrator
 
     public static Color PRIVATE_COLOR = new Color(210, 60, 60);
 
+    public static Color UNLOCKED_COLOR = new Color(240, 210, 180);
+
+    public static Color LOCAL_COLOR = new Color(210, 150, 150);
+
+    public static Color FULL_COLOR = new Color(210, 60, 60);
+
     public static Color DEFAULT_COLOR = new Color(185, 185, 185);
 
     public static Color DESKTOP_COLOR = new Color(46, 97, 116); // from website
