@@ -261,8 +261,10 @@ public class ObjectPane
         int origIndex = 0;
         if (m_state.equals("I")) {
             origIndex = 1;
-        } else if (m_state.equals("D")) {
+        } else if (m_state.equals("S")) {
             origIndex = 2;
+        } else if (m_state.equals("D")) {
+            origIndex = 3;
         }
         if (m_stateComboBox.getSelectedIndex() != origIndex) {
             return true;
@@ -281,6 +283,9 @@ public class ObjectPane
             state = "I";
         }
         if (i == 2) {
+            state = "S";
+        }
+        if (i == 3) {
             state = "D";
         }
         Administrator.APIM.modifyObject(m_pid, state, m_shareLevel, m_locked, m_labelTextField
@@ -297,6 +302,9 @@ public class ObjectPane
             m_state = "I";
         }
         if (i == 2) {
+            m_state = "S";
+        }
+        if (i == 3) {
             m_state = "D";
         }
         m_label = m_labelTextField.getText();
@@ -311,6 +319,9 @@ public class ObjectPane
         } else if (m_state.equals("I")) {
             m_stateComboBox.setSelectedIndex(1);
             m_stateComboBox.setBackground(Administrator.INACTIVE_COLOR);
+        } else if (m_state.equals("S")) {
+            m_stateComboBox.setSelectedIndex(1);
+            m_stateComboBox.setBackground(Administrator.SUBMITTED_COLOR);
         } else if (m_state.equals("D")) {
             m_stateComboBox.setSelectedIndex(2);
             m_stateComboBox.setBackground(Administrator.DELETED_COLOR);

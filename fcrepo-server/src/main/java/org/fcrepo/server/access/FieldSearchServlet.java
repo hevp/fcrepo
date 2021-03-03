@@ -372,16 +372,16 @@ public class FieldSearchServlet
                 + "<tr><td valign=top><font size=-1>"
                 + "<input type=\"checkbox\" name=\"pid\" value=\"true\" checked> <a href=\"#\" onClick=\"javascript:alert('Persistent Identfier\\n\\nThe globally unique identifier of the resource.')\">pid</a><br>"
                 + "<input type=\"checkbox\" name=\"label\" value=\"true\"");
-        html.append(fieldHash.contains("label") ? " checked"
-                                : "");
+        html.append(fieldHash.contains("label") ? CHECKED : "");
         html.append("> <a href=\"#\" onClick=\"javascript:alert('Label\\n\\nThe label of the object')\">label</a><br>"
                 + "<input type=\"checkbox\" name=\"state\" value=\"true\"");
-        html.append(fieldHash.contains("state") ? CHECKED
-                                : "");
+        html.append(fieldHash.contains("state") ? CHECKED : "");
         html.append("> <a href=\"#\" onClick=\"javascript:alert('State\\n\\nThe state of the object.\\nThis will be:\\n  A - Active')\">state</a><br>"
+                + "<input type=\"checkbox\" name=\"shareLevel\" value=\"true\"");
+        html.append(fieldHash.contains("shareLevel") ? CHECKED : "");
+        html.append("> <a href=\"#\" onClick=\"javascript:alert('Locked\\n\\nThe share level of the object.\\nThis will be:\\n  O - Open')\">shareLevel</a><br>"
                 + "<input type=\"checkbox\" name=\"locked\" value=\"true\"");
-        html.append(fieldHash.contains("locked") ? CHECKED
-                                : "");
+        html.append(fieldHash.contains("locked") ? CHECKED : "");
         html.append("> <a href=\"#\" onClick=\"javascript:alert('Locked\\n\\nThe locked state of the object.\\nThis will be:\\n  U - Unlocked')\">locked</a><br>"
                 + "<input type=\"checkbox\" name=\"ownerId\" value=\"true\"");
         html.append(fieldHash.contains("ownerId") ? CHECKED : "");

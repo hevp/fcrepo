@@ -76,7 +76,7 @@
 		</sch:rule>
 		<sch:rule context="METS:mdWrap">
 			<sch:assert test="not(@LABEL) or string-length(@LABEL) &lt;= 255">Datastream label must not exceed length of 255 (mets:mdWrap LABEL)</sch:assert>
-			<sch:assert test="not(@CHECKSUM) or (@CHECKSUM and @CHECKSUMTYPE)">Datastream CHECKSUMTYPE must be specified if CHECKSUM is provided (mets:mdWrap: CHECKSUMTYPE missing or empty)</sch:assert>			
+			<sch:assert test="not(@CHECKSUM) or (@CHECKSUM and @CHECKSUMTYPE)">Datastream CHECKSUMTYPE must be specified if CHECKSUM is provided (mets:mdWrap: CHECKSUMTYPE missing or empty)</sch:assert>
 		</sch:rule>
 		<sch:rule context="METS:fileSec">
 			<sch:assert test="METS:fileGrp[@ID]">All Datastreams must have a DatastreamID (mets:fileGrp: ID is missing or empty)</sch:assert>
@@ -96,8 +96,8 @@
 			<sch:assert test="string-length(@ID) &lt;= 69">Datastream Version ID must not exceed length of 69 (mets:file ID)</sch:assert>
 			<sch:assert test="string(@OWNERID)">Datastream control group must be recorded (mets:file: OWNERID missing or empty)</sch:assert>
 			<sch:assert test="@OWNERID='R' or @OWNERID = 'E' or @OWNERID = 'M' or @OWNERID = 'X'">Datastream control group must be "E" for External-Ref, "M" for Managed-Content, "R" for Redirect, or "X" for Inline-XML-Metadata.  (mets:file: OWNERID)</sch:assert>
-			<sch:assert test="not(@CHECKSUM) or (@CHECKSUM and @CHECKSUMTYPE)">Datastream CHECKSUMTYPE must be specified if CHECKSUM is provided (mets:file: CHECKSUMTYPE missing or empty)</sch:assert>			
-		</sch:rule>		
+			<sch:assert test="not(@CHECKSUM) or (@CHECKSUM and @CHECKSUMTYPE)">Datastream CHECKSUMTYPE must be specified if CHECKSUM is provided (mets:file: CHECKSUMTYPE missing or empty)</sch:assert>
+		</sch:rule>
 		<sch:rule context="METS:FLocat">
 			<sch:assert test="not(@xlink:title) or string-length(@xlink:title) &lt;= 255">Datastream label must not exceed length of 255 (mets:FLocat xlink:title)</sch:assert>
         </sch:rule>
@@ -108,12 +108,12 @@
 		<sch:rule context="METS:metsHdr">
 			<sch:assert test="@CREATEDATE">Object must have a date of creation (mets:header: CREATEDATE missing)</sch:assert>
 			<sch:assert test="string(@RECORDSTATUS)">Object state must be recorded (mets:header: RECORDSTATUS missing or empty)</sch:assert>
-			<sch:assert test="@RECORDSTATUS ='A' or @RECORDSTATUS ='I' or @RECORDSTATUS ='D'">Object state value is invalid  (mets:header: RECORDSTATUS must be "A|I|D")</sch:assert>
+			<sch:assert test="@RECORDSTATUS ='A' or @RECORDSTATUS ='I' or @RECORDSTATUS ='S' or @RECORDSTATUS ='D'">Object state value is invalid  (mets:header: RECORDSTATUS must be "A|I|S|D")</sch:assert>
 		</sch:rule>
 		<sch:rule context="METS:file">
 			<sch:assert test="string(@STATUS)">Datastream state must be recorded (mets:file: STATUS missing or empty)</sch:assert>
 			<sch:assert test="@STATUS= 'A' or @STATUS= 'I' or @STATUS= 'D'">Datastream state must be "A" for Active, "I" for Inactive, or "D" for Deleted.  (mets:file: STATUS)</sch:assert>
-		</sch:rule>	
+		</sch:rule>
 		<sch:rule context="METS:amdSec">
 			<sch:assert test="@ID">Inline Metadata Datastream must have an id (mets:amdSec: ID missing)</sch:assert>
 			<sch:assert test="string(@STATUS)">Inline Metadata Datastream state must be recorded (mets:amdSec: STATUS missing or empty)</sch:assert>

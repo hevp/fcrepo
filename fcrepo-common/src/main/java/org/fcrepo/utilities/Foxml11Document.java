@@ -68,11 +68,15 @@ public class Foxml11Document {
     }
 
     public enum State {
-        A, I, D;
+        A, I, S, D;
     }
 
     public enum ShareLevel {
         O, R, P;
+    }
+
+    public enum Locked {
+        U, L, F;
     }
 
     public enum ControlGroup {

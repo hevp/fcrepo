@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" label="Tab" creationComplete="openObject()">
-		
-	<mx:Script>  
+
+	<mx:Script>
 		<![CDATA[
 		    import mx.events.CloseEvent;
 			import mx.managers.PopUpManager;
@@ -10,11 +10,11 @@
             import mx.rpc.events.ResultEvent;
             import script.ErrorHandler;
             import script.Util;
-		
+
 			[Bindable]
 			private var baseUrl:String;
 
-			[Bindable]       
+			[Bindable]
 			private var pid:String;
 
 			[Bindable]
@@ -23,22 +23,22 @@
             /**
              * Sets up the object tab, stores the information necessary to
              * retrieve the object.
-             */ 
+             */
 			public function setup(baseUrl:String, pid:String):void {
 				this.baseUrl = baseUrl;
 				this.pid = pid;
 				this.label = pid;
 			}
-			
+
 			/**
-			 * Retrieves an object and its datastream list, which are used 
+			 * Retrieves an object and its datastream list, which are used
 			 * to populate the UI.
 			 */
-			private function openObject():void {			
-				object.send();			
-				datastreams.send();				
+			private function openObject():void {
+				object.send();
+				datastreams.send();
 			}
-			
+
 			/**
 			 * Loads the object profile information into the UI
 			 */
@@ -48,19 +48,21 @@
                     Alerts.showError("Could not get object profile for " + pid +
                                      " due to: " + error);
                     return;
-                }			    
-			    
+                }
+
 			    objProfile = event.result.objectProfile;
-			    
+
 			    if(objProfile.objState == "A") {
 			        objState.selectedIndex = 0;
 			    } else if(objProfile.objState == "I") {
-                    objState.selectedIndex = 1;
-                } else if(objProfile.objState == "D") {
-                    objState.selectedIndex = 2;
-                }                    
+              objState.selectedIndex = 1;
+          } else if(objProfile.objState == "S") {
+              objState.selectedIndex = 2;
+          } else if(objProfile.objState == "D") {
+              objState.selectedIndex = 3;
+          }
 			}
-			
+
 			/**
 			 * Handles the result of the get datastreams call
 			 */
@@ -70,61 +72,61 @@
                     Alerts.showError("Could not get datastreams list for " + pid +
                                      " due to: " + error);
                     return;
-                }			    
+                }
 			}
-			
+
 			/**
 			 * Opens an object's XML in a new window
 			 */
 			private function openObjectXML():void {
-				var objectXmlUrl:String = 
-				    baseUrl+"/objects/"+pid+"/objectXML?flash=true";				
+				var objectXmlUrl:String =
+				    baseUrl+"/objects/"+pid+"/objectXML?flash=true";
 				var objectXMLDialog:ObjectXMLDialog = new ObjectXMLDialog();
 				objectXMLDialog.setup(pid, objectXmlUrl);
 				PopUpManager.addPopUp(objectXMLDialog, this.parent.parent, true);
 				PopUpManager.centerPopUp(objectXMLDialog);
 			}
-			
+
 			/**
 			 * Opens an object datastream in a new window.
 			 */
 			private function openDatastream(dsId:String):void {
-				var datastreamUrl:String = 
+				var datastreamUrl:String =
 				    baseUrl+"/objects/"+pid+"/datastreams/"+dsId;
 				var datastreamDialog:DatastreamDialog = new DatastreamDialog();
 				PopUpManager.addPopUp(datastreamDialog, this.parent.parent, true);
 				datastreamDialog.setup(pid, dsId, datastreamUrl);
 				PopUpManager.centerPopUp(datastreamDialog);
-			}		
+			}
 
             /**
              * Provides a dialog for object export
-             */ 
+             */
 			private function exportObject():void {
-			    var url:String = baseUrl+"/objects/"+pid+"/export";		
+			    var url:String = baseUrl+"/objects/"+pid+"/export";
 				var exportDialog:ExportDialog = new ExportDialog();
                 exportDialog.setup(pid, url);
                 PopUpManager.addPopUp(exportDialog, this.parent.parent, true);
-                PopUpManager.centerPopUp(exportDialog);				    
+                PopUpManager.centerPopUp(exportDialog);
 			}
-			
+
 			/**
 			 * Verifies that the object should be purged
 			 */
 			private function verifyPurgeObject():void {
-			    Alerts.showVerification("Are you sure you want to delete " + pid + 
+			    Alerts.showVerification("Are you sure you want to delete " + pid +
 			                            "? This action cannot be undone.",
 			                            "Verify Purge Object",
-			                            this, 
+			                            this,
 			                            verifyPurgeHandler);
 			}
-			
+
             private function verifyPurgeHandler(event:CloseEvent):void {
                 if (event.detail==Alert.YES) {
                     purgeObject();
                 }
             }
-			
+
 			/**
 			 * Purges an object.
 			 */
@@ -133,62 +135,64 @@
 				// Fortunately, the REST API will interpret an HTTP POST with
 				// an X-HTTP-Method-Override header set to 'DELETE' as a DELETE.
 				objectPurge.headers['X-HTTP-Method-Override'] = 'DELETE';
-				
+
 				// Flex will turn an HTTP POST into an HTTP GET if there
 				// is no posted content, unless the content type is set
 				// to something other than application/x-www-form-urlencoded
 				objectPurge.contentType="application/fedora";
-				
+
 				objectPurge.send();
 			}
-			
+
 			/**
 			 * Cleans up after an object has been purged.
 			 */
 			private function purgeObjectComplete(event:ResultEvent):void {
                 var error:String = ErrorHandler.getError(event.result);
                 if(error != null) {
-                    Alerts.showError("Could not purge object" + pid + 
+                    Alerts.showError("Could not purge object" + pid +
                                      " due to: " + error);
                     return;
-                }			    
-			    
+                }
+
 			    Alerts.showInfo("Object " + pid + " has been purged");
 				closeObjectTab();
 			}
-			
+
 			/**
 			 * Updates an object's profile.
 			 */
 			private function updateObject():void {
                 if(objLabel.text != object.lastResult.objectProfile.objLabel ||
 				   objOwner.text != object.lastResult.objectProfile.objOwnerId) {
-				     
+
                     var state:String;
 				    if(objState.selectedIndex == 0) {
                         state = "A";
-                    } else if(objState.selectedIndex == 1) {
-                        state = "I";
-                    } else if(objState.selectedIndex == 2) {
-                        state = "D";
-                    }  
-				       
+            } else if(objState.selectedIndex == 1) {
+                state = "I";
+            } else if(objState.selectedIndex == 2) {
+                state = "S";
+            } else if(objState.selectedIndex == 3) {
+                state = "D";
+            }
+
                     objectUpdate.url = baseUrl+"/objects/"+pid+
 					                   "?label="+Util.urlEncode(objLabel.text)+
 					                   "&ownerId="+Util.urlEncode(objOwner.text)+
 					                   "&state="+state+
-					                   "&flash=true";					
-					
+					                   "&flash=true";
+
 					// Flex doesn't know how to generate an HTTP PUT
                     // Fortunately, the REST API will interpret an HTTP POST with
                     // an X-HTTP-Method-Override header set to 'PUT' as a PUT.
                     objectUpdate.headers['X-HTTP-Method-Override'] = 'PUT';
-                    
+
                     // Flex will turn an HTTP POST into an HTTP GET if there
                     // is no posted content, unless the content type is set
                     // to something other than application/x-www-form-urlencoded
                     objectUpdate.contentType="application/fedora";
-					
+
 					objectUpdate.send();
 				}
 			}
@@ -196,17 +200,17 @@
             private function updateObjectComplete(event:ResultEvent):void {
                 var error:String = ErrorHandler.getError(event.result);
                 if(error != null) {
-                    Alerts.showError("Could not update object " + pid + 
+                    Alerts.showError("Could not update object " + pid +
                                      " due to: " + error);
                     return;
-                }                
-                
+                }
+
                 Alerts.showInfo("Your changes to " + pid + " have been saved");
             }
 
             /**
              * Facilitates the creation of a new datasteam.
-             */ 			
+             */
 			private function addDatastream():void {
                 var addDatastreamUrl:String = baseUrl+"/objects/"+pid+"/datastreams";
                 var newDatastreamDialog:NewDatastreamDialog = new NewDatastreamDialog();
@@ -214,15 +218,15 @@
                 newDatastreamDialog.setup(pid, addDatastreamUrl);
                 PopUpManager.centerPopUp(newDatastreamDialog);
 			}
-			
+
 			/**
-			 * Updates the list of datastreams in an object. To be used after 
+			 * Updates the list of datastreams in an object. To be used after
 			 * there has been some change to the object.
 			 */
 			public function updateDatastreamList():void {
 			    datastreams.send();
 			}
-			
+
 			/**
 			 * Removes this object tab from the tab list.
 			 */
@@ -233,21 +237,21 @@
 	</mx:Script>
 
 	<mx:HTTPService id="object" method="GET" showBusyCursor="true"
-	                url="{baseUrl}/objects/{pid}?format=xml&amp;flash=true" 	                
-	                result="setObjectProfile(event)" 
+	                url="{baseUrl}/objects/{pid}?format=xml&amp;flash=true"
+	                result="setObjectProfile(event)"
 	                fault="ErrorHandler.handleFault(event)" />
 	<mx:HTTPService id="datastreams" method="GET" showBusyCursor="true"
 	                url="{baseUrl}/objects/{pid}/datastreams?format=xml&amp;flash=true"
-	                result="getDatastreamsComplete(event)"	               
+	                result="getDatastreamsComplete(event)"
 	                fault="ErrorHandler.handleFault(event)" />
-	<mx:HTTPService id="objectUpdate" method="POST" resultFormat="text" showBusyCursor="true" 
-	                result="updateObjectComplete(event)" 
+	<mx:HTTPService id="objectUpdate" method="POST" resultFormat="text" showBusyCursor="true"
+	                result="updateObjectComplete(event)"
 	                fault="ErrorHandler.handleFault(event)" />
 	<mx:HTTPService id="objectPurge" method="POST" resultFormat="text" showBusyCursor="true"
-	                url="{baseUrl}/objects/{pid}?flash=true" 
-	                result="purgeObjectComplete(event)" 
+	                url="{baseUrl}/objects/{pid}?flash=true"
+	                result="purgeObjectComplete(event)"
 	                fault="ErrorHandler.handleFault(event)" />
-    
+
 	<mx:VBox styleName="tabContents">
 	    <mx:Label text="Properties" styleName="header" />
 	    <mx:Canvas width="600">
@@ -264,26 +268,36 @@
     			<mx:FormItem label="Owner:">
     				<mx:TextInput id="objOwner" text="{objProfile.objOwnerId}" maxWidth="350" />
     			</mx:FormItem>
-                <mx:FormItem label="State:">
-                    <mx:ComboBox id="objState">
-                        <mx:Array >
-                            <mx:String>Active (A)</mx:String>
-                            <mx:String>Inactive (I)</mx:String>
-                            <mx:String>Deleted (D)</mx:String>
-                        </mx:Array>
-                    </mx:ComboBox>
-                </mx:FormItem>			
-    			<mx:Button label="Commit Changes" click="updateObject()" />						    	  
+          <mx:FormItem label="State:">
+              <mx:ComboBox id="objState">
+                  <mx:Array >
+                      <mx:String>Active (A)</mx:String>
+                      <mx:String>Inactive (I)</mx:String>
+                      <mx:String>Submitted (S)</mx:String>
+                      <mx:String>Deleted (D)</mx:String>
+                  </mx:Array>
+              </mx:ComboBox>
+          </mx:FormItem>
+    			<mx:FormItem label="Share level:">
+              <mx:ComboBox id="objShareLevel">
+                  <mx:Array >
+                      <mx:String>Open public (O)</mx:String>
+                      <mx:String>Restricted (R)</mx:String>
+                      <mx:String>Closed private (P)</mx:String>
+                  </mx:Array>
+              </mx:ComboBox>
+          </mx:FormItem>
+          <mx:Button label="Commit Changes" click="updateObject()" />
     		</mx:Form>
             <mx:VBox styleName="objectButtons">
                 <mx:Button label="Export Object" click="exportObject()" width="125"/>
                 <mx:Button label="View Object XML" click="openObjectXML()" width="125"/>
                 <mx:Button label="Purge Object" click="verifyPurgeObject()" width="125"/>
             </mx:VBox>
-        </mx:Canvas>	
+        </mx:Canvas>
 		<mx:Label text="Datastreams" styleName="header" />
-		<mx:DataGrid id="dsList" 
-			dataProvider="{datastreams.lastResult.objectDatastreams.datastream}" 
+		<mx:DataGrid id="dsList"
+			dataProvider="{datastreams.lastResult.objectDatastreams.datastream}"
 			itemClick="openDatastream(dsList.selectedItem.dsid)">
 			<mx:columns>
 				<mx:DataGridColumn headerText="ID" dataField="dsid"  width="150" />
@@ -293,8 +307,8 @@
 		</mx:DataGrid>
 		<mx:Canvas width="600">
 		  <mx:Button label="Add Datastream" click="addDatastream()" />
-          <mx:Button label="Refresh List" click="updateDatastreamList()" id="refresh" right="0" />    
-		</mx:Canvas>			  		  
+          <mx:Button label="Refresh List" click="updateDatastreamList()" id="refresh" right="0" />
+		</mx:Canvas>
 	</mx:VBox>
-		
+
 </mx:VBox>
