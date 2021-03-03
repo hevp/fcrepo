@@ -182,7 +182,7 @@
 		<part name="shareLevel" type="xsd:string">
 			<documentation>if true, the share levels of matching objects will be included in the response.</documentation>
 		</part>
-		<part name="locked" type="xsd:boolean">
+		<part name="locked" type="xsd:string">
       <documentation>if true, the locked states of matching objects will be included in the response.</documentation>
     </part>
     <part name="ownerId" type="xsd:string">

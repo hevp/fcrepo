@@ -39,7 +39,7 @@
 			</xsd:attribute>
 			<xsd:attribute name="locked" use="optional">
         <xsd:simpleType>
-          <xsd:restriction base="xsd:boolean"/>
+          <xsd:restriction base="xsd:string"/>
         </xsd:simpleType>
       </xsd:attribute>
       <xsd:attribute name="ownerId" type="xsd:string" use="optional"/>

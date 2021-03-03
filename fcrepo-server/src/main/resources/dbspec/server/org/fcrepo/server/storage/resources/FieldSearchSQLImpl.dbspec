@@ -21,7 +21,7 @@
 		<column name="shareLevel" type="varchar(1)" notNull="true" default="O">
 			<comment>The share level of the object.</comment>
 		</column>
-		<column name="locked" type="boolean" notNull="true" default="false">
+		<column name="locked" type="varchar(1)" notNull="true" default="U">
       <comment>The locked state of the object.</comment>
     </column>
     <column name="ownerId" type="varchar(64)" notNull="false">

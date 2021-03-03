@@ -187,7 +187,7 @@
                 <element name="pid" type="xsd:string"/>
                 <element name="state" type="xsd:string"/>
                 <element name="shareLevel" type="xsd:string"/>
-                <element name="locked" type="xsd:boolean"/>
+                <element name="locked" type="xsd:string"/>
                 <element name="label" type="xsd:string"/>
                 <element name="ownerId" type="xsd:string"/>
                 <element name="logMessage" type="xsd:string"/>
@@ -721,7 +721,7 @@
             <element name="label" nillable="true" type="string" minOccurs="0"/>
             <element name="state" nillable="true" type="string" minOccurs="0"/>
             <element name="shareLevel" nillable="true" type="string" minOccurs="0"/>
-            <element name="locked" nillable="true" type="boolean" minOccurs="0"/>
+            <element name="locked" nillable="true" type="string" minOccurs="0"/>
             <element name="ownerId" nillable="true" type="string" minOccurs="0"/>
             <element name="cDate" nillable="true" type="string" minOccurs="0"/>
             <element name="mDate" nillable="true" type="string" minOccurs="0"/>

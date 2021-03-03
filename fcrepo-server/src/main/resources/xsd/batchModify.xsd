@@ -41,8 +41,12 @@
 					<xsd:restriction base="xsd:string"/>
 				</xsd:simpleType>
 			</xsd:attribute>
-      <xsd:attribute name="locked" type="xsd:boolean" use="optional"/>
-			<xsd:attribute name="ownerId" type="xsd:string" use="optional"/>
+      <xsd:attribute name="locked" use="optional">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string"/>
+        </xsd:simpleType>
+      </xsd:attribute>
+      <xsd:attribute name="ownerId" type="xsd:string" use="optional"/>
 			<xsd:attribute name="logMessage" type="xsd:string" use="required"/>
 		</xsd:complexType>
 	</xsd:element>

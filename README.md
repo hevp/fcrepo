@@ -14,7 +14,7 @@ Adds the 'submitted' (S) value for the object state property, indicating the obj
 Adds the share level property to the object model. Possible values are 'Open access' (O), 'Registered' (R) and 'Private' (P).
 
 ##### Object locked state property
-Adds the locked state property to the object model. Possible values are true or false.
+Adds the locked state property to the object model. Possible values are 'Unlocked' (U), 'Locked' (L) and 'Full' (F)
 
 Below a formatted version of the original `README`.
 
